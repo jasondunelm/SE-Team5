@@ -2,130 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="718062a3-1a93-410e-96ee-dd21d540836d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/autoload.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/composer/ClassLoader.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/composer/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/composer/autoload_classmap.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/composer/autoload_namespaces.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/composer/autoload_psr4.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/composer/autoload_real.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/composer/autoload_static.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/composer/installed.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/.github/ISSUE_TEMPLATE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/.github/PULL_REQUEST_TEMPLATE.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/.phan/config.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/.php_cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/.scrutinizer.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/.travis.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/COMMITMENT" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/SECURITY.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/UPGRADING.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/VERSION" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/changelog.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/composer.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/docs/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/DKIM_gen_keys.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/DKIM_sign.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/callback.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/contactform.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/contents.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/contentsutf8.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/exceptions.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/extending.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/gmail.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/gmail_xoauth.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/images/phpmailer.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/images/phpmailer_mini.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/mail.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/mailing_list.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/pop_before_smtp.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/send_file_upload.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/send_multiple_file_upload.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/sendmail.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/simple_contact_form.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/smime_signed_mail.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/smtp.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/smtp_check.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/smtp_low_memory.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/smtp_no_auth.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/examples/ssl_options.phps" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/get_oauth_token.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-am.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ar.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-az.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ba.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-be.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-bg.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ca.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ch.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-cs.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-da.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-de.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-el.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-eo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-es.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-et.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-fa.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-fi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-fo.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-fr.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-gl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-he.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-hi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-hr.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-hu.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-id.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-it.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ja.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ka.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ko.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-lt.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-lv.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-mg.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ms.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-nb.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-nl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-pl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-pt.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-pt_br.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ro.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-ru.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-sk.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-sl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-sr.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-sv.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-tl.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-tr.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-uk.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-vi.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-zh.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/language/phpmailer.lang-zh_cn.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/phpdoc.dist.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/src/Exception.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/src/OAuth.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/src/PHPMailer.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/src/POP3.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/src/SMTP.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/test/DebugLogTestListener.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/test/PHPMailerLangTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/test/PHPMailerTest.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/test/bootstrap.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/test/fakepopserver.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/test/fakesendmail.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/test/runfakepopserver.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/test/testbootstrap-dist.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/PHPMailer/vendor/phpmailer/phpmailer/travis.phpunit.xml.dist" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/confirm.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/functions.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/register.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/myFile.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/~$e City Car Club SEInt-1819.docx" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/forgotPassword.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/login.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resetPassword.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHPMailer/Exception.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHPMailer/OAuth.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHPMailer/PHPMailer.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHPMailer/POP3.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/PHPMailer/SMTP.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/email_Confirm.php" beforeDir="false" afterPath="$PROJECT_DIR$/email_Confirm.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions_WebFront.php" beforeDir="false" afterPath="$PROJECT_DIR$/functions_WebFront.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,14 +23,27 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/functions.php">
+        <entry file="file://$PROJECT_DIR$/functions_WebFront.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="347">
-              <caret line="104" column="32" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
+            <state relative-caret-position="1460">
+              <caret line="132" column="12" selection-start-line="132" selection-start-column="12" selection-end-line="132" selection-end-column="24" />
               <folding>
-                <element signature="e#445#581#0#PHP" />
+                <element signature="e#354#490#0#PHP" />
                 <element signature="n#displayError#0;n#!!top" />
+                <element signature="n#generateNewString#0;n#!!top" />
+                <element signature="n#redirect#0;n#!!top" />
+                <element signature="n#redirectToLoginPage#0;n#!!top" />
+                <element signature="e#5261#6117#0#PHP" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resetPassword.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -151,17 +51,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/register.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+            <state relative-caret-position="357">
+              <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="36" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/confirm.php">
+        <entry file="file://$PROJECT_DIR$/email_Confirm.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="18" column="65" selection-start-line="18" selection-start-column="65" selection-end-line="18" selection-end-column="65" />
+            <state relative-caret-position="323">
+              <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/login.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="32" column="75" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
             </state>
           </provider>
         </entry>
@@ -177,13 +86,19 @@
         <option value="$PROJECT_DIR$/register.php" />
         <option value="$PROJECT_DIR$/confirm.php" />
         <option value="$PROJECT_DIR$/functions.php" />
+        <option value="$PROJECT_DIR$/email_Confirm.php" />
+        <option value="$PROJECT_DIR$/login.php" />
+        <option value="$PROJECT_DIR$/forgottenPassword.php" />
+        <option value="$PROJECT_DIR$/resetPassword.php" />
+        <option value="$PROJECT_DIR$/functions_WebFront.php" />
+        <option value="$PROJECT_DIR$/forgotPassword.php" />
       </list>
     </option>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="PHP" />
   <component name="ProjectFrameBounds">
     <option name="y" value="23" />
-    <option name="width" value="1444" />
+    <option name="width" value="1280" />
     <option name="height" value="1057" />
   </component>
   <component name="ProjectLevelVcsManager">
@@ -201,11 +116,6 @@
               <item name="SE-Team5" type="b2602c69:ProjectViewProjectNode" />
               <item name="SE-Team5" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="SE-Team5" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SE-Team5" type="462c0819:PsiDirectoryNode" />
-              <item name="PHPMailer" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -222,6 +132,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/PHPMailer" />
     </key>
   </component>
@@ -253,17 +164,17 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="9838000" />
+    <option name="totallyTimeSpent" value="15853000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1064" height="1057" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="23" width="1280" height="1057" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.17612524" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.21324718" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32953367" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
@@ -304,28 +215,55 @@
     <entry file="file://$PROJECT_DIR$/PHPMailer/vendor/composer/LICENSE">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/confirm.php">
+    <entry file="file://$PROJECT_DIR$/confirm.php" />
+    <entry file="file://$PROJECT_DIR$/functions.php" />
+    <entry file="file://$PROJECT_DIR$/email_Confirm.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="65" selection-start-line="18" selection-start-column="65" selection-end-line="18" selection-end-column="65" />
+        <state relative-caret-position="323">
+          <caret line="19" column="2" lean-forward="true" selection-start-line="19" selection-start-column="2" selection-end-line="19" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/login.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="75" selection-start-line="32" selection-start-column="75" selection-end-line="32" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resetPassword.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="34" lean-forward="true" selection-start-line="22" selection-start-column="34" selection-end-line="22" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/register.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" lean-forward="true" selection-start-line="2" selection-end-line="2" />
+        <state relative-caret-position="357">
+          <caret line="21" column="12" lean-forward="true" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="36" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/functions.php">
+    <entry file="file://$PROJECT_DIR$/functions_WebFront.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="347">
-          <caret line="104" column="32" selection-start-line="104" selection-start-column="32" selection-end-line="104" selection-end-column="32" />
+        <state relative-caret-position="1460">
+          <caret line="132" column="12" selection-start-line="132" selection-start-column="12" selection-end-line="132" selection-end-column="24" />
           <folding>
-            <element signature="e#445#581#0#PHP" />
+            <element signature="e#354#490#0#PHP" />
             <element signature="n#displayError#0;n#!!top" />
+            <element signature="n#generateNewString#0;n#!!top" />
+            <element signature="n#redirect#0;n#!!top" />
+            <element signature="n#redirectToLoginPage#0;n#!!top" />
+            <element signature="e#5261#6117#0#PHP" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/forgotPassword.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-359">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>

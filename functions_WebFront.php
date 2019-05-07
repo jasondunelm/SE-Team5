@@ -40,6 +40,27 @@ function displayError()
     }
 }
 
+// to generate a random token
+function generateNewString($len = 10) {
+    $token = "qwertzuiopasdfghjklyxcvbnmQWERTZUIOPASDFGHJKLYXCVBNM0123456789!$/()*";
+    $token = str_shuffle($token);
+    $token = substr($token, 0, $len);
+
+    return $token;
+}
+
+// to redirect to register page
+function redirectToRegisterPage() {
+    header('Location: register.php');
+    exit();
+}
+
+// to redirect to Log-in Page
+function redirectToLoginPage() {
+    header('Location: login.php');
+    exit();
+}
+
 // to register a new user
 if ($_POST['submit'] == "Register") {
 
@@ -88,16 +109,14 @@ if ($_POST['submit'] == "Register") {
         if ($results) {
             $error = "That email address is already registered, Do you want to log in ?";
         } else {
-            $token = 'qwertzuiopasdfghjklyxcvbnmQWERTZUIOPASDFGHJKLYXCVBNM0123456789!$/()*';
-            $token = str_shuffle($token);
-            $token = substr($token, 0, 10);
+            $token = generateNewString();
 
             $query = "INSERT INTO Users (userName, password, firstName, lastName, role, emailConfirmed, token)
  VALUES('" . mysqli_real_escape_string($link, $_POST['email']) . "','" . md5(md5($_POST['email']) . $_POST['password']) . "','" . ($_POST['firstName']) . "','" . ($_POST['lastName']) . "','user', '0', '$token')";
 
             mysqli_query($link, $query);
 
-            include_once "PHPMailer/PHPMailer.php";
+            include_once "PHPMailer/vendor/phpmailer/phpmailer/src/PHPMailer.php";
 
             $mail = new PHPMailer(true);
 
@@ -132,4 +151,39 @@ if ($_POST['submit'] == "Register") {
 
         }
     }
+}
+
+// to login the booking system
+if ($_POST['submit'] == "Log In") {
+
+    $query = "SELECT * FROM Users WHERE userName='" . mysqli_real_escape_string($link, $_POST['loginEmail']) . "' AND password='" . md5(md5($_POST['loginEmail']) . $_POST['loginPassword']) . "' LIMIT 1";
+    $result = mysqli_query($link, $query);
+
+    if (mysqli_num_rows($result) == 1) { //found user
+        // check if userType is admin or user
+        $row = mysqli_fetch_assoc($result);
+
+        if ($row['userType'] == 'admin') {
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['userType'] = $row['userType'];
+            header("Location:home_page_admin.php");
+        } else {
+            $_SESSION['id'] = $row['id'];
+            header("Location:home_page.php");
+        }
+
+    } else {
+        $error = "We could not find a user with that email and password. Please try again later.";
+    }
+}
+
+// to redirect to forgotten password page
+function redirectToForgotPasswordPage() {
+    header('Location: forgotPassword.php');
+    exit();
+}
+
+// to enter forgotten password page
+if ($_POST['submit'] == "Forgotten Password?"){
+    redirectToForgotPasswordPage();
 }

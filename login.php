@@ -1,24 +1,7 @@
 <?php
 include("functions_WebFront.php");
 
-if (!isset($_GET['email']) || !isset($_GET['token'])) {
-    redirectToRegisterPage();
-} else {
-    $con = new mysqli("127.0.0.1", "root", "password", "se_team5");
-
-    $email = $con->real_escape_string($_GET['email']);
-    $token = $con->real_escape_string($_GET['token']);
-
-    $sql = $con->query("SELECT id FROM Users WHERE userName='$email' AND token='$token' AND emailConfirmed=0");
-
-    if ($sql->num_rows > 0) {
-        $con->query("UPDATE Users SET emailConfirmed=1, token='' WHERE userName='$email'");
-        $message = 'Your email has been verified! You can log in now!';
-    } else
-        redirectToRegisterPage();
-}
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -38,8 +21,16 @@ if (!isset($_GET['email']) || !isset($_GET['token'])) {
 
             <?php displayError(); ?>
 
-            <form method="post" action="login.php">
-                <input class="btn btn-primary" type="submit" name="submit" value="Go to Log-in">
+            <h2 class="font-weight-bold">Login</h2>
+
+            <form method="post">
+                <input class="form-control" name="loginEmail" type="email" placeholder="Your Email..."
+                       value="<?php echo addslashes($_POST['loginEmail']); ?>"><br>
+                <input class="form-control" name="loginPassword" type="password" placeholder="Password..."
+                       value="<?php echo addslashes($_POST['loginPassword']); ?>"><br>
+                <input class="btn btn-primary" type="submit" name="submit" value="Log In">
+                <br><br>
+                <input class="btn btn-secondary" type="submit" name="submit" value="Forgotten Password?">
             </form>
 
         </div>
