@@ -21,52 +21,9 @@ session_start();
 </head>
 <body>
 
-<!-- the navigation bar of homepage -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">DUS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Events</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.teamdurham.com/queenscampus/">Queen's Campus</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Facilities
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Fitness Suite</a>
-                    <a class="dropdown-item" href="#">Sports Hall</a>
-                    <a class="dropdown-item" href="#">Artificial Pitches</a>
-                    <a class="dropdown-item" href="#">Rowing Tank</a>
-                    <a class="dropdown-item" href="#">Ergo Gallery</a>
-                    <a class="dropdown-item" href="#">Outdoor Facilities</a>
-                    <a class="dropdown-item" href="#">Maiden Castle Physiotherapy</a>
-                    <a class="dropdown-item" href="#">Aerobics Room</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </div>
-        </form>
-        <button type="button" class="btn btn-secondary">Login</button>
-
-    </div>
-</nav>
+<?php
+include('header.php');
+?>
 
 
 <div class="container">
@@ -80,49 +37,105 @@ session_start();
 <div class="logo">
     <div class="logo_container">
         <h2 class="logo_text">Join us today</h2>
-        <button type="button" class="btn btn-secondary">Sign Up</button>
-    </div>
-</div>
-
-<div>
-    <h2>HightLights</h2>
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="#">
-                <img src="src/tennis.jpg" alt="Cinque Terre" width="300" height="200">
-            </a>
-        </div>
-    </div>
-
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_forest.jpg">
-                <img src="src/yoga.jpg" alt="Forest" width="300" height="200">
-            </a>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_lights.jpg">
-                <img src="src/tennis.jpg" alt="Northern Lights" width="300" height="200">
-            </a>
-        </div>
-    </div>
-
-    <div class="responsive">
-        <div class="gallery">
-            <a target="_blank" href="img_mountains.jpg">
-                <img src="src/yoga.jpg" alt="Mountains" width="300" height="200">
-            </a>
-        </div>
+        <button type="button" class="btn btn-primary">Sign Up</button>
     </div>
 </div>
 
 <div class="clearfix"></div>
 
 
+<div class="pic_group">
+    <div class="facilities">
+        <h2>Facilities</h2>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <a href="test.php" class="pic_link">
+                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <h3>Fitness Suite</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="test.php" class="pic_link">
+                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <h3>Sports Hall</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="test.php" class="pic_link">
+                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <h3>Artificial Pitches</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="test.php" class="pic_link">
+                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <h3>Rowing Tank</h3>
+                </a>
+            </div>
+
+            <div class="col-md-3">
+                <a href="test.php" class="pic_link">
+                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <h3>Ergo Gallery</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="test.php" class="pic_link">
+                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <h3>Outdoor Facilities</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="test.php" class="pic_link">
+                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <h3>Physiotherapy</h3>
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="test.php" class="pic_link">
+                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <h3>Aerobics Room</h3>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="clearfix"></div>
+<div class="book_hg">
+    <button type="button" class="btn btn-primary btn-lg">Booking now</button>
+</div>
+<hr>
+
+<div>
+    <div class="facilities">
+        <h2>Contact us</h2>
+    </div>
+    <div class="facilities">
+        <p>For prices, bookings, membership enquiries or general enquiries, please contact us:<br />
+            Tel: 0191 334 2178<br /><br />
+
+        For multi-bookings or events please contact:<br />
+        Tel: 0191 334 7216<br />
+        Email: teamdurham.bookings@durham.ac.uk<br /><br />
+        Durham University Sport<br />
+        The Graham Sports Centre,<br />
+        Durham University<br />
+        Stockton Road<br />
+            DH1 3SE<br /><br /></p>
+
+        <h3>Parking</h3>
+        <p>Parking is available onsite at the main car park.</p>
+    </div>
+
+</div>
+
+<?php
+include('footer.php');
+?>
 
 </body>
 </html>
