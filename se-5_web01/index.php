@@ -18,6 +18,10 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 <body>
 
@@ -70,9 +74,44 @@ session_start();
 
 
 <div class="container">
-    <h3>Collapsible Navbar</h3>
-    <p>In this example, the navigation bar is hidden on small screens and replaced by a button in the top right corner (try to re-size this window).
-    <p>Only when the button is clicked, the navigation bar will be displayed.</p>
+    <div id="myCarousel" class="carousel slide" style="background-color:purple">
+        <!-- 轮播（Carousel）指标 -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+            <li data-target="#myCarousel" data-slide-to="3"></li>
+        </ol>
+        <!-- 轮播（Carousel）项目 -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <center><a href="#"><img style="width:60vw; height:45vw;" src="src/tennis.jpg" alt="First slide"></a></center>
+                <div class="carousel-caption">tennis</div>
+            </div>
+            <div class="item">
+                <center><a href="#"><img  style="width:60vw; height:45vw;" src="src/Athletics%20track.jpg" alt="Second slide"></a></center>
+                <div class="carousel-caption">Athletics track</div>
+            </div>
+            <div class="item">
+                <center><a href="#"><img  style="width:60vw; height:45vw;" src="src/yoga.jpg" alt="Third slide"></a></center>
+                <div class="carousel-caption">Aerobics room</div>
+            </div>
+            <div class="item">
+                <center><a href="#"><img  style="width:60vw; height:45vw;" src="src/Squash%20courts.jpg" alt="Third slide"></a></center>
+                <div class="carousel-caption">Squash courts</div>
+            </div>
+        </div>
+        <!-- 轮播（Carousel）导航 -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
 </div>
 
 
