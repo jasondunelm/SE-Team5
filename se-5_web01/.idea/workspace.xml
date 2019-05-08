@@ -26,11 +26,16 @@
         <entry file="file://$PROJECT_DIR$/index.php">
           <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
             <state relative-caret-position="300">
               <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
 =======
             <state relative-caret-position="545">
               <caret line="104" column="64" selection-start-line="104" selection-start-column="64" selection-end-line="104" selection-end-column="64" />
+=======
+            <state relative-caret-position="224">
+              <caret line="91" column="13" lean-forward="true" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
+>>>>>>> 5e005c41999233fff5ad4f68684d41e5b5a51488
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#img#0;n#center#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -52,8 +57,8 @@
 =======
         <entry file="file://$PROJECT_DIR$/Aerobics room.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+            <state relative-caret-position="293">
+              <caret line="79" column="21" lean-forward="true" selection-start-line="79" selection-start-column="21" selection-end-line="79" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -71,7 +76,7 @@
 =======
         <entry file="file://E:/微信/WeChat Files/cq617923xyd/FileStorage/File/2019-05/se_team5.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
+            <state relative-caret-position="432">
               <caret line="56" column="33" lean-forward="true" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
 >>>>>>> e74e9423acd4ae8fbca17c5adaf2ec3de6926e05
             </state>
@@ -143,10 +148,14 @@
         <option value="$PROJECT_DIR$/homepage.php" />
         <option value="$PROJECT_DIR$/test.php" />
         <option value="$PROJECT_DIR$/style.css" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/footer.php" />
         <option value="$PROJECT_DIR$/header.php" />
         <option value="$PROJECT_DIR$/index.php" />
+=======
+>>>>>>> 5e005c41999233fff5ad4f68684d41e5b5a51488
         <option value="$PROJECT_DIR$/Aerobics room.php" />
+        <option value="$PROJECT_DIR$/index.php" />
       </list>
     </option>
   </component>
@@ -227,15 +236,20 @@
       <workItem from="1557161134440" duration="20875000" />
       <workItem from="1557258658662" duration="14000" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <workItem from="1557320708787" duration="120000" />
       <workItem from="1557320890245" duration="11022000" />
 =======
       <workItem from="1557260079725" duration="13731000" />
 >>>>>>> e74e9423acd4ae8fbca17c5adaf2ec3de6926e05
+=======
+      <workItem from="1557260079725" duration="16040000" />
+>>>>>>> 5e005c41999233fff5ad4f68684d41e5b5a51488
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
 <<<<<<< HEAD
     <option name="totallyTimeSpent" value="32031000" />
   </component>
@@ -246,14 +260,21 @@
       <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.24958949" />
 =======
     <option name="totallyTimeSpent" value="34620000" />
+=======
+    <option name="totallyTimeSpent" value="36929000" />
+>>>>>>> 5e005c41999233fff5ad4f68684d41e5b5a51488
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1453" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" side_tool="true" />
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.1641577" />
 >>>>>>> e74e9423acd4ae8fbca17c5adaf2ec3de6926e05
+=======
+      <window_info content_ui="combo" id="Project" order="1" weight="0.34026745" />
+>>>>>>> 5e005c41999233fff5ad4f68684d41e5b5a51488
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="PHP-CGI Server" order="0" />
       <window_info anchor="bottom" id="Terminal" order="1" />
@@ -355,7 +376,7 @@
     </entry>
     <entry file="file://E:/微信/WeChat Files/cq617923xyd/FileStorage/File/2019-05/se_team5.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
+        <state relative-caret-position="432">
           <caret line="56" column="33" lean-forward="true" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
         </state>
       </provider>
@@ -363,11 +384,16 @@
     <entry file="file://$PROJECT_DIR$/Aerobics room.php">
       <provider selected="true" editor-type-id="text-editor">
 <<<<<<< HEAD
+<<<<<<< HEAD
         <state relative-caret-position="300">
           <caret line="20" column="7" lean-forward="true" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
 =======
         <state relative-caret-position="350">
           <caret line="82" lean-forward="true" selection-start-line="82" selection-end-line="82" />
+=======
+        <state relative-caret-position="293">
+          <caret line="79" column="21" lean-forward="true" selection-start-line="79" selection-start-column="21" selection-end-line="79" selection-end-column="21" />
+>>>>>>> 5e005c41999233fff5ad4f68684d41e5b5a51488
           <folding>
             <element signature="n#style#0;n#img#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
@@ -376,8 +402,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="545">
-          <caret line="104" column="64" selection-start-line="104" selection-start-column="64" selection-end-line="104" selection-end-column="64" />
+        <state relative-caret-position="224">
+          <caret line="91" column="13" lean-forward="true" selection-start-line="91" selection-start-column="13" selection-end-line="91" selection-end-column="13" />
           <folding>
             <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#img#0;n#center#0;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
