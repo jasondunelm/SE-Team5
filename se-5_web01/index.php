@@ -18,126 +18,182 @@ session_start();
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<<<<<<< HEAD
+
     <!-- <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
     <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-=======
 
->>>>>>> 5e005c41999233fff5ad4f68684d41e5b5a51488
 
 </head>
 <body>
 
-<?php
-include('header.php');
-?>
+<!-- the navigation bar of homepage -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="https://www.teamdurham.com">DUS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="events.php">Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="https://www.teamdurham.com/queenscampus/">Queen's Campus</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Facilities
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Fitness Suite</a>
+                    <a class="dropdown-item" href="#">Sports Hall</a>
+                    <a class="dropdown-item" href="#">Artificial Pitches</a>
+                    <a class="dropdown-item" href="#">Rowing Tank</a>
+                    <a class="dropdown-item" href="#">Ergo Gallery</a>
+                    <a class="dropdown-item" href="#">Outdoor Facilities</a>
+                    <a class="dropdown-item" href="#">Maiden Castle Physiotherapy</a>
+                    <a class="dropdown-item" href="#">Aerobics Room</a>
+                    <!--
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>-->
+                </div>
+            </li>
 
-<div class="container">
-    <div id="myCarousel" class="carousel slide" style="background-color:purple">
-        <!-- 轮播（Carousel）指标 -->
-        <ol class="carousel-indicators">
-            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-            <li data-target="#myCarousel" data-slide-to="1"></li>
-            <li data-target="#myCarousel" data-slide-to="2"></li>
-            <li data-target="#myCarousel" data-slide-to="3"></li>
-        </ol>
-        <!-- 轮播（Carousel）项目 -->
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <center><a href="#"><img style="width:60vw; height:45vw;" src="src/tennis.jpg" alt="First slide"></a></center>
-                <div class="carousel-caption">tennis</div>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Other Information
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="openTime.php">Open time</a>
+                    <a class="dropdown-item" href="cater.php">Catering</a>
+                    <a class="dropdown-item" href="https://www.accessable.co.uk">Access Information</a>
+
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <!--  class="btn btn-outline-success my-2 my-sm-0" -->
             </div>
-            <div class="carousel-item">
-                <center><a href="#"><img  style="width:60vw; height:45vw;" src="src/Athletics%20track.jpg" alt="Second slide"></a></center>
-                <div class="carousel-caption">Athletics track</div>
-            </div>
-            <div class="carousel-item">
-                <center><a href="#"><img  style="width:60vw; height:45vw;" src="src/yoga.jpg" alt="Third slide"></a></center>
-                <div class="carousel-caption">Aerobics room</div>
-            </div>
-            <div class="carousel-item">
-                <center><a href="#"><img  style="width:60vw; height:45vw;" src="src/Squash%20courts.jpg" alt="Third slide"></a></center>
-                <div class="carousel-caption">Squash courts</div>
+        </form>
+        <button type="button" class="btn btn-primary">Login</button>
+
+    </div>
+</nav>
+
+<!-- carousel part -->
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="src/Athletics%20track.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption text-success d-none d-sm-block">
+                <h1>Join us today</h1>
+                <p class="text-light">
+                    <button type="button" class="btn btn-primary btn-lg">Sign up</button>
+                </p>
             </div>
         </div>
-        <!-- 轮播（Carousel）导航 -->
-        <a class="carousel-control-prev" href="#myCarousel" data-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </a>
-        <a class="carousel-control-next" href="#myCarousel" data-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </a>
+        <div class="carousel-item">
+            <img src="src/yoga.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption text-success d-none d-sm-block">
+                <h1>Have a try</h1>
+                <p class="text-light">
+                    <button type="button" class="btn btn-primary btn-lg">Book online</button>
+                </p>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="src/tennis.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption text-success d-none d-sm-block">
+                <h1>Maiden Castle</h1>
+                <p class="text-light">Access information, opening times
+                    <button type="button" class="btn btn-primary btn-lg">Find more</button>
+                </p>
+            </div>
+        </div>
     </div>
-
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>
 
 
-
-<div class="logo">
-    <div class="logo_container">
-        <h2 class="logo_text">Join us today</h2>
-        <button type="button" class="btn btn-primary">Sign Up</button>
-    </div>
-</div>
 
 <div class="clearfix"></div>
+
 
 
 <div class="pic_group">
     <div class="facilities">
         <h2>Facilities</h2>
+
     </div>
 
     <div class="container">
         <div class="row">
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
-                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <img src="src/fitnessSuite01.jpg" alt="..." class="img-thumbnail">
                     <h3>Fitness Suite</h3>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
-                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <img src="src/sportsHall01.jpg" alt="..." class="img-thumbnail">
                     <h3>Sports Hall</h3>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
-                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <img src="src/hockey.jpg" alt="..." class="img-thumbnail">
                     <h3>Artificial Pitches</h3>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
-                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <img src="src/rowingTank02.jpg" alt="..." class="img-thumbnail">
                     <h3>Rowing Tank</h3>
                 </a>
             </div>
 
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
-                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <img src="src/ergoGallery.jpg" alt="..." class="img-thumbnail">
                     <h3>Ergo Gallery</h3>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
-                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <img src="src/outdoor02.jpg" alt="..." class="img-thumbnail">
                     <h3>Outdoor Facilities</h3>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
-                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <img src="src/therapy.jpg" alt="..." class="img-thumbnail">
                     <h3>Physiotherapy</h3>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
-                    <img src="src/yoga.jpg" alt="..." class="img-thumbnail">
+                    <img src="src/aerobic.jpg" alt="..." class="img-thumbnail">
                     <h3>Aerobics Room</h3>
                 </a>
             </div>
@@ -147,7 +203,7 @@ include('header.php');
 
 <div class="clearfix"></div>
 <div class="book_hg">
-    <button type="button" class="btn btn-primary btn-lg">Booking now</button>
+    <button type="button" class="btn btn-primary btn-lg">Book online now</button>
 </div>
 <hr>
 
