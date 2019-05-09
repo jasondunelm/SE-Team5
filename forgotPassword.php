@@ -21,7 +21,6 @@ if (isset($_POST['email'])) {
             ");
 
         include_once "PHPMailer/vendor/phpmailer/phpmailer/src/PHPMailer.php";
-        include_once "PHPMailer/vendor/phpmailer/phpmailer/src/Exception.php";
 
         $mail = new PHPMailer(true);
 
@@ -35,9 +34,9 @@ if (isset($_POST['email'])) {
         $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
         $mail->Port       = 587;
 
-
+        //Recipients
+        $mail->setFrom('teamdurham.sports@dur.ac.uk');
         $mail->addAddress($email);
-        $mail->setFrom("", "");
         $mail->Subject = "Reset Password";
         $mail->isHTML(true);
         $mail->Body = "
