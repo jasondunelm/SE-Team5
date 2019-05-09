@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2019 年 05 月 08 日 17:49
+-- 產生時間： 2019 年 05 月 09 日 19:06
 -- 伺服器版本： 8.0.15
 -- PHP 版本： 7.1.23
 
@@ -47,14 +47,14 @@ CREATE TABLE `Booking` (
 CREATE TABLE `Facility` (
   `id` int(11) NOT NULL,
   `facilityName` varchar(50) DEFAULT NULL,
-  `capacity` int(11) DEFAULT NULL,
-  `unitPrice` int(11) DEFAULT NULL,
+  `capacity` int(50) DEFAULT NULL,
+  `unitPrice` int(50) DEFAULT NULL,
   `address` varchar(255) DEFAULT NULL,
   `contact` varchar(255) DEFAULT NULL,
-  `telephone` int(11) DEFAULT NULL,
+  `telephone` text,
   `email` varchar(50) DEFAULT NULL,
   `facilityIntro` text,
-  `facilityPic` varchar(255) DEFAULT NULL
+  `facilityPic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -74,6 +74,13 @@ CREATE TABLE `Users` (
   `tokenExpire` datetime(6) DEFAULT NULL,
   `emailConfirmed` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- 傾印資料表的資料 `Users`
+--
+
+INSERT INTO `Users` (`id`, `userName`, `firstName`, `lastName`, `password`, `role`, `token`, `tokenExpire`, `emailConfirmed`) VALUES
+(1, 'tuohao11@gmail.com', 'TUO', 'HAO', '$2y$10$ExKsPAdJIu5GUGCorJ7/J.27g8BC9t2cioAx/FbIJVz05XHyCD1Su', 'user', '', '2019-05-09 16:42:36.000000', 1);
 
 --
 -- 已傾印資料表的索引
@@ -108,16 +115,10 @@ ALTER TABLE `Booking`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- 使用資料表自動增長(AUTO_INCREMENT) `Facility`
---
-ALTER TABLE `Facility`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- 使用資料表自動增長(AUTO_INCREMENT) `Users`
 --
 ALTER TABLE `Users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
