@@ -1,7 +1,7 @@
 
 <div class="footer">
 
-   <nav class="navbar navbar-expand-sm bg-light">
+   <nav class="navbar navbar-expand-sm bg-light" id="footer">
         <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" href="https://www.dur.ac.uk/contactform2/?pageid=59579">Comments & Questions</a>
@@ -20,9 +20,8 @@
             </li>
         </ul>
   </nav>
-
-
 </div>
+
 
 
 

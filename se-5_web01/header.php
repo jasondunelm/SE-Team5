@@ -21,7 +21,7 @@
                     Facilities
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Fitness Suite</a>
+                    <a class="dropdown-item" href="facility.php ?id='fitness'">Fitness Suite</a>
                     <a class="dropdown-item" href="#">Sports Hall</a>
                     <a class="dropdown-item" href="#">Artificial Pitches</a>
                     <a class="dropdown-item" href="#">Rowing Tank</a>

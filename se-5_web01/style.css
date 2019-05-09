@@ -126,13 +126,7 @@ h1{
 .breadcrumb li a{
     color: black;
 }
-.footer {
-    border-radius: 0 !important;
-    background-color: slategrey;
-    text-align: center;
-    bottom:0;
-    font-size: 0.8em;
-}
+
 
 @media only screen and (max-width: 700px) {
     .responsive {
@@ -147,6 +141,34 @@ h1{
     }
 }
 
+.facility_infor_edit{
+    width: 80%;
+    margin: 30px;
+
+}
+
+.facility_edit_btn a{
+    color: black;
+}
+.facility_edit_btn a:hover{
+    text-decoration: none;
+}
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 10px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 10px;
+    font-size: 0.8em;
+}
 
 
 

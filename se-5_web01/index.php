@@ -50,7 +50,7 @@ session_start();
                     Facilities
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Fitness Suite</a>
+                    <a class="dropdown-item" href="test.php?id=test">Fitness Suite</a>
                     <a class="dropdown-item" href="#">Sports Hall</a>
                     <a class="dropdown-item" href="#">Artificial Pitches</a>
                     <a class="dropdown-item" href="#">Rowing Tank</a>
@@ -75,6 +75,8 @@ session_start();
 
                 </div>
             </li>
+
+
         </ul>
         <form class="form-inline my-2 my-lg-0">
             <div class="btn-group" role="group" aria-label="Basic example">
@@ -83,8 +85,18 @@ session_start();
                 <!--  class="btn btn-outline-success my-2 my-sm-0" -->
             </div>
         </form>
-        <button type="button" class="btn btn-primary">Login</button>
 
+        <ul class="navbar-nav mr-right">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Accounts
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Login</a>
+                    <a class="dropdown-item" href="#">Sign up</a>
+                </div>
+            </li>
+        </ul>
     </div>
 </nav>
 
@@ -151,50 +163,50 @@ session_start();
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
                     <img src="src/fitnessSuite01.jpg" alt="..." class="img-thumbnail">
-                    <h3>Fitness Suite</h3>
+                    <h4>Fitness Suite</h4>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
                     <img src="src/sportsHall01.jpg" alt="..." class="img-thumbnail">
-                    <h3>Sports Hall</h3>
+                    <h4>Sports Hall</h4>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
                     <img src="src/hockey.jpg" alt="..." class="img-thumbnail">
-                    <h3>Artificial Pitches</h3>
+                    <h4>Artificial Pitches</h4>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
                     <img src="src/rowingTank02.jpg" alt="..." class="img-thumbnail">
-                    <h3>Rowing Tank</h3>
+                    <h4>Rowing Tank</h4>
                 </a>
             </div>
 
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
                     <img src="src/ergoGallery.jpg" alt="..." class="img-thumbnail">
-                    <h3>Ergo Gallery</h3>
+                    <h4>Ergo Gallery</h4>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
                     <img src="src/outdoor02.jpg" alt="..." class="img-thumbnail">
-                    <h3>Outdoor Facilities</h3>
+                    <h4>Outdoor Facilities</h4>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
                     <img src="src/therapy.jpg" alt="..." class="img-thumbnail">
-                    <h3>Physiotherapy</h3>
+                    <h4>Physiotherapy</h4>
                 </a>
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
                     <img src="src/aerobic.jpg" alt="..." class="img-thumbnail">
-                    <h3>Aerobics Room</h3>
+                    <h4>Aerobics Room</h4>
                 </a>
             </div>
         </div>
