@@ -62,6 +62,8 @@ $table= $statement->fetchAll(PDO::FETCH_NUM);
 
 ?>
 
+
+
 <p>Edit facility information here:</p>
 
 

@@ -11,7 +11,42 @@ session_start();
     <?php
     include('meta_data.php');
     ?>
+    <script>
+        $(document).ready(function(){
 
+            // Delete
+            $('.delete').click(function(){
+                var el = this;
+                var id = this.id;
+                var splitid = id.split("_");
+                // Delete id
+                var deleteid = splitid[1];
+
+
+                // AJAX Request
+                $.ajax({
+                    url: 'facilityRemove.php',
+                    type: 'post',
+                    data: "id="+deleteid ,
+                    success: function(response){
+                        console.log(response);
+                        if(response == 1){
+                            // Remove row from HTML Table
+                            $(el).closest('tr').css('background','grey');
+                            $(el).closest('tr').fadeOut(800,function(){
+                                $(this).remove();
+                            });
+                        }else{
+                            alert('Invalid ID.');
+                        }
+
+                    }
+                });
+
+            });
+
+        });
+    </script>
 </head>
 <body>
 
@@ -32,7 +67,7 @@ if($name !="new"){
 
 <h2>Edit facility information here:</h2>
 
-<form class="facility_infor_edit" method="POST" action='facilityEdit.php' enctype="multipart/form-data" >
+<form class="facility_infor_edit" method="POST" action='facilityManage.php' enctype="multipart/form-data" >
     <div class="form-group">
         <label >Facility name</label>
         <input type="text" class="form-control" name="facilityName" placeholder="<?php echo $table_pre[0][1]; ?>">
@@ -74,6 +109,7 @@ if($name !="new"){
     </div>
 
     <button type="submit" class="btn btn-primary" name="upload" >Submit</button>
+    <input type="button" class="btn btn-primary" name="upload" value="Submit"></input>
 </form>
 <div>
     <img src="<?php echo $table_pre[0][9]; ?>" alt="..." class="img-thumbnail">
