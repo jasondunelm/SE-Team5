@@ -4,16 +4,15 @@
 require_once('bdd.php');
 //echo $_POST['title'];
 var_dump($_POST);
-if (isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['facility']) && isset($_POST['totalmoney'])){
+if (isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['facility'])){
     
 	//$title = $_POST['title'];
     $userID = $_POST['user'];
 	$start = $_POST['startDate'].' '.$_POST['startTime'].":00";
 	$end = $_POST['startDate'].' '.$_POST['endTime'].":00";
 	$facility = $_POST['facility'];
-    $bookcost = $_POST['totalmoney'];
 
-	$sql = "INSERT INTO booking(UserID, FacilityID, StartTime, EndTime, BookCost) values ($userID, $facility, '$start', '$end', $bookcost)";
+	$sql = "INSERT INTO booking(UserID, FacilityID, StartTime, EndTime) values ($userID, $facility, '$start', '$end')";
 	//$req = $bdd->prepare($sql);
 	//$req->execute();
 	
