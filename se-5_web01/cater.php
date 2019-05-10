@@ -49,7 +49,7 @@ include('header.php');
             </div>
             <div class="col col-6">
                 <img class="img-thumbnail"
-                     src="src/cater.jpg"
+                     src="images/cater.jpg"
                      alt="catering picture of Maiden castle ">
             </div>
         </div>

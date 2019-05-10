@@ -28,10 +28,11 @@ session_start();
 <body>
 
 <!-- the navigation bar of homepage -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <img src="images/small_logo.png">&nbsp;&nbsp;
     <a class="navbar-brand" href="https://www.teamdurham.com">DUS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon bg-transparent"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -42,33 +43,22 @@ session_start();
             <li class="nav-item">
                 <a class="nav-link" href="events.php">Events</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.teamdurham.com/queenscampus/">Queen's Campus</a>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Facilities
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                    <a class="dropdown-item" href="facility.php?facilityName=Athletics track">Fitness Suite</a>
-                    <a class="dropdown-item" href="facility.php?facilityName=Athletics track">Sports Hall</a>
-=======
-=======
->>>>>>> e32016fe6ed6c438acdf50e774d468b1d41e64c2
-                    <a class="dropdown-item" href="test.php?id=test">Fitness Suite</a>
-                    <a class="dropdown-item" href="#">Sports Hall</a>
->>>>>>> 671afe25899d12e55fc894795fd04a09466320e5
-                    <a class="dropdown-item" href="#">Artificial Pitches</a>
-                    <a class="dropdown-item" href="#">Rowing Tank</a>
-                    <a class="dropdown-item" href="#">Ergo Gallery</a>
-                    <a class="dropdown-item" href="#">Outdoor Facilities</a>
-                    <a class="dropdown-item" href="#">Maiden Castle Physiotherapy</a>
-                    <a class="dropdown-item" href="#">Aerobics Room</a>
-                    <!--
+                    <a class="dropdown-item" href="facility.php?facilityName=Fitness Suite">Fitness Suite</a>
+                    <a class="dropdown-item" href="sportsHall.php">Sports Hall</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Artificial Pitches">Artificial Pitches</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Rowing Tank">Rowing Tank</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Ergo Gallery">Ergo Gallery</a>
+                    <a class="dropdown-item" href="outdoorFacilities.php">Outdoor Facilities</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Maiden Castle Physiotherapy">Maiden Castle Physiotherapy</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Aerobics Room">Aerobics Room</a>
+
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>-->
+                    <a class="dropdown-item" href="https://www.teamdurham.com/queenscampus/">Queen's campus</a>
                 </div>
             </li>
 
@@ -100,8 +90,8 @@ session_start();
                     Accounts
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Login</a>
-                    <a class="dropdown-item" href="#">Sign up</a>
+                    <a class="dropdown-item" href="login.php">Login</a>
+                    <a class="dropdown-item" href="register.php">Sign up</a>
                 </div>
             </li>
         </ul>
@@ -117,7 +107,7 @@ session_start();
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="src/Athletics%20track.jpg" class="d-block w-100" alt="...">
+            <img src="images/Athletics%20track.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Join us today</h1>
                 <p class="text-light">
@@ -126,7 +116,7 @@ session_start();
             </div>
         </div>
         <div class="carousel-item">
-            <img src="src/yoga.jpg" class="d-block w-100" alt="...">
+            <img src="images/yoga.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Have a try</h1>
                 <p class="text-light">
@@ -135,7 +125,7 @@ session_start();
             </div>
         </div>
         <div class="carousel-item">
-            <img src="src/tennis.jpg" class="d-block w-100" alt="...">
+            <img src="images/tennis.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Maiden Castle</h1>
                 <p class="text-light">Access information, opening times
@@ -169,60 +159,52 @@ session_start();
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                <a href="facility.php?facilityName=Athletics track" class="pic_link">
-=======
-                <a href="test.php" class="pic_link">
->>>>>>> 671afe25899d12e55fc894795fd04a09466320e5
-=======
-                <a href="test.php" class="pic_link">
->>>>>>> e32016fe6ed6c438acdf50e774d468b1d41e64c2
-                    <img src="src/fitnessSuite01.jpg" alt="..." class="img-thumbnail">
-                    <h4>Fitness Suite</h4>
+                <a href="facility.php?facilityName=Fitness Suite" class="pic_link">
+                    <img src="images/fitnessSuite01.jpg" alt="..." class="img-thumbnail">
+                    <h5>Fitness Suite</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="src/sportsHall01.jpg" alt="..." class="img-thumbnail">
-                    <h4>Sports Hall</h4>
+                <a href="sportsHall.php" class="pic_link">
+                    <img src="images/Sports hall.jpg" alt="..." class="img-thumbnail">
+                    <h5>Sports Hall</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="src/hockey.jpg" alt="..." class="img-thumbnail">
-                    <h4>Artificial Pitches</h4>
+                <a href="facility.php?facilityName=Artificial Pitches" class="pic_link">
+                    <img src="images/Artificial Pitches.jpg" alt="..." class="img-thumbnail">
+                    <h5>Artificial Pitches</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="src/rowingTank02.jpg" alt="..." class="img-thumbnail">
-                    <h4>Rowing Tank</h4>
+                <a href="facility.php?facilityName=Rowing Tank" class="pic_link">
+                    <img src="images/rowingTank02.jpg" alt="..." class="img-thumbnail">
+                    <h5>Rowing Tank</h5>
                 </a>
             </div>
 
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="src/ergoGallery.jpg" alt="..." class="img-thumbnail">
-                    <h4>Ergo Gallery</h4>
+                <a href="facility.php?facilityName=Ergo Gallery" class="pic_link">
+                    <img src="images/ergoGallery.jpg" alt="..." class="img-thumbnail">
+                    <h5>Ergo Gallery</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="src/outdoor02.jpg" alt="..." class="img-thumbnail">
-                    <h4>Outdoor Facilities</h4>
+                <a href="outdoorFacilities.php" class="pic_link">
+                    <img src="images/outdoor02.jpg" alt="..." class="img-thumbnail">
+                    <h5>Outdoor Facilities</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="src/therapy.jpg" alt="..." class="img-thumbnail">
-                    <h4>Physiotherapy</h4>
+                <a href="facility.php?facilityName=Maiden Castle Physiotherapy" class="pic_link">
+                    <img src="images/therapy.jpg" alt="..." class="img-thumbnail">
+                    <h5>Maiden Castle Physiotherapy</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="src/aerobic.jpg" alt="..." class="img-thumbnail">
-                    <h4>Aerobics Room</h4>
+                <a href="facility.php?facilityName=Aerobics Room" class="pic_link">
+                    <img src="images/aerobic.jpg" alt="..." class="img-thumbnail">
+                    <h5>Aerobics Room</h5>
                 </a>
             </div>
         </div>
@@ -234,7 +216,6 @@ session_start();
     <button type="button" class="btn btn-primary btn-lg">Book online now</button>
 </div>
 <hr>
-<<<<<<< HEAD
 
 <div>
     <div class="facilities">
@@ -253,26 +234,6 @@ session_start();
         Stockton Road<br />
             DH1 3SE<br /><br /></p>
 
-=======
-
-<div>
-    <div class="facilities">
-        <h2>Contact us</h2>
-    </div>
-    <div class="facilities">
-        <p>For prices, bookings, membership enquiries or general enquiries, please contact us:<br />
-            Tel: 0191 334 2178<br /><br />
-
-        For multi-bookings or events please contact:<br />
-        Tel: 0191 334 7216<br />
-        Email: teamdurham.bookings@durham.ac.uk<br /><br />
-        Durham University Sport<br />
-        The Graham Sports Centre,<br />
-        Durham University<br />
-        Stockton Road<br />
-            DH1 3SE<br /><br /></p>
-
->>>>>>> e32016fe6ed6c438acdf50e774d468b1d41e64c2
         <h3>Parking</h3>
         <p>Parking is available onsite at the main car park.</p>
     </div>
