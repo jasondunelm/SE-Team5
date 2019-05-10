@@ -50,7 +50,7 @@ h1{
 
 .logo{
     /*background-color: lightgrey;*/
-    background-image: url("src/tennis_cut.jpg");
+    background-image: url("images/tennis_cut.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     width:100%;
@@ -60,12 +60,18 @@ h1{
     display: inline-block;
     overflow: hidden;
 }
-.logo_container{
+.logo_container {
     text-align: center;
     width: 100%;
-
-
 }
+
+.heroImage{
+    height:auto;
+    border-radius:0;
+    background-size: cover;
+}
+
+
 .logo_text{
     margin: 10px;
     font-family: "Apple LiGothic";
@@ -113,15 +119,15 @@ h1{
 }
 
 .btn-primary{
-    background-color: slategrey;
+    background-color: #742e68;
 }
 .book_hg{
     margin: 40px;
     padding-left: 40px;
 }
-.btn-primary:hover{
+/*.btn-primary:hover{
     background-color: #742e68;
-}
+}*/
 
 .breadcrumb li a{
     color: black;
@@ -146,6 +152,7 @@ h1{
     margin: 30px;
 
 }
+
 
 .facility_edit_btn a{
     color: black;

@@ -67,7 +67,7 @@ if($name !="new"){
 
 <h2>Edit facility information here:</h2>
 
-<form class="facility_infor_edit" method="POST" action='facilityManage.php' enctype="multipart/form-data" >
+<form class="facility_infor_edit" method="POST"  enctype="multipart/form-data" >
     <div class="form-group">
         <label >Facility name</label>
         <input type="text" class="form-control" name="facilityName" placeholder="<?php echo $table_pre[0][1]; ?>">
@@ -109,7 +109,7 @@ if($name !="new"){
     </div>
 
     <button type="submit" class="btn btn-primary" name="upload" >Submit</button>
-    <input type="button" class="btn btn-primary" name="upload" value="Submit"></input>
+    <!--<input type="button" class="btn btn-primary" name="upload" value="Submit"></input>-->
 </form>
 <div>
     <img src="<?php echo $table_pre[0][9]; ?>" alt="..." class="img-thumbnail">
@@ -150,7 +150,7 @@ if(isset($_POST['upload']))
     $email=$_POST['email'];
     $facilityIntro=$_POST['introduction'];
 
-    $folder ="upload/";
+    $folder ="images/";
 
     $image = $_FILES['image']['name'];
 
@@ -186,6 +186,11 @@ else{
     $sth=$con->prepare("insert into Facility(id,facilityName,capacity,unitPrice,address,contact,telephone,email,facilityIntro,facilityPic) values (null,'$facilityName','$capacity','$unitPrice','$address','$contact','$telephone','$email','$facilityIntro','$image') ");
 
     $sth->execute();
+
+    echo "<script> alert(\"update sucessfully!\"); </script>";
+    //header("Location:facilityManage.php");
+    echo "<script> location.href=\"facilityManage.php\";</script>";
+
 
 }
 

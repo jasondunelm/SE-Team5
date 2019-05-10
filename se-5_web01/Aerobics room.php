@@ -73,7 +73,7 @@ session_start();
 </nav>
         <div id="content">
             <h1>Aerobics room</h1>
-            <img src="src/yoga.jpg" style="height: 45vw; width:60vw; ">
+            <img src="images/yoga.jpg" style="height: 45vw; width:60vw; ">
             <button type="button" class="btn btn-primary btn-lg">BOOKING</button>
             <?php
             $sql="SELECT * FROM Fcility WHERE Name='Aerobics room'";
