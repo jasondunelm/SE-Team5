@@ -21,14 +21,14 @@
     background-color: black;
     opacity: 0.5;
 }
-.carousel slide{
-    background-color: #742e68;
-}
+/*.carousel slide{*/
+    /*background-color: #742e68;*/
+/*}*/
 
-.carousel img{
-    width: 100%;
-    height: 400px;
-}
+/*.carousel img{*/
+    /*width: 100%;*/
+    /*height: 400px;*/
+/*}*/
 h1{
     color: white;
 }
@@ -65,11 +65,11 @@ h1{
     width: 100%;
 }
 
-.heroImage{
-    height:auto;
-    border-radius:0;
-    background-size: cover;
-}
+/*.heroImage{*/
+    /*height:auto;*/
+    /*border-radius:0;*/
+    /*background-size: cover;*/
+/*}*/
 
 
 .logo_text{
