@@ -16,6 +16,20 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
             <div class="row">
                 <div class="col-md-5">
                     <img src="images/<?php echo $rows['facilityPic'] ?>" style="width:100%; height:auto;"><br><br>
+                    <img src="images/address.png" style="height:auto; width:100%;"><br><br>
+                    <div class="panel panel-default" style="background-color:white">
+                        <div class="panel-heading" style="background-color:ghostwhite">
+                            <h3 class="panel-title">
+                                Address:
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            The Graham Sports Centre<br>
+                            Durham University<br>
+                            Stockton Road<br>
+                            DH1 3SE<br>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-1"></div>
                 <div class="col-md-5" >
@@ -57,22 +71,11 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
                         <div class="panel panel-default" style="background-color:white">
                             <div class="panel-heading" style="background-color:ghostwhite">
                                 <h3 class="panel-title">
-                                    Address:
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <?php echo $rows['address']?>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default" style="background-color:white">
-                            <div class="panel-heading" style="background-color:ghostwhite">
-                                <h3 class="panel-title">
                                     UnitPrice
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <?php echo $rows['unitPrice']?>
+                                £<?php echo $rows['unitPrice']?>
                             </div>
                         </div>
 
@@ -99,6 +102,7 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
                         </div>
 
                     </div>
+                    <br>
                     <button type="button" class="btn btn-primary btn-lg">BOOKING</button>
                 </div>
             </div>
