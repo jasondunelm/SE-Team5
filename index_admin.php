@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <?php
-
 session_start();
-$_SESSION['user'] =null;
 ?>
 <html lang="en">
 <head>
@@ -257,8 +255,8 @@ $_SESSION['user'] =null;
 
 </div>
 <?php
-$user = 'test here';
-$user = $_SESSION['name'];
+//$user = 'test here';
+$user = $_SESSION['role'];
 if($user==null) {
     ?>
     <!-- <style type="text/css">#divId{display:none;}</style> -->
