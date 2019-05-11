@@ -166,10 +166,10 @@ if ($_POST['submit'] == "Log In") {
         if ($row['userType'] == 'admin') {
             $_SESSION['id'] = $row['id'];
             $_SESSION['userType'] = $row['userType'];
-            header("Location:home_page_admin.php");
+            header("Location:index_admin.php");
         } else {
             $_SESSION['id'] = $row['id'];
-            header("Location:home_page.php");
+            header("Location:index.php");
         }
 
     } else {
