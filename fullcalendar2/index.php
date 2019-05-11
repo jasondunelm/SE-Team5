@@ -176,15 +176,15 @@ $userID = $userIDs[0];
 					  <input type="text" name="startDate" class="form-control" id="startDateWeekday" readonly>
 					</div>
 				  </div>
-                  <!--input type="hidden" id="endDateWeekday" name="custId"-->
-                  <div class="form-group">
-                    <label for="startTime" class="col-sm-2 control-label">Start time</label>
-                    <div class="col-sm-10">
-                      <select name="startTime" class="form-control" id="startTimeWeekday">
+                  <input type="hidden" id="endDateWeekday" name="custId">
+				  <div class="form-group">
+					<label for="startTime" class="col-sm-2 control-label">Start time</label>
+					<div class="col-sm-10">
+					  <select name="startTime" class="form-control" id="startTimeWeekday">
                           <option value="">Choose</option>
                           <option>7:00</option>
-                          <option>8:00</option>
-                          <option>9:00</option>
+						  <option>8:00</option>
+						  <option>9:00</option>
                           <option>10:00</option>
                           <option>11:00</option>
                           <option>12:00</option>
@@ -198,15 +198,15 @@ $userID = $userIDs[0];
                           <option>20:00</option>
                           <option>21:00</option>
                       </select>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="endTime" class="col-sm-2 control-label">End time</label>
-                    <div class="col-sm-10">
-                      <select name="endTime" class="form-control" id="endTimeWeekday">
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="endTime" class="col-sm-2 control-label">End time</label>
+					<div class="col-sm-10">
+					  <select name="endTime" class="form-control" id="endTimeWeekday">
                           <option value="">Choose</option>
-                          <option>8:00</option>
-                          <option>9:00</option>
+						  <option>8:00</option>
+						  <option>9:00</option>
                           <option>10:00</option>
                           <option>11:00</option>
                           <option>12:00</option>
@@ -221,8 +221,8 @@ $userID = $userIDs[0];
                           <option>21:00</option>
                           <option>22:00</option>
                       </select>
-                    </div>
-                  </div>
+					</div>
+				  </div>
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Unit Price</label>
                     <div class="col-sm-10">
@@ -290,7 +290,7 @@ $userID = $userIDs[0];
 					  <input type="text" name="startDate" class="form-control" id="startDateWeekend" readonly>
 					</div>
 				  </div>
-                  <!--input type="hidden" id="endDateWeekend" name="custId"-->
+                  <input type="hidden" id="endDateWeekend" name="custId">
 				  <div class="form-group">
 					<label for="startTime" class="col-sm-2 control-label">Start time</label>
 					<div class="col-sm-10">
@@ -445,44 +445,26 @@ $userID = $userIDs[0];
 
         $("#facilityWeekday, #endTimeWeekday, #startTimeWeekday").change(function() {
             if($("#facilityWeekday").val()=="4"){
-                //for track
-                $('#startTimeWeekday').append( "<option id='startExtratimeWeekday'>00:00</option>" );
-                $('#startTimeWeekday').val('00:00');
-                $('#endTimeWeekday').append( "<option id='endExtratimeWeekday'>24:00</option>" );
-                $('#endTimeWeekday').val('24:00');
                 $('#startTimeWeekday').prop('disabled', true);
                 $('#endTimeWeekday').prop('disabled', true);
-                //for price
                 var facilitychosen = Number($("#facilityWeekday").val());
                 $("#moneyWeekday").text(facilitiesPrice[facilitychosen-1][1]);
-                //for totalprice
                 $("#totalmoneyWeekday").val(facilitiesPrice[facilitychosen-1][1]);
             }
             else if($("#facilityWeekday").val()!=""){
-                //for track
-                $('#startExtratimeWeekday').remove();
-                $('#endExtratimeWeekday').remove();
                 $('#startTimeWeekday').prop('disabled', false);
                 $('#endTimeWeekday').prop('disabled', false);
-                //for price
                 var facilitychosen = Number($("#facilityWeekday").val());
                 $("#moneyWeekday").text(facilitiesPrice[facilitychosen-1][1]);
-                $("#totalmoneyWeekday").val("");
             }
             else{
-                //for track
-                $('#startExtratimeWeekday').remove();
-                $('#endExtratimeWeekday').remove();
                 $('#startTimeWeekday').prop('disabled', false);
                 $('#endTimeWeekday').prop('disabled', false);
-                //for price
                 $("#moneyWeekday").text("");
-                $("#totalmoneyWeekday").val("");
             }
                 
             
-            if($("#facilityWeekday").val()!=""&&$("#facilityWeekday").val()!="4"  && $("#startTimeWeekday").val()!="" && $("#endTimeWeekday").val()!=""){
-                //for totalprice
+            if($("#facilityWeekday").val()!=""  && $("#startTimeWeekday").val()!="" && $("#endTimeWeekday").val()!=""){
                 var facilitychosen = Number($("#facilityWeekday").val());
                 var startTimeWeekday = $("#startTimeWeekday").val();
                 var endTimeWeekday = $("#endTimeWeekday").val();
@@ -493,42 +475,24 @@ $userID = $userIDs[0];
         });
         $("#facilityWeekend, #endTimeWeekend, #startTimeWeekend").change(function() {
             if($("#facilityWeekend").val()=="4"){
-                //for track
-                $('#startTimeWeekend').append( "<option id='startExtratimeWeekend'>00:00</option>" );
-                $('#startTimeWeekend').val('00:00');
-                $('#endTimeWeekend').append( "<option id='endExtratimeWeekend'>24:00</option>" );
-                $('#endTimeWeekend').val('24:00');
                 $('#startTimeWeekend').prop('disabled', true);
                 $('#endTimeWeekend').prop('disabled', true);
-                //for price
                 var facilitychosen = Number($("#facilityWeekend").val());
                 $("#moneyWeekend").text(facilitiesPrice[facilitychosen-1][1]);
-                //for totalprice
                 $("#totalmoneyWeekend").val(facilitiesPrice[facilitychosen-1][1]);
             }
             else if($("#facilityWeekend").val()!=""){
-                //for track
-                $('#startExtratimeWeekend').remove();
-                $('#endExtratimeWeekend').remove();
                 $('#startTimeWeekend').prop('disabled', false);
                 $('#endTimeWeekend').prop('disabled', false);
-                //for price
                 var facilitychosen = Number($("#facilityWeekend").val());
                 $("#moneyWeekend").text(facilitiesPrice[facilitychosen-1][1]);
-                $("#totalmoneyWeekend").val("");
             }
             else{
-                //for track
-                $('#startExtratimeWeekend').remove();
-                $('#endExtratimeWeekend').remove();
                 $('#startTimeWeekend').prop('disabled', false);
                 $('#endTimeWeekend').prop('disabled', false);
-                //for price
                 $("#moneyWeekend").text("");
-                $("#totalmoneyWeekend").val("");
             }
-            if($("#facilityWeekend").val()!=""&&$("#facilityWeekend").val()!="4"  && $("#startTimeWeekend").val()!="" && $("#endTimeWeekend").val()!=""){
-                //for totalprice
+            if($("#facilityWeekend").val()!=""  && $("#startTimeWeekend").val()!="" && $("#endTimeWeekend").val()!=""){
                 var facilitychosen = Number($("#facilityWeekend").val());
                 var startTimeWeekend = $("#startTimeWeekend").val();
                 var endTimeWeekend = $("#endTimeWeekend").val();
@@ -537,23 +501,11 @@ $userID = $userIDs[0];
                 $("#totalmoneyWeekend").val(   Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))     );
             }
         });
-        $("#btnWeekday").click(function(){
-            if($("#facilityWeekday").val()!="4")
-                checkTimeWeekday();
-            else
-                beingblockedWeekday();
-        });
+        $("#btnWeekday").click(checkTimeWeekday);
         function checkTimeWeekday(){
-            if($("#facilityWeekday").val()==""){
-                alert("choose a facility");
-                return false;
-            } 
             var starttime = $("select#startTimeWeekday").val();
             var endtime = $("select#endTimeWeekday").val();
-            if(starttime==""||endtime==""){
-                alert("the time should be input");
-                return false;
-            }if(starttime==endtime){
+            if(starttime==endtime){
                 alert("start time cannot be identical to end time");
                 return false;
             }
@@ -584,17 +536,8 @@ $userID = $userIDs[0];
             });
         }
         
-        $("#btnWeekend").click(function(){
-            if($("#facilityWeekend").val()!="4")
-                checkTimeWeekend();
-            else
-                beingblockedWeekend();
-        });
+        $("#btnWeekend").click(checkTimeWeekend);
         function checkTimeWeekend(){
-            if($("#facilityWeekend").val()==""){
-                alert("choose a facility");
-                return false;
-            } 
             var starttime = $("select#startTimeWeekend").val();
             var endtime = $("select#endTimeWeekend").val();
             if(starttime==endtime){
@@ -648,19 +591,16 @@ $userID = $userIDs[0];
                 selectHelper: true,
                 select: function(start, end) {
                     if(start.start.getDay()==0||start.start.getDay()==6){
-                        var startDayArray = start.startStr.split("T");
-                        $('#ModalWeekend #startDateWeekend').val(startDayArray[0]);
-                        //$('#ModalWeekend #endDateWeekend').val(start.endStr+' 00:00:00');
+                        $('#ModalWeekend #startDateWeekend').val(start.startStr);
+                        $('#ModalWeekend #endDateWeekend').val(start.endStr+' 00:00:00');
                         $('#ModalWeekend').modal('show');
                     }
                     else{
-                        var startDayArray = start.startStr.split("T");
-                        $('#ModalWeekday #startDateWeekday').val(startDayArray[0]);
-                        //$('#ModalWeekday #endDateWeekday').val(start.endStr+' 00:00:00');
+                        $('#ModalWeekday #startDateWeekday').val(start.startStr);
+                        $('#ModalWeekday #endDateWeekday').val(start.endStr+' 00:00:00');
                         $('#ModalWeekday').modal('show');
                     }
                 },
-                slotDuration: '01:00',
                 eventRender: function(event, element) {
 
                     /*element.bind('dblclick', function() {
