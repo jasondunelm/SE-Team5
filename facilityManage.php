@@ -62,33 +62,43 @@ $table= $statement->fetchAll(PDO::FETCH_NUM);
 
 ?>
 
-
-
-<p>Edit facility information here:</p>
-
-
-
-<table width="800">
-    <tr>
-        <th height="22" align="center" valign="middle">Facility name</th>
-        <th height="22" align="center" valign="middle">Edition
-        <th height="22" align="center" valign="middle">Deletion</th>
-    </tr>
-    <?php
-    for ($i=0;$i<count($table);$i++) {
-        ?>
-        <tr>
-            <td height="22" align="center" valign="middle"><?php echo $table[$i][1]; ?></td>
-            <td height="22" align="center" valign="middle"><button class="facility_edit_btn"><a href="facilityEdit.php? id=<?php echo $table[$i][1] ?>">Edit</a></button></td>
-            <td height="22" align="center" valign="middle"><button class="delete" id='del_<?php echo $table[$i][1] ?>'>Delete</button></td>
-        </tr>
+<div class="facility_manage_div">
+    <h3>Facility list below:</h3>
+<div class="table_div">
+    <table class="table table-striped table_f_manage">
+        <thred>
+            <tr>
+                <th scope="col" >#</th>
+                <th scope="col">Facility name</th>
+                <th scope="col">Edition
+                <th scope="col">Deletion</th>
+            </tr>
+        </thred>
+        <tbody>
         <?php
-    }
-    ?>
+        for ($i=0;$i<count($table);$i++) {
+            ?>
+            <tr>
+                <th scope="row"><?php echo $i+1; ?></th>
+                <td ><?php echo $table[$i][1]; ?></td>
+                <td ><button class="facility_edit_btn"><a href="facilityEdit.php? id=<?php echo $table[$i][0] ?>">Edit</a></button></td>
+                <td ><button class="delete" id='del_<?php echo $table[$i][1] ?>'>Delete</button></td>
+            </tr>
+            <?php
+        }
+        ?>
+        </tbody>
 
-</table>
 
-<a href="facilityEdit.php? id=add">Add a new facility</a>
+    </table>
+</div>
+
+
+    <a href="facilityAdd.php">Add a new facility</a>
+
+</div>
+
+
 <?php
 include('footer.php');
 ?>

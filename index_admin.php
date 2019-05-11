@@ -2,6 +2,7 @@
 <?php
 
 session_start();
+$_SESSION['user'] =null;
 ?>
 <html lang="en">
 <head>
@@ -77,7 +78,7 @@ session_start();
                 </div>
             </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" id="divManage">
                 <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Management
                 </a>
@@ -99,8 +100,8 @@ session_start();
             </div>
         </form>
 
-        <ul class="navbar-nav mr-right">
-            <li class="nav-item dropdown">
+        <ul class="navbar-nav mr-right"  id="divId">
+            <li class="nav-item dropdown" >
                 <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Accounts
                 </a>
@@ -113,6 +114,7 @@ session_start();
     </div>
 </nav>
 
+
 <!-- carousel part -->
 <div id="carouselExampleIndicators" class="jumbotron heroImage carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -123,28 +125,28 @@ session_start();
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="images/bg_1.png" class="d-block w-100" alt="...">
-            <div class="carousel-caption text-success d-none d-sm-block">
+            <div class="carousel-caption ">
                 <h1>Join us today</h1>
                 <p class="text-light">
-                    <button type="button" class="btn btn-primary btn-lg">Sign up</button>
+                    <a href="register.php" class="btn btn-primary">Sign up</a>
                 </p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="images/yoga.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption text-success d-none d-sm-block">
+            <div class="carousel-caption ">
                 <h1>Have a try</h1>
                 <p class="text-light">
-                    <button type="button" class="btn btn-primary btn-lg">Book online</button>
+                    <a href="register.php" class="btn btn-primary">Book online</a>
                 </p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="images/tennis.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption text-success d-none d-sm-block">
+            <div class="carousel-caption ">
                 <h1>Maiden Castle</h1>
                 <p class="text-light">Access information, opening times
-                    <button type="button" class="btn btn-primary btn-lg">Find more</button>
+                    <a href="https://www.accessable.co.uk" class="btn btn-primary">Find more</a>
                 </p>
             </div>
         </div>
@@ -218,7 +220,7 @@ session_start();
             </div>
             <div class="col-md-3">
                 <a href="test.php" class="pic_link">
-                    <img src="src/aerobic.jpg" alt="..." class="img-thumbnail">
+                    <img src="images/aerobic.jpg" alt="..." class="img-thumbnail">
                     <h5>Aerobics Room</h5>
                 </a>
             </div>
@@ -254,10 +256,23 @@ session_start();
     </div>
 
 </div>
+<?php
+$user = 'test here';
+$user = $_SESSION['name'];
+if($user==null) {
+    ?>
+    <!-- <style type="text/css">#divId{display:none;}</style> -->
+    <script type="text/javascript">$('#divId').hide(); $('#divManage').hide()</script>
+    <?php
+}
+?>
 
 <?php
+
 include('footer.php');
 ?>
+
+
 
 </body>
 </html>

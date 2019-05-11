@@ -1,11 +1,17 @@
 <?php
 session_start();
-include("web_temp.php");
+include('functions_WebFront.php');
 
+include('header.php');
+include('footer.php');
 ?>
+
 <!doctype html>
 <html lang="en">
 <head>
+    <?php
+    include('meta_data.php');
+    ?>
     <!--
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -36,5 +42,6 @@ include("web_temp.php");
         </div>
     </div>
 </div>
+
 </body>
 </html>

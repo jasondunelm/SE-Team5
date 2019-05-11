@@ -31,7 +31,7 @@ session_start();
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <img src="images/small_logo.png">&nbsp;&nbsp;
     <a class="navbar-brand" href="https://www.teamdurham.com">DUS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon bg-transparent"></span>
     </button>
 
@@ -59,9 +59,8 @@ session_start();
                     <a class="dropdown-item" href="#">Outdoor Facilities</a>
                     <a class="dropdown-item" href="#">Maiden Castle Physiotherapy</a>
                     <a class="dropdown-item" href="#">Aerobics Room</a>
-                    <!--
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>-->
+                    <a class="dropdown-item" href="https://www.teamdurham.com/queenscampus/">Queen's campus</a>
                 </div>
             </li>
 
@@ -111,28 +110,31 @@ session_start();
     <div class="carousel-inner">
         <div class="carousel-item active">
             <img src="images/Athletics%20track.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption text-success d-none d-sm-block">
+            <div class="carousel-caption">
                 <h1>Join us today</h1>
                 <p class="text-light">
-                    <button type="button" class="btn btn-primary btn-lg">Sign up</button>
+                    <a href="register.php" class="btn btn-primary">Sign up</a>
+                    <!--<button type="button" class="btn btn-primary btn-lg">Sign up</button>-->
                 </p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="images/yoga.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption text-success d-none d-sm-block">
+            <div class="carousel-caption ">
                 <h1>Have a try</h1>
                 <p class="text-light">
-                    <button type="button" class="btn btn-primary btn-lg">Book online</button>
+                    <!-- <button type="button" class="btn btn-primary btn-lg">Book online</button>-->
+                    <a href="register.php" class="btn btn-primary">Book online</a>
                 </p>
             </div>
         </div>
         <div class="carousel-item">
             <img src="images/tennis.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption text-success d-none d-sm-block">
+            <div class="carousel-caption ">
                 <h1>Maiden Castle</h1>
                 <p class="text-light">Access information, opening times
-                    <button type="button" class="btn btn-primary btn-lg">Find more</button>
+                    <!--<button type="button" class="btn btn-primary btn-lg">Find more</button> -->
+                    <a href="https://www.accessable.co.uk" class="btn btn-primary">Find more</a>
                 </p>
             </div>
         </div>
@@ -161,52 +163,52 @@ session_start();
 
     <div class="container">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3 col-sm-6">
                 <a href="test.php" class="pic_link">
                     <img src="images/fitnessSuite01.jpg" alt="..." class="img-thumbnail">
                     <h5>Fitness Suite</h5>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3 col-sm-6">
                 <a href="test.php" class="pic_link">
                     <img src="images/sportsHall01.jpg" alt="..." class="img-thumbnail">
                     <h5>Sports Hall</h5>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3 col-sm-6">
                 <a href="test.php" class="pic_link">
                     <img src="images/hockey.jpg" alt="..." class="img-thumbnail">
                     <h5>Artificial Pitches</h5>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3 col-sm-6">
                 <a href="test.php" class="pic_link">
                     <img src="images/rowingTank02.jpg" alt="..." class="img-thumbnail">
                     <h5>Rowing Tank</h5>
                 </a>
             </div>
 
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3 col-sm-6">
                 <a href="test.php" class="pic_link">
                     <img src="images/ergoGallery.jpg" alt="..." class="img-thumbnail">
                     <h5>Ergo Gallery</h5>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3 col-sm-6">
                 <a href="test.php" class="pic_link">
                     <img src="images/outdoor02.jpg" alt="..." class="img-thumbnail">
                     <h5>Outdoor Facilities</h5>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3 col-sm-6">
                 <a href="test.php" class="pic_link">
                     <img src="images/therapy.jpg" alt="..." class="img-thumbnail">
                     <h5>Physiotherapy</h5>
                 </a>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4 col-lg-3 col-sm-6">
                 <a href="test.php" class="pic_link">
-                    <img src="src/aerobic.jpg" alt="..." class="img-thumbnail">
+                    <img src="images/aerobic.jpg" alt="..." class="img-thumbnail">
                     <h5>Aerobics Room</h5>
                 </a>
             </div>
