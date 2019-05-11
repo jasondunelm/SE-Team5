@@ -1,6 +1,7 @@
 <?php
-session_start();
-include('functions_WebFront.php');
+//session_start();
+//include('functions_WebFront.php');
+error_reporting(E_ALL^E_NOTICE);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,10 +21,12 @@ include('functions_WebFront.php');
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">DUS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+<!-- the navigation bar of homepage -->
+<nav class="navbar navbar-expand-lg navbar-light bg-dark">
+    <img src="images/small_logo.png">&nbsp;&nbsp;
+    <a class="navbar-brand" href="https://www.teamdurham.com">DUS</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon bg-transparent"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -34,26 +37,25 @@ include('functions_WebFront.php');
             <li class="nav-item">
                 <a class="nav-link" href="events.php">Events</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.teamdurham.com/queenscampus/">Queen's Campus</a>
-            </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Facilities
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="facility.php ?id='fitness'">Fitness Suite</a>
-                    <a class="dropdown-item" href="#">Sports Hall</a>
-                    <a class="dropdown-item" href="#">Artificial Pitches</a>
-                    <a class="dropdown-item" href="#">Rowing Tank</a>
-                    <a class="dropdown-item" href="#">Ergo Gallery</a>
-                    <a class="dropdown-item" href="#">Outdoor Facilities</a>
-                    <a class="dropdown-item" href="#">Maiden Castle Physiotherapy</a>
-                    <a class="dropdown-item" href="#">Aerobics Room</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Fitness Suite">Fitness Suite</a>
+                    <a class="dropdown-item" href="sportsHall.php">Sports Hall</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Artificial Pitches">Artificial Pitches</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Rowing Tank">Rowing Tank</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Ergo Gallery">Ergo Gallery</a>
+                    <a class="dropdown-item" href="outdoorFacilities.php">Outdoor Facilities</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Maiden Castle Physiotherapy">Maiden Castle Physiotherapy</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Aerobics Room">Aerobics Room</a>
+
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                    <a class="dropdown-item" href="https://www.teamdurham.com/queenscampus/">Queen's campus</a>
                 </div>
             </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Other Information
@@ -65,10 +67,28 @@ include('functions_WebFront.php');
 
                 </div>
             </li>
+
+
         </ul>
+        <form class="form-inline my-2 my-lg-0" action="search_result.php" method="post">
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="facilityName">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <!--  class="btn btn-outline-success my-2 my-sm-0" -->
+            </div>
+        </form>
 
-
-
+        <ul class="navbar-nav mr-right">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Accounts
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="login.php">Login</a>
+                    <a class="dropdown-item" href="register.php">Sign up</a>
+                </div>
+            </li>
+        </ul>
     </div>
 </nav>
 

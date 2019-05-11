@@ -7,7 +7,7 @@ require 'PHPMailer/vendor/autoload.php';
 
 // to connect with mySQL database via mysqli_connect
 try {
-    $link = new mysqli("127.0.0.1", "root", "password", "se_team5");
+    $link = new mysqli("127.0.0.1", "root", "mon97day", "test01");
 } catch (mysqli_sql_exception $e) {
     echo $e->getMessage();
 }
@@ -163,13 +163,14 @@ if ($_POST['submit'] == "Log In") {
         // check if userType is admin or user
         $row = mysqli_fetch_assoc($result);
 
-        if ($row['userType'] == 'admin') {
+        if ($row['role'] == 'admin') {
             $_SESSION['id'] = $row['id'];
-            $_SESSION['userType'] = $row['userType'];
+            $_SESSION['role'] = $row['role'];
             header("Location:index_admin.php");
         } else {
             $_SESSION['id'] = $row['id'];
-            header("Location:index.php");
+            $_SESSION['role'] = $row['role'];
+            header("Location:index_admin.php");
         }
 
     } else {
