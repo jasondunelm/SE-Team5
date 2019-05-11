@@ -137,7 +137,7 @@ $userID = $userIDs[0];
 		<div class="modal fade" id="ModalWeekday" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" method="POST" onsubmit="return checkTimeWeekday()" action="addEvent.php">
+			<form class="form-horizontal" id="formWeekday" method="POST" action="addEvent.php">
 			
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -176,6 +176,7 @@ $userID = $userIDs[0];
 					  <input type="text" name="startDate" class="form-control" id="startDateWeekday" readonly>
 					</div>
 				  </div>
+                  <input type="hidden" id="endDateWeekday" name="custId">
 				  <div class="form-group">
 					<label for="startTime" class="col-sm-2 control-label">Start time</label>
 					<div class="col-sm-10">
@@ -239,7 +240,7 @@ $userID = $userIDs[0];
                 
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary" id="btnWeekday">Save changes</button>
+				<button type="button" class="btn btn-primary" id="btnWeekday">Save changes</button>
 			  </div>
 			</form>
                 
@@ -250,7 +251,7 @@ $userID = $userIDs[0];
         <div class="modal fade" id="ModalWeekend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" method="POST" onsubmit="return checkTimeWeekend()" action="addEvent.php">
+			<form class="form-horizontal" id="formWeekend" method="POST" action="addEvent.php">
 			
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -289,6 +290,7 @@ $userID = $userIDs[0];
 					  <input type="text" name="startDate" class="form-control" id="startDateWeekend" readonly>
 					</div>
 				  </div>
+                  <input type="hidden" id="endDateWeekend" name="custId">
 				  <div class="form-group">
 					<label for="startTime" class="col-sm-2 control-label">Start time</label>
 					<div class="col-sm-10">
@@ -339,7 +341,7 @@ $userID = $userIDs[0];
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary" id="btnWeekend">Save changes</button>
+				<button type="button" class="btn btn-primary" id="btnWeekend">Save changes</button>
 			  </div>
 			</form>
 			</div>
@@ -357,7 +359,7 @@ $userID = $userIDs[0];
 		
 		
 		<!-- Modal -->
-		<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<!--div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<form class="form-horizontal" method="POST" action="editEventTitle.php">
@@ -408,10 +410,21 @@ $userID = $userIDs[0];
 			</form>
 			</div>
 		  </div>
+		</div-->
+        <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+                <h1 style="margin-left: 20px;">Do you want to remove the event?</h1>
+                <h4><span style="margin-left: 20px;">Event ID: </span><span id="h1AddID"></span></h4>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" id="btnAdd">Confirm</button>
+			  </div>
+			</div>
+		  </div>
 		</div>
 
     </div>
-    <div id="checkblocked" style="display:none;"></div>
     <!-- /.container -->
 
     <!-- jQuery Version 1.11.1 -->
@@ -431,12 +444,26 @@ $userID = $userIDs[0];
         ?>
 
         $("#facilityWeekday, #endTimeWeekday, #startTimeWeekday").change(function() {
-            if($("#facilityWeekday").val()!=""){
+            if($("#facilityWeekday").val()=="4"){
+                $('#startTimeWeekday').prop('disabled', true);
+                $('#endTimeWeekday').prop('disabled', true);
+                var facilitychosen = Number($("#facilityWeekday").val());
+                $("#moneyWeekday").text(facilitiesPrice[facilitychosen-1][1]);
+                $("#totalmoneyWeekday").val(facilitiesPrice[facilitychosen-1][1]);
+            }
+            else if($("#facilityWeekday").val()!=""){
+                $('#startTimeWeekday').prop('disabled', false);
+                $('#endTimeWeekday').prop('disabled', false);
                 var facilitychosen = Number($("#facilityWeekday").val());
                 $("#moneyWeekday").text(facilitiesPrice[facilitychosen-1][1]);
             }
-            else
+            else{
+                $('#startTimeWeekday').prop('disabled', false);
+                $('#endTimeWeekday').prop('disabled', false);
                 $("#moneyWeekday").text("");
+            }
+                
+            
             if($("#facilityWeekday").val()!=""  && $("#startTimeWeekday").val()!="" && $("#endTimeWeekday").val()!=""){
                 var facilitychosen = Number($("#facilityWeekday").val());
                 var startTimeWeekday = $("#startTimeWeekday").val();
@@ -447,12 +474,24 @@ $userID = $userIDs[0];
             }
         });
         $("#facilityWeekend, #endTimeWeekend, #startTimeWeekend").change(function() {
-            if($("#facilityWeekend").val()!=""){
+            if($("#facilityWeekend").val()=="4"){
+                $('#startTimeWeekend').prop('disabled', true);
+                $('#endTimeWeekend').prop('disabled', true);
+                var facilitychosen = Number($("#facilityWeekend").val());
+                $("#moneyWeekend").text(facilitiesPrice[facilitychosen-1][1]);
+                $("#totalmoneyWeekend").val(facilitiesPrice[facilitychosen-1][1]);
+            }
+            else if($("#facilityWeekend").val()!=""){
+                $('#startTimeWeekend').prop('disabled', false);
+                $('#endTimeWeekend').prop('disabled', false);
                 var facilitychosen = Number($("#facilityWeekend").val());
                 $("#moneyWeekend").text(facilitiesPrice[facilitychosen-1][1]);
             }
-            else
+            else{
+                $('#startTimeWeekend').prop('disabled', false);
+                $('#endTimeWeekend').prop('disabled', false);
                 $("#moneyWeekend").text("");
+            }
             if($("#facilityWeekend").val()!=""  && $("#startTimeWeekend").val()!="" && $("#endTimeWeekend").val()!=""){
                 var facilitychosen = Number($("#facilityWeekend").val());
                 var startTimeWeekend = $("#startTimeWeekend").val();
@@ -462,6 +501,7 @@ $userID = $userIDs[0];
                 $("#totalmoneyWeekend").val(   Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))     );
             }
         });
+        $("#btnWeekday").click(checkTimeWeekday);
         function checkTimeWeekday(){
             var starttime = $("select#startTimeWeekday").val();
             var endtime = $("select#endTimeWeekday").val();
@@ -475,8 +515,28 @@ $userID = $userIDs[0];
                 alert("start time should be eariler than end time");
                 return false;
             }
-            return beingblockedWeekday();
+            beingblockedWeekday();
         }
+        function beingblockedWeekday(){
+            var date = $("input#startDateWeekday").val();
+            var starttime = $("select#startTimeWeekday").val();
+            var endtime = $("select#endTimeWeekday").val();
+            var chosenfacility = $("select#facilityWeekday").val();
+            $.ajax({
+                url: 'checkEventOverlap.php',
+                type: "POST",
+                data: {date, starttime,endtime,chosenfacility},
+                success: function(rep) {
+                    if(rep == 'OK'){
+                        $( "form#formWeekday" ).submit();
+                    }else{
+                        alert(rep);
+                    }
+                }
+            });
+        }
+        
+        $("#btnWeekend").click(checkTimeWeekend);
         function checkTimeWeekend(){
             var starttime = $("select#startTimeWeekend").val();
             var endtime = $("select#endTimeWeekend").val();
@@ -490,35 +550,7 @@ $userID = $userIDs[0];
                 alert("start time should be eariler than end time");
                 return false;
             }
-            return beingblockedWeekend();
-        }
-        function beingblockedWeekday(){
-            var date = $("input#startDateWeekday").val();
-            var starttime = $("select#startTimeWeekday").val();
-            var endtime = $("select#endTimeWeekday").val();
-            var chosenfacility = $("select#facilityWeekday").val();
-            $.ajax({
-                url: 'checkBlockedEventOverlap.php',
-                type: "POST",
-                data: {date, starttime,endtime,chosenfacility},
-                success: function(rep) {
-                    if(rep == 'OK'){
-                        $("#checkblocked").text("OK");
-                        $("#btnWeekday").text("Confirm");
-                    }else{
-                        alert("The time is blocked");
-                        $("#checkblocked").text("blocked");
-                    }
-                }
-            });
-            if($("#checkblocked").text()=="OK"){
-                $("#checkblocked").text("");
-                return true;
-            }
-            else{
-                $("#checkblocked").text("");
-                return false;
-            }
+            beingblockedWeekend();
         }
         function beingblockedWeekend(){
             var date = $("input#startDateWeekend").val();
@@ -526,28 +558,20 @@ $userID = $userIDs[0];
             var endtime = $("select#endTimeWeekend").val();
             var chosenfacility = $("select#facilityWeekend").val();
             $.ajax({
-                url: 'checkBlockedEventOverlap.php',
+                url: 'checkEventOverlap.php',
                 type: "POST",
                 data: {date, starttime,endtime,chosenfacility},
                 success: function(rep) {
                     if(rep == 'OK'){
-                        $("#checkblocked").text("OK");
-                        $("#btnWeekend").text("Confirm");
+                        $( "form#formWeekend" ).submit();
                     }else{
-                        alert("The time is blocked");
-                        $("#checkblocked").text("blocked");
+                        alert(rep);
                     }
                 }
             });
-            if($("#checkblocked").text()=="OK"){
-                $("#checkblocked").text("");
-                return true;
-            }
-            else{
-                $("#checkblocked").text("");
-                return false;
-            }
         }
+        
+        
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
@@ -560,7 +584,8 @@ $userID = $userIDs[0];
                 },
                 navLinks: true, // can click day/week names to navigate views
                 businessHours: true, // display business hours
-                editable: true,
+                //editable: true,
+                editable: false,
                 eventLimit: true, // allow "more" link when too many events
                 selectable: true,
                 selectHelper: true,
@@ -596,7 +621,8 @@ $userID = $userIDs[0];
 
                 },*/
                 eventClick: function(info) {
-                    remove(info.event.id);
+                    $('#h1AddID').text(info.event.id);
+                    $('#ModalAdd').modal('show');
                 },
                 /*eventOverlap: function(stillEvent, movingEvent) {
                     console.log(stillEvent);
@@ -634,6 +660,9 @@ $userID = $userIDs[0];
                     },
                     <?php endforeach; ?>
                 ]
+            });
+            $( "#btnAdd" ).click(function() {
+                remove($('#h1AddID').text());
             });
             /*function edit(event){
                     var startobject = event.event.start;
@@ -674,6 +703,7 @@ $userID = $userIDs[0];
                         }
                     }
                 });
+                $('#ModalAdd').modal('hide');
             }
 
 
