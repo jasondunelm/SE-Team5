@@ -1,14 +1,18 @@
 <?php
 
 require_once('bdd.php');
-
-
+if(isset($_POST['chosenfacility'])&&$_POST['chosenfacility']=="4"){
+    $_POST["starttime"]="00:00";
+    $_POST["endtime"]="24:00";
+}
 if (!empty($_POST["starttime"])&&!empty($_POST["endtime"])&&isset($_POST['chosenfacility'])){
     
     $startStr = $_POST["date"]." ".$_POST["starttime"].":00";
     $start = new DateTime($startStr);
     $endStr = $_POST["date"]." ".$_POST["endtime"].":00";
     $end = new DateTime($endStr);
+    $endStr = $end->format('Y-m-d H:i:s');
+    
     $chosenfacility = $_POST['chosenfacility'];
     //$start = new DateTime ("2019-05-25 02:30:00");
     //$end = new DateTime ("2019-05-25 03:30:00");
@@ -60,8 +64,26 @@ if (!empty($_POST["starttime"])&&!empty($_POST["endtime"])&&isset($_POST['chosen
         print_r($query->errorInfo());
         die ('Error execute');
 	}
+    $sql = "SELECT Capacity FROM `facility` WHERE ID=$chosenfacility";
+    $req = $bdd->prepare($sql);
+    $req->execute();
+
+    $capacity = $req->fetch();
+	
+	$query = $bdd->prepare( $sql );
+	if ($query == false) {
+        print_r($bdd->errorInfo());
+        die ('Error prepare');
+	}
+	$sth = $query->execute();
+	if ($sth == false) {
+        print_r($query->errorInfo());
+        die ('Error execute');
+	}
     
-    if(!empty($overlaptime[0])){
+    
+    $numsofoverlap = count($overlaptime);
+    if($capacity[0]<=$numsofoverlap){
         $msg="";
         foreach($overlaptime as $row){
             $overlapStart = $row["StartTime"];
@@ -69,7 +91,7 @@ if (!empty($_POST["starttime"])&&!empty($_POST["endtime"])&&isset($_POST['chosen
             $msg.="`$overlapStart ~ $overlapEnd` ";
         }
         
-        die("The facility is booked at $msg");
+        die("The facility is booked at $msg, and the capacity is $capacity[0]");
     }
     
     die ('OK');
