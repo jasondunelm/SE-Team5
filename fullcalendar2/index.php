@@ -3,7 +3,7 @@ session_start();
 $_SESSION['userName']="tzu-chiao.wang2@durham.ac.uk";
 require_once('bdd.php');
 
-$sql = "SELECT nbooking.ID, UserID, FacilityID, StartTime, EndTime, Color FROM
+$sql = "SELECT nbooking.ID, UserID, FacilityID, StartTime, EndTime, block, Color FROM
         (SELECT * FROM booking) AS nbooking
         LEFT JOIN
         (SELECT ID, Color FROM facility) AS nfacility 
@@ -20,6 +20,12 @@ $req = $bdd->prepare($sql);
 $req->execute();
 
 $facilities = $req->fetchAll();
+
+$facilitiesPrice = array(); 
+
+foreach ($facilities as $row) {
+    $facilitiesPrice[] = array($row["ID"], $row["UnitPrice"]);
+}
 
 $userName=$_SESSION['userName'];
 $sql = "SELECT `User ID` FROM user WHERE Username= '$userName'";
@@ -112,7 +118,7 @@ $userID = $userIDs[0];
         </div>
         <!-- /.container -->
     </nav>
-
+    
     <!-- Page Content -->
     <div class="container">
 
@@ -131,7 +137,7 @@ $userID = $userIDs[0];
 		<div class="modal fade" id="ModalWeekday" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" method="POST" onsubmit="return checkTimeWeekday()" action="addEvent.php">
+			<form class="form-horizontal" id="formWeekday" method="POST" action="addEvent.php">
 			
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -148,7 +154,7 @@ $userID = $userIDs[0];
 				  <div class="form-group">
 					<label for="color" class="col-sm-2 control-label">Facility</label>
 					<div class="col-sm-10">
-					  <select name="facility" class="form-control" id="facilityWeekend">
+					  <select name="facility" class="form-control" id="facilityWeekday">
 						  <option value="">Choose</option>
                           <?php 
                           foreach($facilities as $facility): 
@@ -170,89 +176,74 @@ $userID = $userIDs[0];
 					  <input type="text" name="startDate" class="form-control" id="startDateWeekday" readonly>
 					</div>
 				  </div>
-				  <div class="form-group">
-					<label for="startTime" class="col-sm-2 control-label">Start time</label>
-					<div class="col-sm-10">
-					  <select name="startTime" class="form-control" id="startTimeWeekday">
+                  <!--input type="hidden" id="endDateWeekday" name="custId"-->
+                  <div class="form-group">
+                    <label for="startTime" class="col-sm-2 control-label">Start time</label>
+                    <div class="col-sm-10">
+                      <select name="startTime" class="form-control" id="startTimeWeekday">
                           <option value="">Choose</option>
                           <option>7:00</option>
-                          <option>7:30</option>
-						  <option>8:00</option>
-                          <option>8:30</option>
-						  <option>9:00</option>
-                          <option>9:30</option>
+                          <option>8:00</option>
+                          <option>9:00</option>
                           <option>10:00</option>
-                          <option>10:30</option>
                           <option>11:00</option>
-                          <option>11:30</option>
                           <option>12:00</option>
-                          <option>12:30</option>
                           <option>13:00</option>
-                          <option>13:30</option>
                           <option>14:00</option>
-                          <option>14:30</option>
                           <option>15:00</option>
-                          <option>15:30</option>
                           <option>16:00</option>
-                          <option>16:30</option>
                           <option>17:00</option>
-                          <option>17:30</option>
                           <option>18:00</option>
-                          <option>18:30</option>
                           <option>19:00</option>
-                          <option>19:30</option>
                           <option>20:00</option>
-                          <option>20:30</option>
                           <option>21:00</option>
-                          <option>21:30</option>
                       </select>
-					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="endTime" class="col-sm-2 control-label">End time</label>
-					<div class="col-sm-10">
-					  <select name="endTime" class="form-control" id="endTimeWeekday">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="endTime" class="col-sm-2 control-label">End time</label>
+                    <div class="col-sm-10">
+                      <select name="endTime" class="form-control" id="endTimeWeekday">
                           <option value="">Choose</option>
-                          <option>7:30</option>
-						  <option>8:00</option>
-                          <option>8:30</option>
-						  <option>9:00</option>
-                          <option>9:30</option>
+                          <option>8:00</option>
+                          <option>9:00</option>
                           <option>10:00</option>
-                          <option>10:30</option>
                           <option>11:00</option>
-                          <option>11:30</option>
                           <option>12:00</option>
-                          <option>12:30</option>
                           <option>13:00</option>
-                          <option>13:30</option>
                           <option>14:00</option>
-                          <option>14:30</option>
                           <option>15:00</option>
-                          <option>15:30</option>
                           <option>16:00</option>
-                          <option>16:30</option>
                           <option>17:00</option>
-                          <option>17:30</option>
                           <option>18:00</option>
-                          <option>18:30</option>
                           <option>19:00</option>
-                          <option>19:30</option>
                           <option>20:00</option>
-                          <option>20:30</option>
                           <option>21:00</option>
-                          <option>21:30</option>
                           <option>22:00</option>
                       </select>
-					</div>
-				  </div>
-				
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Unit Price</label>
+                    <div class="col-sm-10">
+                        <span>£</span><span id="moneyWeekday"></span>
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label for="totalmoney" class="col-sm-2 control-label">Total Price</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="totalmoney" class="form-control" id="totalmoneyWeekday" readonly>
+                        <!--span>£</span><span id="totalmoney"></span-->
+                    </div>
+                </div>
 			  </div>
+                
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-primary" id="btnWeekday">Save changes</button>
 			  </div>
 			</form>
+                
 			</div>
 		  </div>
 		</div>
@@ -260,7 +251,7 @@ $userID = $userIDs[0];
         <div class="modal fade" id="ModalWeekend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" method="POST" onsubmit="return checkTimeWeekend()" action="addEvent.php">
+			<form class="form-horizontal" id="formWeekend" method="POST" action="addEvent.php">
 			
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -299,29 +290,21 @@ $userID = $userIDs[0];
 					  <input type="text" name="startDate" class="form-control" id="startDateWeekend" readonly>
 					</div>
 				  </div>
+                  <!--input type="hidden" id="endDateWeekend" name="custId"-->
 				  <div class="form-group">
 					<label for="startTime" class="col-sm-2 control-label">Start time</label>
 					<div class="col-sm-10">
 					  <select name="startTime" class="form-control" id="startTimeWeekend">
                           <option value="">Choose</option>
 						  <option>9:00</option>
-                          <option>9:30</option>
                           <option>10:00</option>
-                          <option>10:30</option>
                           <option>11:00</option>
-                          <option>11:30</option>
                           <option>12:00</option>
-                          <option>12:30</option>
                           <option>13:00</option>
-                          <option>13:30</option>
                           <option>14:00</option>
-                          <option>14:30</option>
                           <option>15:00</option>
-                          <option>15:30</option>
                           <option>16:00</option>
-                          <option>16:30</option>
                           <option>17:00</option>
-                          <option>17:30</option>
                       </select>
 					</div>
 				  </div>
@@ -330,32 +313,35 @@ $userID = $userIDs[0];
 					<div class="col-sm-10">
 					  <select name="endTime" class="form-control" id="endTimeWeekend">
                           <option value="">Choose</option>
-                          <option>9:30</option>
                           <option>10:00</option>
-                          <option>10:30</option>
                           <option>11:00</option>
-                          <option>11:30</option>
                           <option>12:00</option>
-                          <option>12:30</option>
                           <option>13:00</option>
-                          <option>13:30</option>
                           <option>14:00</option>
-                          <option>14:30</option>
                           <option>15:00</option>
-                          <option>15:30</option>
                           <option>16:00</option>
-                          <option>16:30</option>
                           <option>17:00</option>
-                          <option>17:30</option>
                           <option>18:00</option>
                       </select>
 					</div>
 				  </div>
-				
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Unit Price</label>
+                    <div class="col-sm-10">
+                        <span>£</span><span id="moneyWeekend"></span>
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label for="totalmoney" class="col-sm-2 control-label">Total Price</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="totalmoney" class="form-control" id="totalmoneyWeekend" readonly>
+                        <!--span>£</span><span id="totalmoney"></span-->
+                    </div>
+                </div>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-primary" id="btnWeekend">Save changes</button>
 			  </div>
 			</form>
 			</div>
@@ -373,7 +359,7 @@ $userID = $userIDs[0];
 		
 		
 		<!-- Modal -->
-		<div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		<!--div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
 			<form class="form-horizontal" method="POST" action="editEventTitle.php">
@@ -424,6 +410,18 @@ $userID = $userIDs[0];
 			</form>
 			</div>
 		  </div>
+		</div-->
+        <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+                <h1 style="margin-left: 20px;">Do you want to remove the event?</h1>
+                <h4><span style="margin-left: 20px;">Event ID: </span><span id="h1AddID"></span></h4>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" id="btnAdd">Confirm</button>
+			  </div>
+			</div>
+		  </div>
 		</div>
 
     </div>
@@ -440,10 +438,122 @@ $userID = $userIDs[0];
 	<script src='js/fullcalendar.min.js'></script>
 	
 	<script>
+        <?php
+        $myJSON = json_encode($facilitiesPrice);
+        echo "var facilitiesPrice = ".$myJSON.";";
+        ?>
+
+        $("#facilityWeekday, #endTimeWeekday, #startTimeWeekday").change(function() {
+            if($("#facilityWeekday").val()=="4"){
+                //for track
+                $('#startTimeWeekday').append( "<option id='startExtratimeWeekday'>00:00</option>" );
+                $('#startTimeWeekday').val('00:00');
+                $('#endTimeWeekday').append( "<option id='endExtratimeWeekday'>24:00</option>" );
+                $('#endTimeWeekday').val('24:00');
+                $('#startTimeWeekday').prop('disabled', true);
+                $('#endTimeWeekday').prop('disabled', true);
+                //for price
+                var facilitychosen = Number($("#facilityWeekday").val());
+                $("#moneyWeekday").text(facilitiesPrice[facilitychosen-1][1]);
+                //for totalprice
+                $("#totalmoneyWeekday").val(facilitiesPrice[facilitychosen-1][1]);
+            }
+            else if($("#facilityWeekday").val()!=""){
+                //for track
+                $('#startExtratimeWeekday').remove();
+                $('#endExtratimeWeekday').remove();
+                $('#startTimeWeekday').prop('disabled', false);
+                $('#endTimeWeekday').prop('disabled', false);
+                //for price
+                var facilitychosen = Number($("#facilityWeekday").val());
+                $("#moneyWeekday").text(facilitiesPrice[facilitychosen-1][1]);
+                $("#totalmoneyWeekday").val("");
+            }
+            else{
+                //for track
+                $('#startExtratimeWeekday').remove();
+                $('#endExtratimeWeekday').remove();
+                $('#startTimeWeekday').prop('disabled', false);
+                $('#endTimeWeekday').prop('disabled', false);
+                //for price
+                $("#moneyWeekday").text("");
+                $("#totalmoneyWeekday").val("");
+            }
+                
+            
+            if($("#facilityWeekday").val()!=""&&$("#facilityWeekday").val()!="4"  && $("#startTimeWeekday").val()!="" && $("#endTimeWeekday").val()!=""){
+                //for totalprice
+                var facilitychosen = Number($("#facilityWeekday").val());
+                var startTimeWeekday = $("#startTimeWeekday").val();
+                var endTimeWeekday = $("#endTimeWeekday").val();
+                var startarray = startTimeWeekday.split(":");
+                var endarray = endTimeWeekday.split(":");
+                $("#totalmoneyWeekday").val(   Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))     );
+            }
+        });
+        $("#facilityWeekend, #endTimeWeekend, #startTimeWeekend").change(function() {
+            if($("#facilityWeekend").val()=="4"){
+                //for track
+                $('#startTimeWeekend').append( "<option id='startExtratimeWeekend'>00:00</option>" );
+                $('#startTimeWeekend').val('00:00');
+                $('#endTimeWeekend').append( "<option id='endExtratimeWeekend'>24:00</option>" );
+                $('#endTimeWeekend').val('24:00');
+                $('#startTimeWeekend').prop('disabled', true);
+                $('#endTimeWeekend').prop('disabled', true);
+                //for price
+                var facilitychosen = Number($("#facilityWeekend").val());
+                $("#moneyWeekend").text(facilitiesPrice[facilitychosen-1][1]);
+                //for totalprice
+                $("#totalmoneyWeekend").val(facilitiesPrice[facilitychosen-1][1]);
+            }
+            else if($("#facilityWeekend").val()!=""){
+                //for track
+                $('#startExtratimeWeekend').remove();
+                $('#endExtratimeWeekend').remove();
+                $('#startTimeWeekend').prop('disabled', false);
+                $('#endTimeWeekend').prop('disabled', false);
+                //for price
+                var facilitychosen = Number($("#facilityWeekend").val());
+                $("#moneyWeekend").text(facilitiesPrice[facilitychosen-1][1]);
+                $("#totalmoneyWeekend").val("");
+            }
+            else{
+                //for track
+                $('#startExtratimeWeekend').remove();
+                $('#endExtratimeWeekend').remove();
+                $('#startTimeWeekend').prop('disabled', false);
+                $('#endTimeWeekend').prop('disabled', false);
+                //for price
+                $("#moneyWeekend").text("");
+                $("#totalmoneyWeekend").val("");
+            }
+            if($("#facilityWeekend").val()!=""&&$("#facilityWeekend").val()!="4"  && $("#startTimeWeekend").val()!="" && $("#endTimeWeekend").val()!=""){
+                //for totalprice
+                var facilitychosen = Number($("#facilityWeekend").val());
+                var startTimeWeekend = $("#startTimeWeekend").val();
+                var endTimeWeekend = $("#endTimeWeekend").val();
+                var startarray = startTimeWeekend.split(":");
+                var endarray = endTimeWeekend.split(":");
+                $("#totalmoneyWeekend").val(   Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))     );
+            }
+        });
+        $("#btnWeekday").click(function(){
+            if($("#facilityWeekday").val()!="4")
+                checkTimeWeekday();
+            else
+                beingblockedWeekday();
+        });
         function checkTimeWeekday(){
+            if($("#facilityWeekday").val()==""){
+                alert("choose a facility");
+                return false;
+            } 
             var starttime = $("select#startTimeWeekday").val();
             var endtime = $("select#endTimeWeekday").val();
-            if(starttime==endtime){
+            if(starttime==""||endtime==""){
+                alert("the time should be input");
+                return false;
+            }if(starttime==endtime){
                 alert("start time cannot be identical to end time");
                 return false;
             }
@@ -453,10 +563,39 @@ $userID = $userIDs[0];
                 alert("start time should be eariler than end time");
                 return false;
             }
+            beingblockedWeekday();
         }
+        function beingblockedWeekday(){
+            var date = $("input#startDateWeekday").val();
+            var starttime = $("select#startTimeWeekday").val();
+            var endtime = $("select#endTimeWeekday").val();
+            var chosenfacility = $("select#facilityWeekday").val();
+            $.ajax({
+                url: 'checkEventOverlap.php',
+                type: "POST",
+                data: {date, starttime,endtime,chosenfacility},
+                success: function(rep) {
+                    if(rep == 'OK'){
+                        $( "form#formWeekday" ).submit();
+                    }else{
+                        alert(rep);
+                    }
+                }
+            });
+        }
+        
+        $("#btnWeekend").click(function(){
+            if($("#facilityWeekend").val()!="4")
+                checkTimeWeekend();
+            else
+                beingblockedWeekend();
+        });
         function checkTimeWeekend(){
+            if($("#facilityWeekend").val()==""){
+                alert("choose a facility");
+                return false;
+            } 
             var starttime = $("select#startTimeWeekend").val();
-            console.log(starttime);
             var endtime = $("select#endTimeWeekend").val();
             if(starttime==endtime){
                 alert("start time cannot be identical to end time");
@@ -468,175 +607,169 @@ $userID = $userIDs[0];
                 alert("start time should be eariler than end time");
                 return false;
             }
+            beingblockedWeekend();
         }
-        document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
-
-        var calendar = new FullCalendar.Calendar(calendarEl, {
-          plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
-          header: {
-            left: 'prev,next today',
-            center: 'title',
-            right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
-          },
-          navLinks: true, // can click day/week names to navigate views
-          businessHours: true, // display business hours
-          editable: true
-        ,
-        eventLimit: true, // allow "more" link when too many events
-        selectable: true,
-        selectHelper: true,
-        select: function(start, end) {
-            if(start.start.getDay()==0||start.start.getDay()==6){
-                $('#ModalWeekend #startDateWeekend').val(start.startStr);
-                $('#ModalWeekend #endDateWeekend').val(start.endStr+' 00:00:00');
-                $('#ModalWeekend').modal('show');
-            }
-            else{
-                $('#ModalWeekday #startDateWeekday').val(start.startStr);
-                $('#ModalWeekday #endDateWeekday').val(start.endStr+' 00:00:00');
-                $('#ModalWeekday').modal('show');
-            }
-        },
-        eventRender: function(event, element) {
-            /*element.bind('dblclick', function() {
-                //$('#ModalEdit #id').val(event.id);
-                //$('#ModalEdit #title').val(event.title);
-                //$('#ModalEdit #color').val(event.color);
-                //$('#ModalEdit').modal('show');
-            });*/
-        },
-        eventDrop: function(event, delta, revertFunc) { // si changement de position
-
-            edit(event);
-
-        },
-        eventResize: function(event,dayDelta,minuteDelta,revertFunc) { // si changement de longueur
-
-            edit(event);
-
+        function beingblockedWeekend(){
+            var date = $("input#startDateWeekend").val();
+            var starttime = $("select#startTimeWeekend").val();
+            var endtime = $("select#endTimeWeekend").val();
+            var chosenfacility = $("select#facilityWeekend").val();
+            $.ajax({
+                url: 'checkEventOverlap.php',
+                type: "POST",
+                data: {date, starttime,endtime,chosenfacility},
+                success: function(rep) {
+                    if(rep == 'OK'){
+                        $( "form#formWeekend" ).submit();
+                    }else{
+                        alert(rep);
+                    }
+                }
+            });
         }
         
-            
-      ,events: [
-        /*{
-          title: 'Business Lunch',
-          start: '2019-04-03T13:00:00',
-          constraint: 'businessHours'
-        },*/
-        /*{
-          title: 'Meeting',
-          start: '2019-04-13T11:00:00',
-          constraint: 'availableForMeeting', // defined below
-          color: '#257e4a'
-        },*/
-        {
-            id: 54,
-          title: 'Conference',
-          start: '2019-04-18',
-          end: '2019-04-20',
-            color: '#257e4a'
-        },
-        {
-            id: 55,
-          title: 'Party',
-          start: '2019-04-29T20:00:00'
-        },
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
 
-        // areas where "Meeting" must be dropped
-        /*{
-          groupId: 'availableForMeeting',
-          start: '2019-04-11T10:00:00',
-          end: '2019-04-11T16:00:00',
-          rendering: 'background'
-        },
-        {
-          groupId: 'availableForMeeting',
-          start: '2019-04-13T10:00:00',
-          end: '2019-04-13T16:00:00',
-          rendering: 'background'
-        },*/
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+                header: {
+                    left: 'prev,next, today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+                },
+                navLinks: true, // can click day/week names to navigate views
+                businessHours: true, // display business hours
+                //editable: true,
+                editable: false,
+                eventLimit: true, // allow "more" link when too many events
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end) {
+                    if(start.start.getDay()==0||start.start.getDay()==6){
+                        var startDayArray = start.startStr.split("T");
+                        $('#ModalWeekend #startDateWeekend').val(startDayArray[0]);
+                        //$('#ModalWeekend #endDateWeekend').val(start.endStr+' 00:00:00');
+                        $('#ModalWeekend').modal('show');
+                    }
+                    else{
+                        var startDayArray = start.startStr.split("T");
+                        $('#ModalWeekday #startDateWeekday').val(startDayArray[0]);
+                        //$('#ModalWeekday #endDateWeekday').val(start.endStr+' 00:00:00');
+                        $('#ModalWeekday').modal('show');
+                    }
+                },
+                slotDuration: '01:00',
+                eventRender: function(event, element) {
 
-        // red areas where no events can be dropped
-        {
-            id: 56,
-          start: '2019-04-24',
-          end: '2019-04-28',
-          overlap: false,
-          rendering: 'background',
-          color: '#ff9f89'
-        },
-        {
-            id: 57,
-          start: '2019-04-06',
-          end: '2019-04-08',
-          overlap: false,
-          rendering: 'background',
-          color: '#ff9f89'
-        }
-          ,<?php foreach($bookings as $booking): 
-			
-				$start = explode(" ", $booking['StartTime']);
-				$end = explode(" ", $booking['EndTime']);
-				if($start[1] == '00:00:00'){
-					$start = $start[0];
-				}else{
-					$start = $booking['StartTime'];
-				}
-				if($end[1] == '00:00:00'){
-					$end = $end[0];
-				}else{
-					$end = $booking['EndTime'];
-				}
-			?>
-				{
-                    id: <?php echo $booking['ID']; ?>,
-					start: '<?php echo $start; ?>',
-					end: '<?php echo $end; ?>',
-					color: '<?php echo $booking['Color']; ?>'
-				},
-			<?php endforeach; ?>
-      ]
-    });
-            function edit(event){
-                var startobject = event.event.start;
-                start = startobject.getFullYear() + "-" + ("0"+(startobject.getMonth()+1)).slice(-2) + "-" + ("0" + startobject.getDate()).slice(-2) + " " + ("0" + startobject.getHours()).slice(-2) + ":" + ("0" + startobject.getMinutes()).slice(-2)+ ":" + ("0" + startobject.getSeconds()).slice(-2);
-                var endobject = event.event.end;
-                
-			//start = event.event.start.format('YYYY-MM-DD HH:mm:ss');
-			//if(event.event.end){
-                end = endobject.getFullYear() + "-" + ("0"+(endobject.getMonth()+1)).slice(-2) + "-" + ("0" + endobject.getDate()).slice(-2) + " " + ("0" + endobject.getHours()).slice(-2) + ":" + ("0" + endobject.getMinutes()).slice(-2)+ ":" + ("0" + endobject.getSeconds()).slice(-2);
-				//end = event.end.format('YYYY-MM-DD HH:mm:ss');
-			//}else{
-			//	end = start;
-			//}
-			//console.log(start);
-            //console.log(end);
-			id =  event.event.id;
-			Event = [];
-			Event[0] = id;
-			Event[1] = start;
-			Event[2] = end;
-			$.ajax({
-			 url: 'editEventDate.php',
-			 type: "POST",
-			 data: {Event:Event},
-			 success: function(rep) {
-					if(rep == 'OK'){
-						alert('Saved');
-					}else{
-						alert('Could not be saved. try again.'); 
-					}
-				}
-			});
-		}
-            
+                    /*element.bind('dblclick', function() {
+                        //$('#ModalEdit #id').val(event.id);
+                        //$('#ModalEdit #title').val(event.title);
+                        //$('#ModalEdit #color').val(event.color);
+                        //$('#ModalEdit').modal('show');
+                    });*/
+                },
+                /*eventDrop: function(event, delta, revertFunc) { // si changement de position
 
-    calendar.render();
-  });
+                    edit(event);
 
-</script>
+                },*/
+                /*eventResize: function(event,dayDelta,minuteDelta,revertFunc) { // si changement de longueur
 
+                    edit(event);
+
+                },*/
+                eventClick: function(info) {
+                    $('#h1AddID').text(info.event.id);
+                    $('#ModalAdd').modal('show');
+                },
+                /*eventOverlap: function(stillEvent, movingEvent) {
+                    console.log(stillEvent);
+                },*/
+
+
+
+
+                events: [
+                    <?php foreach($bookings as $booking): 
+
+                        $start = explode(" ", $booking['StartTime']);
+                        $end = explode(" ", $booking['EndTime']);
+                        if($start[1] == '00:00:00'){
+                            $start = $start[0];
+                        }else{
+                            $start = $booking['StartTime'];
+                        }
+                        if($end[1] == '00:00:00'){
+                            $end = $end[0];
+                        }else{
+                            $end = $booking['EndTime'];
+                        }
+                    ?>
+                    {
+                        id: <?php echo $booking['ID']; ?>,
+                        start: '<?php echo $start; ?>',
+                        end: '<?php echo $end; ?>',
+                        color: '<?php echo $booking['Color']; ?>'
+                        <?php
+                        if($booking['block']==1){
+                            echo ", rendering: 'background', overlap: false";
+                        }
+                        ?>
+                    },
+                    <?php endforeach; ?>
+                ]
+            });
+            $( "#btnAdd" ).click(function() {
+                remove($('#h1AddID').text());
+            });
+            /*function edit(event){
+                    var startobject = event.event.start;
+                    start = startobject.getFullYear() + "-" + ("0"+(startobject.getMonth()+1)).slice(-2) + "-" + ("0" + startobject.getDate()).slice(-2) + " " + ("0" + startobject.getHours()).slice(-2) + ":" + ("0" + startobject.getMinutes()).slice(-2)+ ":" + ("0" + startobject.getSeconds()).slice(-2);
+                    var endobject = event.event.end;
+
+                    end = endobject.getFullYear() + "-" + ("0"+(endobject.getMonth()+1)).slice(-2) + "-" + ("0" + endobject.getDate()).slice(-2) + " " + ("0" + endobject.getHours()).slice(-2) + ":" + ("0" + endobject.getMinutes()).slice(-2)+ ":" + ("0" + endobject.getSeconds()).slice(-2);
+                id =  event.event.id;
+                Event = [];
+                Event[0] = id;
+                Event[1] = start;
+                Event[2] = end;
+                $.ajax({
+                 url: 'editEventDate.php',
+                 type: "POST",
+                 data: {Event:Event},
+                 success: function(rep) {
+                        if(rep == 'OK'){
+                            alert('Saved');
+                        }else{
+                            alert('Could not be saved. try again.'); 
+                        }
+                    }
+                });
+            }*/
+            function remove(evtID){
+                var evt = calendar.getEventById(evtID);
+                evt.remove();
+                $.ajax({
+                 url: 'rmvEvent.php',
+                 type: "POST",
+                 data: {evtID},
+                 success: function(rep) {
+                        if(rep == 'OK'){
+                            alert('Saved');
+                        }else{
+                            alert('Could not be saved. try again.'); 
+                        }
+                    }
+                });
+                $('#ModalAdd').modal('hide');
+            }
+
+
+            calendar.render();
+        });
+    </script>
 </body>
 
 </html>

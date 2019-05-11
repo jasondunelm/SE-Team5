@@ -114,7 +114,7 @@ session_start();
 </nav>
 
 <!-- carousel part -->
-<div id="carouselExampleIndicators" class="jumbotron heroImage carousel slide" data-ride="carousel">
+<div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
     <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
         <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -122,7 +122,7 @@ session_start();
     </ol>
     <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="images/bg_1.png" class="d-block w-100" alt="...">
+            <img class="w-100" src="images/bg_1.png">
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Join us today</h1>
                 <p class="text-light">
@@ -131,7 +131,7 @@ session_start();
             </div>
         </div>
         <div class="carousel-item">
-            <img src="images/yoga.jpg" class="d-block w-100" alt="...">
+            <img class="w-100" src="images/bg_2.png">
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Have a try</h1>
                 <p class="text-light">
@@ -140,7 +140,7 @@ session_start();
             </div>
         </div>
         <div class="carousel-item">
-            <img src="images/tennis.jpg" class="d-block w-100" alt="...">
+            <img class="w-100" src="images/bg_3.png">
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Maiden Castle</h1>
                 <p class="text-light">Access information, opening times

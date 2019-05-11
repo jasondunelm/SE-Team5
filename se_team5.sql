@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2019 年 05 月 09 日 19:06
+-- 產生時間： 2019 年 05 月 11 日 19:47
 -- 伺服器版本： 8.0.15
 -- PHP 版本： 7.1.23
 
@@ -35,7 +35,8 @@ CREATE TABLE `Booking` (
   `startTime` datetime DEFAULT NULL,
   `endTime` datetime DEFAULT NULL,
   `bookCost` double DEFAULT NULL,
-  `numPeople` int(11) DEFAULT NULL
+  `numPeople` int(11) DEFAULT NULL,
+  `block` tinyint(4) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -48,14 +49,19 @@ CREATE TABLE `Facility` (
   `id` int(11) NOT NULL,
   `facilityName` varchar(50) DEFAULT NULL,
   `capacity` int(50) DEFAULT NULL,
-  `unitPrice` int(50) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `contact` varchar(255) DEFAULT NULL,
-  `telephone` text,
-  `email` varchar(50) DEFAULT NULL,
+  `unitPrice` double DEFAULT NULL,
+  `memberPrice` double DEFAULT NULL,
   `facilityIntro` text,
-  `facilityPic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL
+  `facilityPic` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `color` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- 傾印資料表的資料 `Facility`
+--
+
+INSERT INTO `Facility` (`id`, `facilityName`, `capacity`, `unitPrice`, `memberPrice`, `facilityIntro`, `facilityPic`, `color`) VALUES
+(1234, 'Test Sport Center', 12, 20, NULL, 'sadlfjawenfql', '360.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -80,7 +86,7 @@ CREATE TABLE `Users` (
 --
 
 INSERT INTO `Users` (`id`, `userName`, `firstName`, `lastName`, `password`, `role`, `token`, `tokenExpire`, `emailConfirmed`) VALUES
-(1, 'tuohao11@gmail.com', 'TUO', 'HAO', '$2y$10$ExKsPAdJIu5GUGCorJ7/J.27g8BC9t2cioAx/FbIJVz05XHyCD1Su', 'user', '', '2019-05-09 16:42:36.000000', 1);
+(1, 'tuohao11@gmail.com', 'TUO', 'HAO', '$2y$10$t0SbChjLztPZqeOe1MItC.XHlodTOVTsAMppQzM0haifv0cBqpJTS', 'user', '', '2019-05-10 14:50:11.000000', 1);
 
 --
 -- 已傾印資料表的索引
