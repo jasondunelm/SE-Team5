@@ -1,8 +1,9 @@
-<!DOCTYPE html>
+
 <?php
 
 session_start();
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -51,14 +52,14 @@ session_start();
                     Facilities
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="test.php?id=test">Fitness Suite</a>
-                    <a class="dropdown-item" href="#">Sports Hall</a>
-                    <a class="dropdown-item" href="#">Artificial Pitches</a>
-                    <a class="dropdown-item" href="#">Rowing Tank</a>
-                    <a class="dropdown-item" href="#">Ergo Gallery</a>
-                    <a class="dropdown-item" href="#">Outdoor Facilities</a>
-                    <a class="dropdown-item" href="#">Maiden Castle Physiotherapy</a>
-                    <a class="dropdown-item" href="#">Aerobics Room</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Fitness Suite">Fitness Suite</a>
+                    <a class="dropdown-item" href="sportsHall.php">Sports Hall</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Artificial Pitches">Artificial Pitches</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Rowing Tank">Rowing Tank</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Ergo Gallery">Ergo Gallery</a>
+                    <a class="dropdown-item" href="outdoorFacilities.php">Outdoor Facilities</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Maiden Castle Physiotherapy">Maiden Castle Physiotherapy</a>
+                    <a class="dropdown-item" href="facility.php?facilityName=Aerobics Room">Aerobics Room</a>
 
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="https://www.teamdurham.com/queenscampus/">Queen's campus</a>
@@ -77,7 +78,7 @@ session_start();
                 </div>
             </li>
 
-            <li class="nav-item dropdown">
+            <li class="nav-item dropdown" id="divId">
                 <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Management
                 </a>
@@ -174,57 +175,58 @@ session_start();
     <div class="container">
         <div class="row">
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
+                <a href="facility.php?facilityName=Fitness Suite" class="pic_link">
                     <img src="images/fitnessSuite01.jpg" alt="..." class="img-thumbnail">
                     <h5>Fitness Suite</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="images/sportsHall01.jpg" alt="..." class="img-thumbnail">
+                <a href="sportsHall.php" class="pic_link">
+                    <img src="images/Sports hall.jpg" alt="..." class="img-thumbnail">
                     <h5>Sports Hall</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="images/hockey.jpg" alt="..." class="img-thumbnail">
+                <a href="facility.php?facilityName=Artificial Pitches" class="pic_link">
+                    <img src="images/Artificial Pitches.jpg" alt="..." class="img-thumbnail">
                     <h5>Artificial Pitches</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
+                <a href="facility.php?facilityName=Rowing Tank" class="pic_link">
                     <img src="images/rowingTank02.jpg" alt="..." class="img-thumbnail">
                     <h5>Rowing Tank</h5>
                 </a>
             </div>
 
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
+                <a href="facility.php?facilityName=Ergo Gallery" class="pic_link">
                     <img src="images/ergoGallery.jpg" alt="..." class="img-thumbnail">
                     <h5>Ergo Gallery</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
+                <a href="outdoorFacilities.php" class="pic_link">
                     <img src="images/outdoor02.jpg" alt="..." class="img-thumbnail">
                     <h5>Outdoor Facilities</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
+                <a href="facility.php?facilityName=Maiden Castle Physiotherapy" class="pic_link">
                     <img src="images/therapy.jpg" alt="..." class="img-thumbnail">
-                    <h5>Physiotherapy</h5>
+                    <h5>Maiden Castle Physiotherapy</h5>
                 </a>
             </div>
             <div class="col-md-3">
-                <a href="test.php" class="pic_link">
-                    <img src="src/aerobic.jpg" alt="..." class="img-thumbnail">
+                <a href="facility.php?facilityName=Aerobics Room" class="pic_link">
+                    <img src="images/aerobic.jpg" alt="..." class="img-thumbnail">
                     <h5>Aerobics Room</h5>
                 </a>
             </div>
         </div>
     </div>
 </div>
+
 
 <div class="clearfix"></div>
 <div class="book_hg">
@@ -256,8 +258,17 @@ session_start();
 </div>
 
 <?php
+
+$role = $_SESSION['role'];
+echo $role;
+if($role=='admin') {
+    ?>
+    <script type="text/javascript">document.getElementById('divId').style.display = 'none';</script>
+    <?php
+}
 include('footer.php');
 ?>
+
 
 </body>
 </html>
