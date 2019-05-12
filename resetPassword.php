@@ -33,7 +33,7 @@ include("functions_WebFront.php");
                     $error = "There were error(s) in your input details:" . $error;
                 } else {
                     $newPassword = $password;
-                    $newPasswordEncrypted = password_hash($newPassword, PASSWORD_BCRYPT);
+                    $newPasswordEncrypted = md5(md5($email).$newPassword);
                     $conn->query("UPDATE Users SET token='', password = '$newPasswordEncrypted' 
                       WHERE userName='$email'");
                     $message = "Your new password been updated successfully!<br><a href=login.php>Click Here To Log In</a>";

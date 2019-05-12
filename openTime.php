@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <?php
-
 session_start();
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -17,6 +16,7 @@ session_start();
 
 <?php
 include('header.php');
+include('session_check.php');
 ?>
 
 
@@ -43,6 +43,7 @@ include('header.php');
 
 
 <?php
+include('session_check.php');
 include('footer.php');
 ?>
 </body>

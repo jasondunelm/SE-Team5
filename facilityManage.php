@@ -1,15 +1,15 @@
-<!DOCTYPE html>
 <?php
-
 session_start();
+include('web_temp.php');
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
     <title>facilityManage</title>
 
     <?php
-    include('meta_data.php');
+   // include('meta_data.php');
     ?>
 <script>
     $(document).ready(function(){
@@ -51,7 +51,8 @@ session_start();
 <body>
 
 <?php
-include('header.php');
+//include('header.php');
+//include('session_check.php');
 include('config_wyj.php');
 
 $pdo = new PDO($db_host.";".$db_name, $db_user, $db_pass);
@@ -61,36 +62,40 @@ $statement = $pdo->query($sql);
 $table= $statement->fetchAll(PDO::FETCH_NUM);
 
 ?>
-
-
-
-<p>Edit facility information here:</p>
-
-
-
-<table width="800">
-    <tr>
-        <th height="22" align="center" valign="middle">Facility name</th>
-        <th height="22" align="center" valign="middle">Edition
-        <th height="22" align="center" valign="middle">Deletion</th>
-    </tr>
-    <?php
-    for ($i=0;$i<count($table);$i++) {
-        ?>
-        <tr>
-            <td height="22" align="center" valign="middle"><?php echo $table[$i][1]; ?></td>
-            <td height="22" align="center" valign="middle"><button class="facility_edit_btn"><a href="facilityEdit.php? id=<?php echo $table[$i][1] ?>">Edit</a></button></td>
-            <td height="22" align="center" valign="middle"><button class="delete" id='del_<?php echo $table[$i][1] ?>'>Delete</button></td>
-        </tr>
-        <?php
-    }
-    ?>
-
-</table>
-
-<a href="facilityEdit.php? id=add">Add a new facility</a>
+<div class="facility_manage_div">
+    <h3>Facility list</h3>
+    <p></p>
+    <div class="table_div">
+        <table class="table table-striped table_f_manage">
+            <thred>
+                <tr>
+                    <th scope="col" >#</th>
+                    <th scope="col">Facility name</th>
+                    <th scope="col">Edition
+                    <th scope="col">Deletion</th>
+                </tr>
+            </thred>
+            <tbody>
+            <?php
+            for ($i=0;$i<count($table);$i++) {
+                ?>
+                <tr>
+                    <th scope="row"><?php echo $i+1; ?></th>
+                    <td ><?php echo $table[$i][1]; ?></td>
+                    <td ><button class="btn btn-primary facility_edit_btn"><a href="facilityEdit.php? id=<?php echo $table[$i][0] ?>">Edit</a></button></td>
+                    <td ><button class="btn btn-primary delete" id='del_<?php echo $table[$i][0] ?>'>Delete</button></td>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+    </div>
+    <p></p>
+    <button class="btn btn-primary facility_edit_btn"><a href="facilityAdd.php">Add new facility</a></button>
+</div>
 <?php
-include('footer.php');
+//include('footer.php');
 ?>
 </body>
 </html>
