@@ -2,7 +2,12 @@
 //session_start();
 include('functions_WebFront.php');
 error_reporting(E_ALL^E_NOTICE);
+include('meta_data.php');
+include('header.php');
+include('session_check.php');
+include('footer.php');
 ?>
+<!--
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,13 +20,13 @@ error_reporting(E_ALL^E_NOTICE);
     <meta name="description" content="A online application software for DUS">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <!-- <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+
     <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 <body>
-<!-- the navigation bar of homepage -->
+
 <nav class="navbar navbar-expand-lg navbar-light bg-dark">
     <img src="images/small_logo.png">&nbsp;&nbsp;
     <a class="navbar-brand" href="https://www.teamdurham.com">DUS</a>
@@ -74,7 +79,7 @@ error_reporting(E_ALL^E_NOTICE);
             <div class="btn-group" role="group" aria-label="Basic example">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="facilityName">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                <!--  class="btn btn-outline-success my-2 my-sm-0" -->
+
             </div>
         </form>
 
@@ -118,6 +123,7 @@ error_reporting(E_ALL^E_NOTICE);
 
 </html>
 
+-->
 
 
 

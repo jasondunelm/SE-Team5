@@ -1,16 +1,34 @@
-<!DOCTYPE html>
 <?php
-include "PDO.php";
-include "web_temp.php";
+session_start();
+//include "PDO.php";
 
+include "web_temp.php";
+/*
 $sql="SELECT * FROM users WHERE userName='aaa@durham.ac.uk'";
 $statement = $pdo->query($sql);
-$rows = $statement->fetch(PDO::FETCH_ASSOC);
+$rows = $statement->fetch(PDO::FETCH_ASSOC);*/
 ?>
+<!DOCTYPE html>
+
+<html lang="en">
+<header>
+    <meta charset="utf-8">
+    <title>facilityManage</title>
+
+    <?php
+    //include('meta_data.php');
+    ?>
+</header>
+<body>
+<?php
+//include('header.php');
+include('config_wyj.php');
+?>
+
 
 <div class="container" style="padding-top:100px">
     <form method="post" action="user_update_check.php">
-        <center><h1 style="color:black;">Modify Information</h1></center><br>
+        <h2 style="color:black;">Modify Information</h2><br>
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-2">
@@ -49,6 +67,11 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
     </form>
 </div>
 
+<?php
+//include('footer.php');
+?>
 </body>
 </html>
+
+
 

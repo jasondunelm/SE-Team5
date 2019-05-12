@@ -147,15 +147,11 @@ h1{
     }
 }
 
-.facility_infor_edit{
-    width: 80%;
-    margin: 30px;
 
-}
 
 
 .facility_edit_btn a{
-    color: black;
+    color: white;
 }
 .facility_edit_btn a:hover{
     text-decoration: none;
@@ -177,6 +173,28 @@ body {
     font-size: 0.8em;
 }
 
+.facility_manage_div{
+    margin:5%;
+    text-align:center;
 
+}
+.table_f_manage{
+    width:80%;
+    margin:auto;
+}
+.table_div{
+    text-align: center;
+}
+.facility_edit_div{
+    margin:5%;
+    text-align: left;
+    width: 70%;
 
+}
+.facility_infor_edit{
+    width: 100%;
 
+}
+.edit_btn_group{
+    margin-right: 20px;
+}
