@@ -124,7 +124,7 @@ session_start();
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Join us today</h1>
                 <p class="text-light">
-                    <a href="register.php" class="btn btn-primary btn-lg">Sign up</a>
+                    <button type="button" class="btn btn-primary btn-lg">Sign up</button>
                 </p>
             </div>
         </div>
@@ -133,8 +133,7 @@ session_start();
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Have a try</h1>
                 <p class="text-light">
-                    <!--   ---------------------------------   ---------- change here to book page -->
-                    <a href="register.php" class="btn btn-primary btn-lg">Book online</a>
+                    <button type="button" class="btn btn-primary btn-lg">Book online</button>
                 </p>
             </div>
         </div>
@@ -143,7 +142,7 @@ session_start();
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Maiden Castle</h1>
                 <p class="text-light">Access information, opening times
-                    <a href="openTime.php" class="btn btn-primary btn-lg">Find more</a>
+                    <button type="button" class="btn btn-primary btn-lg">Find more</button>
                 </p>
             </div>
         </div>
@@ -228,9 +227,7 @@ session_start();
 
 <div class="clearfix"></div>
 <div class="book_hg">
-    <!-- change here to book page -->
-    <!-- -------------------------------------------------- ----->
-    <a href="register.php" class="btn btn-primary btn-lg">Book online now</a>
+    <button type="button" class="btn btn-primary btn-lg">Book online now</button>
 </div>
 <hr>
 
