@@ -137,7 +137,8 @@ if(isset($_POST['upload']))
 
         if (!in_array($ext, $allowed)) {
 
-            echo "Sorry, only JPG, JPEG, PNG & GIF  files are allowed.";
+            echo "<script> alert(\"Sorry, only JPG, JPEG, PNG & GIF  files are allowed.\"); </script>";
+            //echo "Sorry, only JPG, JPEG, PNG & GIF  files are allowed.";
 
         } else {
 
