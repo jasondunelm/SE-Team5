@@ -1,13 +1,11 @@
 <?php
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
-
-// Load Composer's autoloader
-require 'PHPMailer/vendor/autoload.php';
+use PHPMailer\PHPMailer\Exception;
 
 // to connect with mySQL database via mysqli_connect
 try {
-    $link = new mysqli("127.0.0.1", "root", "mon97day", "test01");
+    $link = new mysqli("127.0.0.1", "root", "password", "se_team5");
 } catch (mysqli_sql_exception $e) {
     echo $e->getMessage();
 }
@@ -116,37 +114,39 @@ if ($_POST['submit'] == "Register") {
 
             mysqli_query($link, $query);
 
-            include_once "PHPMailer/vendor/phpmailer/phpmailer/src/PHPMailer.php";
+            // Load Composer's autoloader
+            require 'PHPMailer/vendor/autoload.php';
 
-            $mail = new PHPMailer(true);
+            // Instantiation and passing `true` enables exceptions
+            $mail = new PHPMailer();
 
-            //Server settings
-            $mail->SMTPDebug = 0;                                       // Enable verbose debug output
-            $mail->isSMTP();                                            // Set mailer to use SMTP
-            $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
-            $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-            $mail->Username   = 'dus.team5';                     // SMTP username
-            $mail->Password   = 'Dunelm12#$';                               // SMTP password
-            $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-            $mail->Port       = 587;                                    // TCP port to connect to
+            try{
+                //Server settings
+                $mail->SMTPDebug = 0;                                       // Enable verbose debug output
+                $mail->isSMTP();                                            // Set mailer to use SMTP
+                $mail->Host       = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+                $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                $mail->Username   = 'dus.team5';                     // SMTP username
+                $mail->Password   = 'Dunelm12#$';                               // SMTP password
+                $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+                $mail->Port       = 587;                                    // TCP port to connect to
 
-            //Recipients
-            $mail->setFrom('teamdurham.sports@dur.ac.uk');
-            $mail->addAddress($email, $name);
-            $mail->Subject = "Please verify email!";
-            $mail->isHTML(true);
-            $mail->Body = "
+                //Recipients
+                $mail->setFrom('teamdurham.sports@dur.ac.uk', 'DUS');
+                $mail->addAddress($email, $name);
+                $mail->Subject = "Please verify email!";
+                $mail->isHTML(true);
+                $mail->Body = "
                     Please click on the link below:<br><br>
                     
                     <a href='http://localhost:63342/SE-Team5/email_Confirm.php?email=$email&token=$token'>Click Here</a>
                 ";
-
-            if ($mail->send()) {
+                $mail->send();
                 $message = "You have been registered! Please verify your email!";
+            } catch (Exception $e){
+                $message = "Something wrong happened! Mailer Error: {$mail->ErrorInfo}";
             }
-            else {
-                $message = "Something wrong happened! Please try again!";
-            }
+
             $_SESSION['id'] = mysqli_insert_id($link);
 
         }

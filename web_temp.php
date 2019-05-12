@@ -1,6 +1,6 @@
 <?php
 //session_start();
-//include('functions_WebFront.php');
+include('functions_WebFront.php');
 error_reporting(E_ALL^E_NOTICE);
 ?>
 <!DOCTYPE html>
