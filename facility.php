@@ -1,16 +1,29 @@
-<!DOCTYPE html>
 
 <?php
-include "PDO.php";
-include "web_temp.php";
+//include "PDO.php";
+//include "web_temp.php";
+include('config_wyj.php');
+
+$pdo = new PDO($db_host.";".$db_name, $db_user, $db_pass);
 $facilityName=$_GET ['facilityName'];
 
 $sql="SELECT * FROM Facility WHERE facilityName='$facilityName'";
 $statement = $pdo->query($sql);
 $rows = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
-
+<!DOCTYPE html>
+<header>
+    <meta charset="utf-8">
+    <title>Facility</title>
+    <?php
+    include('meta_data.php');
+    ?>
+</header>
 <body>
+<?php
+include('header.php');
+include('session_check.php');
+?>
 <div id="content" style="margin-left: 10%; margin-right: 10%; WORD-BREAK: break-all; WORD-WRAP: break-word">
             <center><h1 style="color:black;"><?php echo $rows['facilityName']?></h1></center><br>
             <div class="row">

@@ -1,6 +1,4 @@
-
 <?php
-
 session_start();
 ?>
 <!DOCTYPE html>
@@ -39,14 +37,12 @@ session_start();
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="index.php">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="index_admin.php">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="events.php">Events</a>
             </li>
-            <!--<li class="nav-item">
-                <a class="nav-link" href="https://www.teamdurham.com/queenscampus/">Queen's Campus</a>
-            </li>-->
+
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Facilities
@@ -106,8 +102,9 @@ session_start();
                     Accounts
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="login.php">Login</a>
-                    <a class="dropdown-item" href="register.php">Sign up</a>
+                    <a class="dropdown-item" id="login" href="login.php">Login</a>
+                    <a class="dropdown-item" id="register" href="register.php">Sign up</a>
+                    <a class="dropdown-item" id="logout" href="index_admin.php?action=logout">Log out</a>
                 </div>
             </li>
         </ul>
@@ -258,14 +255,7 @@ session_start();
 </div>
 
 <?php
-
-$role = $_SESSION['role'];
-echo $role;
-if($role=='admin') {
-    ?>
-    <script type="text/javascript">document.getElementById('divId').style.display = 'none';</script>
-    <?php
-}
+include('session_check.php');
 include('footer.php');
 ?>
 

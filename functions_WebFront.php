@@ -5,7 +5,8 @@ use PHPMailer\PHPMailer\Exception;
 
 // to connect with mySQL database via mysqli_connect
 try {
-    $link = new mysqli("127.0.0.1", "root", "password", "se_team5");
+    //$link = new mysqli("127.0.0.1", "root", "password", "se_team5");
+    $link = new mysqli("127.0.0.1", "root", "mon97day", "test01");
 } catch (mysqli_sql_exception $e) {
     echo $e->getMessage();
 }
