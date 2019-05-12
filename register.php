@@ -27,14 +27,10 @@ include("functions_WebFront.php");
                 <input class="form-control" name="password" type="password" placeholder="Password..."><br>
                 <input class="form-control" name="cPassword" type="password" placeholder="Confirm Password..."><br>
                 <input class="btn btn-primary" type="submit" name="submit" value="Register">
-                <a href="index_admin.php" class="btn btn-primary">Cancel</a>
             </form>
-
-
 
         </div>
     </div>
 </div>
-
 </body>
 </html>
