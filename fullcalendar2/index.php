@@ -1,12 +1,14 @@
 <?php
 session_start();
 $_SESSION['userName']="tzu-chiao.wang2@durham.ac.uk";
+$_SESSION['trainer']=1;
+$_SESSION['admin']=0;
 require_once('bdd.php');
 
-$sql = "SELECT nbooking.ID, UserID, FacilityID, StartTime, EndTime, block, Color FROM
+$sql = "SELECT nbooking.ID, UserID, FacilityID, Name, StartTime, EndTime, block, Color FROM
         (SELECT * FROM booking) AS nbooking
         LEFT JOIN
-        (SELECT ID, Color FROM facility) AS nfacility 
+        (SELECT ID, Name, Color FROM facility) AS nfacility 
         on nbooking.FacilityID=nfacility.ID ";
 
 $req = $bdd->prepare($sql);
@@ -14,7 +16,14 @@ $req->execute();
 
 $bookings = $req->fetchAll();
 
-$sql = "SELECT ID, Name, Color, Capacity, UnitPrice FROM facility ";
+$blocks = array(); 
+
+foreach ($bookings as $row) {
+    if($row["block"]==1)
+        $blocks[] = array($row["ID"], $row["Name"], $row["StartTime"], $row["EndTime"]);
+}
+
+$sql = "SELECT ID, Name, Color, Capacity, UnitPrice FROM facility WHERE ID<>0";
 
 $req = $bdd->prepare($sql);
 $req->execute();
@@ -133,292 +142,268 @@ $userID = $userIDs[0];
         </div>
         <!-- /.row -->
 		
-		<!-- Modal -->
-		<div class="modal fade" id="ModalWeekday" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-			<div class="modal-content">
-			<form class="form-horizontal" id="formWeekday" method="POST" action="addEvent.php">
-			
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Event</h4>
-			  </div>
-			  <div class="modal-body">
-				
-				  <!--div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Title</label>
-					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Title">
-					</div>
-				  </div-->
-				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Facility</label>
-					<div class="col-sm-10">
-					  <select name="facility" class="form-control" id="facilityWeekday">
-						  <option value="">Choose</option>
-                          <?php 
-                          foreach($facilities as $facility): 
-                            echo "<option style='color:".$facility['Color']."' value=".$facility['ID'].">&#9724; ".$facility['Name']."</option>";
-                          endforeach;
-                          ?>
-						</select>
-					</div>
-				  </div>
-                  <div class="form-group">
-					<label for="user" class="col-sm-2 control-label">UserID</label>
-					<div class="col-sm-10">
-					  <input type="text" name="user" class="form-control" id="userWeekday" value="<?php echo $userID;?>" readonly>
-					</div>
-				  </div>
-                  <div class="form-group">
-					<label for="startDate" class="col-sm-2 control-label">Date</label>
-					<div class="col-sm-10">
-					  <input type="text" name="startDate" class="form-control" id="startDateWeekday" readonly>
-					</div>
-				  </div>
-                  <input type="hidden" id="endDateWeekday" name="custId">
-				  <div class="form-group">
-					<label for="startTime" class="col-sm-2 control-label">Start time</label>
-					<div class="col-sm-10">
-					  <select name="startTime" class="form-control" id="startTimeWeekday">
-                          <option value="">Choose</option>
-                          <option>7:00</option>
-						  <option>8:00</option>
-						  <option>9:00</option>
-                          <option>10:00</option>
-                          <option>11:00</option>
-                          <option>12:00</option>
-                          <option>13:00</option>
-                          <option>14:00</option>
-                          <option>15:00</option>
-                          <option>16:00</option>
-                          <option>17:00</option>
-                          <option>18:00</option>
-                          <option>19:00</option>
-                          <option>20:00</option>
-                          <option>21:00</option>
-                      </select>
-					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="endTime" class="col-sm-2 control-label">End time</label>
-					<div class="col-sm-10">
-					  <select name="endTime" class="form-control" id="endTimeWeekday">
-                          <option value="">Choose</option>
-						  <option>8:00</option>
-						  <option>9:00</option>
-                          <option>10:00</option>
-                          <option>11:00</option>
-                          <option>12:00</option>
-                          <option>13:00</option>
-                          <option>14:00</option>
-                          <option>15:00</option>
-                          <option>16:00</option>
-                          <option>17:00</option>
-                          <option>18:00</option>
-                          <option>19:00</option>
-                          <option>20:00</option>
-                          <option>21:00</option>
-                          <option>22:00</option>
-                      </select>
-					</div>
-				  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Unit Price</label>
-                    <div class="col-sm-10">
-                        <span>£</span><span id="moneyWeekday"></span>
-                    </div>
-                </div>
-                  <div class="form-group">
-                    <label for="totalmoney" class="col-sm-2 control-label">Total Price</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="totalmoney" class="form-control" id="totalmoneyWeekday" readonly>
-                        <!--span>£</span><span id="totalmoney"></span-->
-                    </div>
-                </div>
-			  </div>
-                
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" id="btnWeekday">Save changes</button>
-			  </div>
-			</form>
-                
-			</div>
-		  </div>
-		</div>
         <!-- Modal -->
-        <div class="modal fade" id="ModalWeekend" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAdd">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" id="formWeekend" method="POST" action="addEvent.php">
+			<form class="form-horizontal" id="formAdd" method="POST" action="addEvent.php">
 			
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Add Event</h4>
+				<h4 class="modal-title" id="myModalLabelAdd">Booking<span id="WeekendOrWeekday"></span></h4>
 			  </div>
 			  <div class="modal-body">
-				
-				  <!--div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Title</label>
-					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Title">
-					</div>
-				  </div-->
-				  <div class="form-group">
-					<label for="color" class="col-sm-2 control-label">Facility</label>
-					<div class="col-sm-10">
-					  <select name="facility" class="form-control" id="facilityWeekend">
-						  <option value="">Choose</option>
-                          <?php 
-                          foreach($facilities as $facility): 
-                            echo "<option style='color:".$facility['Color']."' value=".$facility['ID'].">&#9724; ".$facility['Name']."</option>";
-                          endforeach;
-                          ?>
-						</select>
-					</div>
-				  </div>
-                  <div class="form-group">
-					<label for="user" class="col-sm-2 control-label">UserID</label>
-					<div class="col-sm-10">
-					  <input type="text" name="user" class="form-control" id="userWeekend" value="<?php echo $userID;?>" readonly>
-					</div>
-				  </div>
-                  <div class="form-group">
-					<label for="startDate" class="col-sm-2 control-label">Date</label>
-					<div class="col-sm-10">
-					  <input type="text" name="startDate" class="form-control" id="startDateWeekend" readonly>
-					</div>
-				  </div>
-                  <input type="hidden" id="endDateWeekend" name="custId">
-				  <div class="form-group">
-					<label for="startTime" class="col-sm-2 control-label">Start time</label>
-					<div class="col-sm-10">
-					  <select name="startTime" class="form-control" id="startTimeWeekend">
-                          <option value="">Choose</option>
-						  <option>9:00</option>
-                          <option>10:00</option>
-                          <option>11:00</option>
-                          <option>12:00</option>
-                          <option>13:00</option>
-                          <option>14:00</option>
-                          <option>15:00</option>
-                          <option>16:00</option>
-                          <option>17:00</option>
-                      </select>
-					</div>
-				  </div>
-				  <div class="form-group">
-					<label for="endTime" class="col-sm-2 control-label">End time</label>
-					<div class="col-sm-10">
-					  <select name="endTime" class="form-control" id="endTimeWeekend">
-                          <option value="">Choose</option>
-                          <option>10:00</option>
-                          <option>11:00</option>
-                          <option>12:00</option>
-                          <option>13:00</option>
-                          <option>14:00</option>
-                          <option>15:00</option>
-                          <option>16:00</option>
-                          <option>17:00</option>
-                          <option>18:00</option>
-                      </select>
-					</div>
-				  </div>
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Unit Price</label>
-                    <div class="col-sm-10">
-                        <span>£</span><span id="moneyWeekend"></span>
-                    </div>
-                </div>
-                  <div class="form-group">
-                    <label for="totalmoney" class="col-sm-2 control-label">Total Price</label>
-                    <div class="col-sm-10">
-                        <input type="text" name="totalmoney" class="form-control" id="totalmoneyWeekend" readonly>
-                        <!--span>£</span><span id="totalmoney"></span-->
-                    </div>
-                </div>
-			  </div>
-			  <div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary" id="btnWeekend">Save changes</button>
-			  </div>
-			</form>
-			</div>
-		  </div>
-		</div>
-
-          <!--option value="">Choose</option>
-          <option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
-          <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
-          <option style="color:#008000;" value="#008000">&#9724; Green</option>						  
-          <option style="color:#FFD700;" value="#FFD700">&#9724; Yellow</option>
-          <option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
-          <option style="color:#FF0000;" value="#FF0000">&#9724; Red</option>
-          <option style="color:#000;" value="#000">&#9724; Black</option-->
-		
-		
-		<!-- Modal -->
-		<!--div class="modal fade" id="ModalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-		  <div class="modal-dialog" role="document">
-			<div class="modal-content">
-			<form class="form-horizontal" method="POST" action="editEventTitle.php">
-			  <div class="modal-header">
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<h4 class="modal-title" id="myModalLabel">Edit Event</h4>
-			  </div>
-			  <div class="modal-body">
-				
-				  <div class="form-group">
-					<label for="title" class="col-sm-2 control-label">Title</label>
-					<div class="col-sm-10">
-					  <input type="text" name="title" class="form-control" id="title" placeholder="Title">
-					</div>
-				  </div>
 				  <div class="form-group">
 					<label for="facility" class="col-sm-2 control-label">Facility</label>
 					<div class="col-sm-10">
-					  <select name="facility" class="form-control" id="facility">
+					  <select name="facility" class="form-control" id="facilityAdd">
 						  <option value="">Choose</option>
-						  <option style="color:#0071c5;" value="#0071c5">&#9724; Dark blue</option>
-						  <option style="color:#40E0D0;" value="#40E0D0">&#9724; Turquoise</option>
-						  <option style="color:#008000;" value="#008000">&#9724; Green</option>						  
-						  <option style="color:#FFD700;" value="#FFD700">&#9724; Yellow</option>
-						  <option style="color:#FF8C00;" value="#FF8C00">&#9724; Orange</option>
-						  <option style="color:#FF0000;" value="#FF0000">&#9724; Red</option>
-						  <option style="color:#000;" value="#000">&#9724; Black</option>
-						  
+                          <?php 
+                          foreach($facilities as $facility): 
+                            echo "<option style='color:".$facility['Color']."' value=".$facility['ID'].">&#9724; ".$facility['Name']."</option>";
+                          endforeach;
+                          ?>
 						</select>
 					</div>
 				  </div>
-				    <div class="form-group"> 
-						<div class="col-sm-offset-2 col-sm-10">
-						  <div class="checkbox">
-							<label class="text-danger"><input type="checkbox"  name="delete"> Delete event</label>
-						  </div>
-						</div>
+                  <div class="form-group">
+					<label for="user" class="col-sm-2 control-label">UserID</label>
+					<div class="col-sm-10">
+					  <input type="text" name="user" class="form-control" id="userAdd" value="<?php echo $userID;?>" readonly>
 					</div>
-				  
-				  <input type="hidden" name="id" class="form-control" id="id">
-				
-				
+				  </div>
+                  <div class="form-group">
+					<label for="startDate" class="col-sm-2 control-label">Date</label>
+					<div class="col-sm-10">
+					  <input type="text" name="startDate" class="form-control" id="startDateAdd" readonly>
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="startTime" class="col-sm-2 control-label">Start time</label>
+					<div class="col-sm-10">
+					  <select name="startTime" class="form-control" id="startTimeAdd">
+                          
+                      </select>
+					</div>
+				  </div>
+				  <div class="form-group">
+					<label for="endTime" class="col-sm-2 control-label">End time</label>
+					<div class="col-sm-10">
+					  <select name="endTime" class="form-control" id="endTimeAdd">
+                          
+                      </select>
+					</div>
+				  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Unit Price</label>
+                    <div class="col-sm-10">
+                        <span>£</span><span id="moneyAdd"></span>
+                    </div>
+                </div>
+                  <div class="form-group">
+                    <label for="totalmoney" class="col-sm-2 control-label">Total Price</label>
+                    <div class="col-sm-10">
+                        <input type="text" name="totalmoney" class="form-control" id="totalmoneyAdd" readonly>
+                    </div>
+                </div>
 			  </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary">Save changes</button>
+				<button type="button" class="btn btn-primary" id="btnAdd">Save changes</button>
 			  </div>
 			</form>
 			</div>
 		  </div>
-		</div-->
-        <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		</div>
+        
+        <!-- Modal -->
+        <?php
+        if($_SESSION['admin']==1){
+        echo '<div class="modal fade" id="ModalBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<form class="form-horizontal" id="formBlock" method="POST" action="addEvent.php">
+			
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabelBlock">Add Block</h4>
+			  </div>
+			  <div class="modal-body">
+				  <div class="form-group">
+					<label for="facility" class="col-sm-2 control-label">Facility</label>
+					<div class="col-sm-10">
+					  <select name="facility" class="form-control" id="facilityBlock">
+						  <option value="">Choose</option>';
+                          
+                          foreach($facilities as $facility): 
+                            echo "<option style='color:".$facility['Color'].";' value=".$facility['ID'].">&#9724; ".$facility['Name']."</option>";
+                          endforeach;
+                          echo '
+                          <option style="color:#000;" value="0">All</option>
+						</select>
+					</div>
+				  </div>
+                  <div class="form-group">
+					<label for="user" class="col-sm-2 control-label">UserID</label>
+					<div class="col-sm-10">
+					  <input type="text" name="user" class="form-control" id="userBlock" value="'; echo $userID; echo'" readonly>
+					</div>
+				  </div>
+                  <div class="form-group">
+					<label for="startDate" class="col-sm-2 control-label">Start Date</label>
+					<div class="col-sm-10">
+					  <input type="date" name="startDate" class="form-control" id="startDateBlock">
+					</div>
+				  </div>
+                  <div class="form-group">
+					<label for="endDate" class="col-sm-2 control-label">End Date</label>
+					<div class="col-sm-10">
+					  <input type="date" name="endDate" class="form-control" id="endDateBlock">
+					</div>
+				  </div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="btnBlock">Save changes</button>
+			  </div>
+			</form>
+			</div>
+		  </div>
+		</div>';
+        }
+        ?>
+        <!-- Modal -->
+        <?php 
+        if($_SESSION['admin']==1){ echo '
+        <div class="modal fade" id="ModalDeleteBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<form class="form-horizontal" id="formDeleteBlock" method="POST" action="rmvEvent.php">
+			
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabelDeleteBlock">Remove Block</h4>
+			  </div>
+			  <div class="modal-body">
+				  <div class="form-group">
+					<label for="deleteBlock" class="col-sm-2 control-label">Block</label>
+					<div class="col-sm-10">
+					  <select name="deleteBlock" class="form-control" id="facilityDeleteBlock">
+						  <option value="">Choose</option>';
+                          
+                          foreach($blocks as $block): 
+                            echo "<option value=".$block[0].">".$block[0]." ".$block[1]." ".$block[2]."~".$block[3]."</option>";
+                          endforeach;
+                          echo '
+						</select>
+					</div>
+				  </div>
+			  </div>
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="submit" class="btn btn-primary" id="btnDeleteBlock">Save changes</button>
+			  </div>
+			</form>
+			</div>
+		  </div>
+		</div>';
+        }
+        ?>
+        <!-- Modal -->
+        <?php
+        if($_SESSION['admin']==1||$_SESSION['trainer']==1){ echo'
+		<div class="modal fade" id="ModalTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabelTrainer">
+		  <div class="modal-dialog" role="document">
+			<div class="modal-content">
+			<form class="form-horizontal" id="formTrainer" method="POST" action="addEvent.php">
+			
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 class="modal-title" id="myModalLabelTrainer">Add Block for training course</h4>
+			  </div>
+			  <div class="modal-body">
+				  <div class="form-group">
+					<label for="facility" class="col-sm-2 control-label">Facility</label>
+					<div class="col-sm-10">
+					  <select name="facility" class="form-control" id="facilityTrainer">
+						  <option value="">Choose</option>';
+                          
+                          foreach($facilities as $facility): 
+                            echo "<option style='color:".$facility['Color']."' value=".$facility['ID'].">&#9724; ".$facility['Name']."</option>";
+                          endforeach;
+                          echo '
+						</select>
+					</div>
+				  </div>
+                  <div class="form-group">
+					<label for="user" class="col-sm-2 control-label">UserID</label>
+					<div class="col-sm-10">
+					  <input type="text" name="user" class="form-control" id="userTrainer" value="'; echo $userID; echo '" readonly>
+					</div>
+				  </div>
+                  <div class="form-group">
+					<label for="startDate" class="col-sm-2 control-label">Start Date</label>
+					<div class="col-sm-10">
+					  <input type="date" name="startDate" class="form-control" id="startDateTrainer">
+					</div>
+				  </div>
+                  <div class="form-group">
+					<label for="endDate" class="col-sm-2 control-label">End Date</label>
+					<div class="col-sm-10">
+					  <input type="date" name="endDate" class="form-control" id="endDateTrainer">
+					</div>
+				  </div>
+                  <div class="form-group">
+					<label for="whichDay" class="col-sm-2 control-label">Which day</label>
+					<div class="col-sm-10">
+					  <select name="whichDay" class="form-control" id="whichDayTrainer">
+                          <option value="">Choose</option>
+                          <option value="0">Sunday</option>
+                          <option value="1">Monday</option>
+                          <option value="2">Tuesday</option>
+                          <option value="3">Wednesday</option>
+                          <option value="4">Thursday</option>
+                          <option value="5">Friday</option>
+                          <option value="6">Saturday</option>
+                      </select>
+					</div>
+				  </div>
+                  <div class="form-group">
+                    <label for="startTime" class="col-sm-2 control-label">Start time</label>
+                    <div class="col-sm-10">
+                      <select name="startTime" class="form-control" id="startTimeTrainer">
+                          
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="endTime" class="col-sm-2 control-label">End time</label>
+                    <div class="col-sm-10">
+                      <select name="endTime" class="form-control" id="endTimeTrainer">
+                          
+                      </select>
+                    </div>
+                  </div>
+			  </div>
+                
+			  <div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary" id="btnTrainer">Save changes</button>
+			  </div>
+			</form>
+                
+			</div>
+		  </div>
+		</div>';
+        }?>
+        <div class="modal fade" id="ModalRmv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
                 <h1 style="margin-left: 20px;">Do you want to remove the event?</h1>
-                <h4><span style="margin-left: 20px;">Event ID: </span><span id="h1AddID"></span></h4>
+                <h4><span style="margin-left: 20px;">Event ID: </span><span id="h1RmvID"></span></h4>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="submit" class="btn btn-primary" id="btnAdd">Confirm</button>
+				<button type="submit" class="btn btn-primary" id="btnRmv">Confirm</button>
 			  </div>
 			</div>
 		  </div>
@@ -443,69 +428,200 @@ $userID = $userIDs[0];
         echo "var facilitiesPrice = ".$myJSON.";";
         ?>
 
-        $("#facilityWeekday, #endTimeWeekday, #startTimeWeekday").change(function() {
-            if($("#facilityWeekday").val()=="4"){
-                $('#startTimeWeekday').prop('disabled', true);
-                $('#endTimeWeekday').prop('disabled', true);
-                var facilitychosen = Number($("#facilityWeekday").val());
-                $("#moneyWeekday").text(facilitiesPrice[facilitychosen-1][1]);
-                $("#totalmoneyWeekday").val(facilitiesPrice[facilitychosen-1][1]);
+        $("#facilityAdd, #endTimeAdd, #startTimeAdd").change(function() {
+            if($("#facilityAdd").val()=="4"){
+                //for track
+                $('#startTimeAdd').append( "<option id='startExtratimeAdd'>00:00</option>" );
+                $('#startTimeAdd').val('00:00');
+                $('#endTimeAdd').append( "<option id='endExtratimeAdd'>24:00</option>" );
+                $('#endTimeAdd').val('24:00');
+                $('#startTimeAdd').prop('disabled', true);
+                $('#endTimeAdd').prop('disabled', true);
+                //for price
+                var facilitychosen = Number($("#facilityAdd").val());
+                $("#moneyAdd").text(facilitiesPrice[facilitychosen-1][1]);
+                //for totalprice
+                $("#totalmoneyAdd").val(facilitiesPrice[facilitychosen-1][1]);
             }
-            else if($("#facilityWeekday").val()!=""){
-                $('#startTimeWeekday').prop('disabled', false);
-                $('#endTimeWeekday').prop('disabled', false);
-                var facilitychosen = Number($("#facilityWeekday").val());
-                $("#moneyWeekday").text(facilitiesPrice[facilitychosen-1][1]);
+            else if($("#facilityAdd").val()!=""){
+                //for track
+                $('#startExtratimeAdd').remove();
+                $('#endExtratimeAdd').remove();
+                $('#startTimeAdd').prop('disabled', false);
+                $('#endTimeAdd').prop('disabled', false);
+                //for price
+                var facilitychosen = Number($("#facilityAdd").val());
+                $("#moneyAdd").text(facilitiesPrice[facilitychosen-1][1]);
+                $("#totalmoneyAdd").val("");
             }
             else{
-                $('#startTimeWeekday').prop('disabled', false);
-                $('#endTimeWeekday').prop('disabled', false);
-                $("#moneyWeekday").text("");
+                //for track
+                $('#startExtratimeAdd').remove();
+                $('#endExtratimeAdd').remove();
+                $('#startTimeAdd').prop('disabled', false);
+                $('#endTimeAdd').prop('disabled', false);
+                //for price
+                $("#moneyAdd").text("");
+                $("#totalmoneyAdd").val("");
             }
                 
             
-            if($("#facilityWeekday").val()!=""  && $("#startTimeWeekday").val()!="" && $("#endTimeWeekday").val()!=""){
-                var facilitychosen = Number($("#facilityWeekday").val());
-                var startTimeWeekday = $("#startTimeWeekday").val();
-                var endTimeWeekday = $("#endTimeWeekday").val();
-                var startarray = startTimeWeekday.split(":");
-                var endarray = endTimeWeekday.split(":");
-                $("#totalmoneyWeekday").val(   Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))     );
+            if($("#facilityAdd").val()!=""&&$("#facilityAdd").val()!="4"  && $("#startTimeAdd").val()!="" && $("#endTimeAdd").val()!=""){
+                //for totalprice
+                var facilitychosen = Number($("#facilityAdd").val());
+                var startTimeAdd = $("#startTimeAdd").val();
+                var endTimeAdd = $("#endTimeAdd").val();
+                var startarray = startTimeAdd.split(":");
+                var endarray = endTimeAdd.split(":");
+                $("#totalmoneyAdd").val(   Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))     );
             }
         });
-        $("#facilityWeekend, #endTimeWeekend, #startTimeWeekend").change(function() {
-            if($("#facilityWeekend").val()=="4"){
-                $('#startTimeWeekend').prop('disabled', true);
-                $('#endTimeWeekend').prop('disabled', true);
-                var facilitychosen = Number($("#facilityWeekend").val());
-                $("#moneyWeekend").text(facilitiesPrice[facilitychosen-1][1]);
-                $("#totalmoneyWeekend").val(facilitiesPrice[facilitychosen-1][1]);
+        
+        $("#btnAdd").click(function(){
+            if($("#facilityAdd").val()!="4")
+                checkTimeAdd();
+            else
+                beingblockedAdd();
+        });
+        function checkTimeAdd(){
+            if($("#facilityAdd").val()==""){
+                alert("choose a facility");
+                return false;
+            } 
+            var starttime = $("select#startTimeAdd").val();
+            var endtime = $("select#endTimeAdd").val();
+            if(starttime==""||endtime==""){
+                alert("the time should be input");
+                return false;
+            }if(starttime==endtime){
+                alert("start time cannot be identical to end time");
+                return false;
             }
-            else if($("#facilityWeekend").val()!=""){
-                $('#startTimeWeekend').prop('disabled', false);
-                $('#endTimeWeekend').prop('disabled', false);
-                var facilitychosen = Number($("#facilityWeekend").val());
-                $("#moneyWeekend").text(facilitiesPrice[facilitychosen-1][1]);
+            var starttimeArray = starttime.split(":");
+            var endtimeArray = endtime.split(":");
+            if(parseInt(starttimeArray[0])>parseInt(endtimeArray[0])||(parseInt(starttimeArray[0])==parseInt(endtimeArray[0])&&parseInt(starttimeArray[1])>parseInt(endtimeArray[1]))){
+                alert("start time should be eariler than end time");
+                return false;
+            }
+            beingblockedAdd();
+        }
+        function beingblockedAdd(){
+            var date = $("input#startDateAdd").val();
+            var starttime = $("select#startTimeAdd").val();
+            var endtime = $("select#endTimeAdd").val();
+            var chosenfacility = $("select#facilityAdd").val();
+            $.ajax({
+                url: 'checkEventOverlap.php',
+                type: "POST",
+                data: {date, starttime,endtime,chosenfacility},
+                success: function(rep) {
+                    if(rep == 'OK'){
+                        $( "form#formAdd" ).submit();
+                    }else{
+                        alert(rep);
+                    }
+                }
+            });
+        }
+        
+        $("#btnBlock").click(function(){
+            checkTimeBlock();
+        });
+        function checkTimeBlock(){
+            if($("#facilityBlock").val()==""){
+                alert("choose a facility");
+                return false;
+            } 
+            var startdate = $("input#startDateBlock").val();
+            var enddate = $("input#endDateBlock").val();
+            var startdateArray = startdate.split("-");
+            var enddateArray = enddate.split("-");
+            if(parseInt(startdateArray[0])>parseInt(enddateArray[0])||(parseInt(startdateArray[0])==parseInt(enddateArray[0])&&parseInt(startdateArray[1])>parseInt(enddateArray[1]))
+               ||(parseInt(startdateArray[0])==parseInt(enddateArray[0])&&parseInt(startdateArray[1])==parseInt(enddateArray[1])&&parseInt(startdateArray[2])>parseInt(enddateArray[2]))){
+                alert("start time should not be later than end time");
+                return false;
+            }
+            beingblockedBlock();
+        }
+        function beingblockedBlock(){
+            var startdate = $("input#startDateBlock").val();
+            var enddate = $("input#endDateBlock").val();
+            var chosenfacility = $("select#facilityBlock").val();
+            $.ajax({
+                url: 'checkEventOverlap.php',
+                type: "POST",
+                data: {startdate, enddate,chosenfacility},
+                success: function(rep) {
+                    if(rep == 'OK'){
+                        $( "form#formBlock" ).submit();
+                    }else{
+                        alert(rep);
+                    }
+                }
+            });
+        }
+        
+        $("#whichDayTrainer").change(function() {
+            if($("#whichDayTrainer").val()=="6"||$("#whichDayTrainer").val()=="0"){
+                 $('#startTimeTrainer').html('<option value="">Choose</option>\n<option>9:00</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>');
+                $('#endTimeTrainer').html('<option value="">Choose</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>\n<option>18:00</option>');
+            }
+            else if($("#whichDayTrainer").val()==""){
+                $('#startTimeTrainer').html('');
+                $('#endTimeTrainer').html('');
             }
             else{
-                $('#startTimeWeekend').prop('disabled', false);
-                $('#endTimeWeekend').prop('disabled', false);
-                $("#moneyWeekend").text("");
-            }
-            if($("#facilityWeekend").val()!=""  && $("#startTimeWeekend").val()!="" && $("#endTimeWeekend").val()!=""){
-                var facilitychosen = Number($("#facilityWeekend").val());
-                var startTimeWeekend = $("#startTimeWeekend").val();
-                var endTimeWeekend = $("#endTimeWeekend").val();
-                var startarray = startTimeWeekend.split(":");
-                var endarray = endTimeWeekend.split(":");
-                $("#totalmoneyWeekend").val(   Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))     );
+                $('#startTimeTrainer').html('<option value="">Choose</option>\n<option>7:00</option>\n<option>8:00</option>\n<option>9:00</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>\n<option>18:00</option>\n<option>19:00</option>\n<option>20:00</option>\n<option>21:00</option>');
+                $('#endTimeTrainer').html('<option value="">Choose</option>\n<option>8:00</option>\n<option>9:00</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>\n<option>18:00</option>\n<option>19:00</option>\n<option>20:00</option>\n<option>21:00</option>\n<option>22:00</option>');
             }
         });
-        $("#btnWeekday").click(checkTimeWeekday);
-        function checkTimeWeekday(){
-            var starttime = $("select#startTimeWeekday").val();
-            var endtime = $("select#endTimeWeekday").val();
-            if(starttime==endtime){
+        $("#facilityTrainer, #whichDayTrainer").change(function() {
+            if($("#facilityTrainer").val()=="4"){
+                //for track
+                $('#startTimeTrainer').append( "<option id='startExtratimeTrainer'>00:00</option>" );
+                $('#startTimeTrainer').val('00:00');
+                $('#endTimeTrainer').append( "<option id='endExtratimeTrainer'>24:00</option>" );
+                $('#endTimeTrainer').val('24:00');
+                $('#startTimeTrainer').prop('disabled', true);
+                $('#endTimeTrainer').prop('disabled', true);
+            }
+        
+            else if($("#facilityTrainer").val()!=""){
+                //for track
+                $('#startExtratimeTrainer').remove();
+                $('#endExtratimeTrainer').remove();
+                $('#startTimeTrainer').prop('disabled', false);
+                $('#endTimeTrainer').prop('disabled', false);
+            }
+            else{
+                //for track
+                $('#startExtratimeTrainer').remove();
+                $('#endExtratimeTrainer').remove();
+                $('#startTimeTrainer').prop('disabled', false);
+                $('#endTimeTrainer').prop('disabled', false);
+            }
+        });
+        $("#btnTrainer").click(function(){
+            if($("#facilityTrainer").val()!="4")
+                checkTimeTrainer();
+            else
+                checkDateTrainer();
+        });
+        function checkTimeTrainer(){
+            if($("#facilityTrainer").val()==""){
+                alert("choose a facility");
+                return false;
+            }
+            if($("#whichDayTrainer").val()==""){
+                alert("choose a day");
+                return false;
+            } 
+            var starttime = $("select#startTimeTrainer").val();
+            var endtime = $("select#endTimeTrainer").val();
+            if(starttime==""||endtime==""){
+                alert("the time should be input");
+                return false;
+            }if(starttime==endtime){
                 alert("start time cannot be identical to end time");
                 return false;
             }
@@ -515,70 +631,69 @@ $userID = $userIDs[0];
                 alert("start time should be eariler than end time");
                 return false;
             }
-            beingblockedWeekday();
+            checkDateTrainer();
         }
-        function beingblockedWeekday(){
-            var date = $("input#startDateWeekday").val();
-            var starttime = $("select#startTimeWeekday").val();
-            var endtime = $("select#endTimeWeekday").val();
-            var chosenfacility = $("select#facilityWeekday").val();
+        function checkDateTrainer(){
+            var day = $("#whichDayTrainer").val();
+            var startDate = new Date($("#startDateTrainer").val());
+            var endDate = new Date($("#endDateTrainer").val());
+            startDate.setDate(startDate.getDate() + (Number(day)+(7-startDate.getDay())) % 7);
+            if(endDate-startDate<0){
+                alert("no such day. Please try to adjust the end date.");
+                return false;
+            }
+            endDate.setDate(endDate.getDate() - (-Number(day)+(7+endDate.getDay())) % 7);
+            beingblockedTrainer(startDate,endDate);
+        }
+        function beingblockedTrainer(startDate,endDate){
+            var startDateStr = startDate.getFullYear() + "-" + ("0"+(startDate.getMonth()+1)).slice(-2) + "-" + ("0" + startDate.getDate()).slice(-2);
+            var endDateStr = endDate.getFullYear() + "-" + ("0"+(endDate.getMonth()+1)).slice(-2) + "-" + ("0" + endDate.getDate()).slice(-2);
+            var whichDay = $("select#whichDayTrainer").val();
+            var starttime = $("select#startTimeTrainer").val();
+            var endtime = $("select#endTimeTrainer").val();
+            var chosenfacility = $("select#facilityTrainer").val();
             $.ajax({
                 url: 'checkEventOverlap.php',
                 type: "POST",
-                data: {date, starttime,endtime,chosenfacility},
+                data: {startDateStr,endDateStr, whichDay, starttime,endtime,chosenfacility},
                 success: function(rep) {
                     if(rep == 'OK'){
-                        $( "form#formWeekday" ).submit();
+                        $( "form#formTrainer" ).submit();
                     }else{
                         alert(rep);
                     }
                 }
             });
         }
-        
-        $("#btnWeekend").click(checkTimeWeekend);
-        function checkTimeWeekend(){
-            var starttime = $("select#startTimeWeekend").val();
-            var endtime = $("select#endTimeWeekend").val();
-            if(starttime==endtime){
-                alert("start time cannot be identical to end time");
-                return false;
-            }
-            var starttimeArray = starttime.split(":");
-            var endtimeArray = endtime.split(":");
-            if(parseInt(starttimeArray[0])>parseInt(endtimeArray[0])||(parseInt(starttimeArray[0])==parseInt(endtimeArray[0])&&parseInt(starttimeArray[1])>parseInt(endtimeArray[1]))){
-                alert("start time should be eariler than end time");
-                return false;
-            }
-            beingblockedWeekend();
-        }
-        function beingblockedWeekend(){
-            var date = $("input#startDateWeekend").val();
-            var starttime = $("select#startTimeWeekend").val();
-            var endtime = $("select#endTimeWeekend").val();
-            var chosenfacility = $("select#facilityWeekend").val();
-            $.ajax({
-                url: 'checkEventOverlap.php',
-                type: "POST",
-                data: {date, starttime,endtime,chosenfacility},
-                success: function(rep) {
-                    if(rep == 'OK'){
-                        $( "form#formWeekend" ).submit();
-                    }else{
-                        alert(rep);
-                    }
-                }
-            });
-        }
-        
         
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
+                
                 plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+                customButtons: {
+                    addBlock: {
+                      text: 'add block',
+                      click: function() {
+                        $('#ModalBlock').modal('show');
+                      }
+                    },
+                    deleteBlock: {
+                      text: 'remove block',
+                      click: function() {
+                        $('#ModalDeleteBlock').modal('show');
+                      }
+                    },
+                    trainer: {
+                      text: 'trainer',
+                      click: function() {
+                        $('#ModalTrainer').modal('show');
+                      }
+                    }
+                },
                 header: {
-                    left: 'prev,next, today',
+                    left: 'prev,next today <?php if($_SESSION['admin']==1)echo "addBlock deleteBlock"; if($_SESSION['admin']==1||$_SESSION['trainer']==1)echo " trainer";?>',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
                 },
@@ -591,18 +706,24 @@ $userID = $userIDs[0];
                 selectHelper: true,
                 select: function(start, end) {
                     if(start.start.getDay()==0||start.start.getDay()==6){
-                        $('#ModalWeekend #startDateWeekend').val(start.startStr);
-                        $('#ModalWeekend #endDateWeekend').val(start.endStr+' 00:00:00');
-                        $('#ModalWeekend').modal('show');
+                        var startDayArray = start.startStr.split("T");
+                        $('#ModalAdd #startDateAdd').val(startDayArray[0]);
+                        $('#WeekendOrWeekday').text(' on weekend');
+                        $('#startTimeAdd').html('<option value="">Choose</option>\n<option>9:00</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>');
+                        $('#endTimeAdd').html('<option value="">Choose</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>\n<option>18:00</option>');
+                        $('#ModalAdd').modal('show');
                     }
                     else{
-                        $('#ModalWeekday #startDateWeekday').val(start.startStr);
-                        $('#ModalWeekday #endDateWeekday').val(start.endStr+' 00:00:00');
-                        $('#ModalWeekday').modal('show');
+                        var startDayArray = start.startStr.split("T");
+                        $('#ModalAdd #startDateAdd').val(startDayArray[0]);
+                        $('#WeekendOrWeekday').text(' on Weekday');
+                        $('#startTimeAdd').html('<option value="">Choose</option>\n<option>7:00</option>\n<option>8:00</option>\n<option>9:00</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>\n<option>18:00</option>\n<option>19:00</option>\n<option>20:00</option>\n<option>21:00</option>');
+                        $('#endTimeAdd').html('<option value="">Choose</option>\n<option>8:00</option>\n<option>9:00</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>\n<option>18:00</option>\n<option>19:00</option>\n<option>20:00</option>\n<option>21:00</option>\n<option>22:00</option>');
+                        $('#ModalAdd').modal('show');
                     }
                 },
+                slotDuration: '01:00',
                 eventRender: function(event, element) {
-
                     /*element.bind('dblclick', function() {
                         //$('#ModalEdit #id').val(event.id);
                         //$('#ModalEdit #title').val(event.title);
@@ -610,27 +731,14 @@ $userID = $userIDs[0];
                         //$('#ModalEdit').modal('show');
                     });*/
                 },
-                /*eventDrop: function(event, delta, revertFunc) { // si changement de position
-
-                    edit(event);
-
-                },*/
-                /*eventResize: function(event,dayDelta,minuteDelta,revertFunc) { // si changement de longueur
-
-                    edit(event);
-
-                },*/
+                
+                <?php if($_SESSION['admin']==1)echo "
                 eventClick: function(info) {
-                    $('#h1AddID').text(info.event.id);
-                    $('#ModalAdd').modal('show');
-                },
-                /*eventOverlap: function(stillEvent, movingEvent) {
-                    console.log(stillEvent);
-                },*/
-
-
-
-
+                    $('#h1RmvID').text(info.event.id);
+                    $('#ModalRmv').modal('show');
+                },";
+                ?>
+                
                 events: [
                     <?php foreach($bookings as $booking): 
 
@@ -649,6 +757,7 @@ $userID = $userIDs[0];
                     ?>
                     {
                         id: <?php echo $booking['ID']; ?>,
+                        title: '<?php echo $booking['Name']; ?>',
                         start: '<?php echo $start; ?>',
                         end: '<?php echo $end; ?>',
                         color: '<?php echo $booking['Color']; ?>'
@@ -661,33 +770,9 @@ $userID = $userIDs[0];
                     <?php endforeach; ?>
                 ]
             });
-            $( "#btnAdd" ).click(function() {
-                remove($('#h1AddID').text());
+            $( "#btnRmv" ).click(function() {
+                remove($('#h1RmvID').text());
             });
-            /*function edit(event){
-                    var startobject = event.event.start;
-                    start = startobject.getFullYear() + "-" + ("0"+(startobject.getMonth()+1)).slice(-2) + "-" + ("0" + startobject.getDate()).slice(-2) + " " + ("0" + startobject.getHours()).slice(-2) + ":" + ("0" + startobject.getMinutes()).slice(-2)+ ":" + ("0" + startobject.getSeconds()).slice(-2);
-                    var endobject = event.event.end;
-
-                    end = endobject.getFullYear() + "-" + ("0"+(endobject.getMonth()+1)).slice(-2) + "-" + ("0" + endobject.getDate()).slice(-2) + " " + ("0" + endobject.getHours()).slice(-2) + ":" + ("0" + endobject.getMinutes()).slice(-2)+ ":" + ("0" + endobject.getSeconds()).slice(-2);
-                id =  event.event.id;
-                Event = [];
-                Event[0] = id;
-                Event[1] = start;
-                Event[2] = end;
-                $.ajax({
-                 url: 'editEventDate.php',
-                 type: "POST",
-                 data: {Event:Event},
-                 success: function(rep) {
-                        if(rep == 'OK'){
-                            alert('Saved');
-                        }else{
-                            alert('Could not be saved. try again.'); 
-                        }
-                    }
-                });
-            }*/
             function remove(evtID){
                 var evt = calendar.getEventById(evtID);
                 evt.remove();
@@ -703,7 +788,7 @@ $userID = $userIDs[0];
                         }
                     }
                 });
-                $('#ModalAdd').modal('hide');
+                $('#ModalRmv').modal('hide');
             }
 
 
