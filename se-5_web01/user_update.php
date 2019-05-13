@@ -3,13 +3,16 @@
 include "PDO.php";
 include "web_temp.php";
 
-$sql="SELECT * FROM users WHERE userName='aaa@durham.ac.uk'";
+$id=1;
+$sql="SELECT * FROM users WHERE id=$id";
 $statement = $pdo->query($sql);
 $rows = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 
+
+
 <div class="container" style="padding-top:100px">
-    <form method="post" action="user_update_check.php">
+    <form method="post" id="update" action="user_update_check.php">
         <center><h1 style="color:black;">Modify Information</h1></center><br>
         <div class="row">
             <div class="col-md-2"></div>
@@ -21,6 +24,7 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="col-md-2"></div>
         </div>
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-2">
@@ -31,6 +35,7 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="col-md-2"></div>
         </div>
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-2">
@@ -41,16 +46,30 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="col-md-2"></div>
         </div>
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-2">
-                <span class="input-group-text" id="basic-addon3">token:</span>
+                <span class="input-group-text" id="basic-addon3">Password:</span>
             </div>
             <div class="col-md-6">
-                <input type="text" class="form-control" placeholder="Twitterhandle" value="<?php echo $rows['token']?>" name="token"><br>
+                <input type="password" class="form-control"  name="password" value="111111"><br>
             </div>
             <div class="col-md-2"></div>
         </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <span class="input-group-text" id="basic-addon3">Confirm password:</span>
+            </div>
+            <div class="col-md-6">
+                <input type="password" class="form-control" name="confirmPassword" value="111111"><br>
+                <input type="hidden" name="userName" value="<?php echo $rows['userName']?>">
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
         <div class="rows">
             <center>
                 <button type="submit" class="btn btn-primary btn-lg">UPDATE</button>
