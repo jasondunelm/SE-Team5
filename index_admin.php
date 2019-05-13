@@ -80,7 +80,7 @@ session_start();
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="facilityManage.php">Facility Mgt.</a>
-                    <a class="dropdown-item" href="cater.php">User Mgt.</a>
+                    <a class="dropdown-item" href="editUserType.php">User Mgt.</a>
                     <a class="dropdown-item" href="https://www.accessable.co.uk">Booking Mgt.</a>
 
                 </div>
@@ -97,13 +97,14 @@ session_start();
         </form>
 
         <ul class="navbar-nav mr-right">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                     Accounts
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" id="login" href="login.php">Login</a>
                     <a class="dropdown-item" id="register" href="register.php">Sign up</a>
+                    <a class="dropdown-item" id="account_update" href="user_update.php">Update info</a>
                     <a class="dropdown-item" id="logout" href="index_admin.php?action=logout">Log out</a>
                 </div>
             </li>
@@ -124,7 +125,7 @@ session_start();
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Join us today</h1>
                 <p class="text-light">
-                    <button type="button" class="btn btn-primary btn-lg">Sign up</button>
+                    <a href="register.php" class="btn btn-primary btn-lg carousel_btn">Sign up</a>
                 </p>
             </div>
         </div>
@@ -133,7 +134,7 @@ session_start();
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Have a try</h1>
                 <p class="text-light">
-                    <button type="button" class="btn btn-primary btn-lg">Book online</button>
+                    <a href="register.php" class="btn btn-primary btn-lg carousel_btn">Book online</a>
                 </p>
             </div>
         </div>
@@ -142,7 +143,7 @@ session_start();
             <div class="carousel-caption text-success d-none d-sm-block">
                 <h1>Maiden Castle</h1>
                 <p class="text-light">Access information, opening times
-                    <button type="button" class="btn btn-primary btn-lg">Find more</button>
+                    <a href="cater.php" class="btn btn-primary btn-lg carousel_btn">Find more</a>
                 </p>
             </div>
         </div>

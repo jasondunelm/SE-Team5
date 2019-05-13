@@ -153,6 +153,9 @@ h1{
 .facility_edit_btn a{
     color: white;
 }
+.facility_edit_container{
+    margin-bottom:20px;
+}
 .facility_edit_btn a:hover{
     text-decoration: none;
 }
@@ -186,10 +189,14 @@ body {
     text-align: center;
 }
 .facility_edit_div{
-    margin:5%;
+    margin:20px;
     text-align: left;
-    width: 70%;
+   /* width: 70%;*/
 
+}
+.facility_edit_container{
+    text-align: center;
+    margin-top: 3%;
 }
 .facility_infor_edit{
     width: 100%;
@@ -197,4 +204,19 @@ body {
 }
 .edit_btn_group{
     margin-right: 20px;
+}
+
+.img-thumbnail{
+    width: 300px;
+    height: 200px;
+}
+.dropdown-menu{
+    width:auto;
+}
+.userType_edit_div{
+    font-size: 1.5em;
+    text-align: left;
+    line-height: 200%;
+    width:40%;
+    margin-left: 100px;
 }

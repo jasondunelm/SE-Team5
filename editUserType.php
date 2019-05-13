@@ -4,13 +4,42 @@ include "web_temp.php";
 error_reporting(E_ALL^E_NOTICE);
 if($userName = $_POST['userName']){}
 else{
-    $userName="";
+    $userName="@";
 }
 
 $sql="SELECT * FROM users WHERE userName LIKE '%$userName%'";
 $statement = $pdo->query($sql);
-$rows = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
+
+<script>
+    var id;
+    function getId(obj){
+        id=obj.id;
+    }
+
+    function update(){
+        var role=document.getElementById('role').value;
+        $.ajax({
+            url:"editUserType_check.php",
+            type:'post',
+            data:{'id':id,
+                'role':role},
+            success:update_success,
+            fail:not_update_success
+        });
+    }
+
+    function update_success(){
+        alert("Update successfully");
+        location.href='editUserType.php';
+    }
+
+    function not_update_success(){
+        alert("Update failed");
+        location.href='editUserType.php';
+    }
+
+</script>
 
 <div id="content" style="margin-top:10px;margin-left: 10%; margin-right: 10%; WORD-BREAK: break-all; WORD-WRAP: break-word">
 
@@ -43,18 +72,17 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
                 <td><?php echo $rows['lastName'] ?></td>
                 <td><?php echo $rows['role'] ?></td>
                 <td>
-                    <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal">Edit</button>
+                    <button class="btn btn-primary btn" data-toggle="modal" data-target="#myModal" id="<?php echo $rows['id']?>" onclick="getId(this)">Edit</button>
                     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
-                                <form action="editUserType_check.php" method="post">
-                                    <input type="hidden" name="id" value="<?php echo $rows['id']?>">
+                                <form method="post">
                                     <div class="modal-header">
                                         <h4 class="modal-title" id="myModalLabel">Change user type</h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" >&times;</button>
                                     </div>
                                     <div class="modal-body">
-                                        <select multiple class="form-control" name="role">
+                                        <select multiple class="form-control" id="role">
                                             <option selected value="user">User</option>
                                             <option value="membership">Membership</option>
                                             <option value="trainer">Trainer</option>
@@ -63,7 +91,7 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-primary">Submit</button>
+                                        <button type="submit" class="btn btn-primary" onclick="update()" >Submit</button>
                                     </div>
                                 </form>
                             </div>

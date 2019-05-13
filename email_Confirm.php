@@ -4,7 +4,8 @@ include("functions_WebFront.php");
 if (!isset($_GET['email']) || !isset($_GET['token'])) {
     redirectToRegisterPage();
 } else {
-    $con = new mysqli("127.0.0.1", "root", "password", "se_team5");
+    //$con = new mysqli("127.0.0.1", "root", "password", "se_team5");
+    $con = new mysqli("127.0.0.1", "root", "mon97day", "test01");
 
     $email = $con->real_escape_string($_GET['email']);
     $token = $con->real_escape_string($_GET['token']);

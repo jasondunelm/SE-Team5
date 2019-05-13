@@ -29,56 +29,110 @@ include('session_check.php');
 include('footer.php');*/
 ?>
 
+<div class="facility_edit_container" >
+    <h2>Add facility information</h2>
+    <div class="facility_edit_div">
 
-<div class="facility_edit_div">
-    <h2>Add facility information here:</h2>
-    <p></p>
+        <form class="facility_infor_edit" method="POST"  enctype="multipart/form-data" >
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Facility name</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="facilityName" >
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Capacity</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="capacity"  onkeyup="value=value.replace(/[^\d]/g,'')">
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Unit price</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="unitPrice"" onkeyup= "clearNoNum(this)"/>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Location</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="location">
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Member Price</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="memberPrice"  onkeyup= "clearNoNum(this)" >
+                </div>
+                <div class="col-md-2"></div>
+            </div>
 
-    <form class="facility_infor_edit" method="POST"  enctype="multipart/form-data" >
-        <div class="form-group">
-            <label >Facility name</label>
-            <input type="text" class="form-control" name="facilityName" >
-        </div>
-        <div class="form-group">
-            <label >Capacity</label>
-            <input type="text" class="form-control" name="capacity" onkeyup="value=value.replace(/[^\d]/g,'')">
-        </div>
-        <div class="form-group">
-            <label >Unit price</label>
-            <input type="text" class="form-control" name="unitPrice"" onkeyup= "clearNoNum(this)"/>
-        </div>
-        <div class="form-group">
-            <label >Location</label>
-            <input type="text" class="form-control" name="location" >
-        </div>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Color</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="color" >
+                </div>
+                <div class="col-md-2"></div>
+            </div>
 
-        <div class="form-group">
-            <label >Member Price</label>
-            <input type="text" class="form-control" name="memberPrice"  onkeyup= "clearNoNum(this)" >
-        </div>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Introduction</label>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control" name="introduction" rows="3"></textarea>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
 
-        <div class="form-group">
-            <label >Color</label>
-            <input type="text" class="form-control" name="color" >
-        </div>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Picture</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="file" name="image"  />
+                </div>
+                <div class="col-md-2"></div>
+            </div>
 
-        <div class="form-group">
-            <label >Introduction</label>
-            <textarea class="form-control" name="introduction" rows="3"></textarea>
-        </div>
+            <div class="row" style="padding: 10px">
+              <div class="col-md-4"></div>
+                <div class="col-md-offset-6">
+                    <button type="submit" class="btn btn-primary edit_btn_group" name="upload" >Submit</button>
+                    <a href="facilityManage.php" class="btn btn-primary">Cancel</a>
+                </div>
 
-        <div class="form-group">
-            <label >Picture</label>
-            <input type="file" name="image"  />
-        </div>
+            </div>
 
+        </form>
 
-        <button type="submit" class="btn btn-primary edit_btn_group" name="upload" >Submit</button>
-        <a href="facilityManage.php" class="btn btn-primary">Cancel</a>
-
-    </form>
+    </div>
 
 </div>
+
 </body>
 </html>
 

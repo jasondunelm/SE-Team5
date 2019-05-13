@@ -6,8 +6,10 @@ include('config_wyj.php');
 
 $pdo = new PDO($db_host.";".$db_name, $db_user, $db_pass);
 $facilityName=$_GET ['facilityName'];
+//echo $facilityName;
 
 $sql="SELECT * FROM Facility WHERE facilityName='$facilityName'";
+//$sql="SELECT * FROM Facility WHERE facilityName like '%$facilityName%'";
 $statement = $pdo->query($sql);
 $rows = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
@@ -27,6 +29,7 @@ include('session_check.php');
 <div id="content" style="margin-left: 10%; margin-right: 10%; WORD-BREAK: break-all; WORD-WRAP: break-word">
             <center><h1 style="color:black;"><?php echo $rows['facilityName']?></h1></center><br>
             <div class="row">
+
                 <div class="col-md-5">
                     <img src="images/<?php echo $rows['facilityPic'] ?>" style="width:100%; height:auto;"><br><br>
                     <img src="images/address.png" style="height:auto; width:100%;"><br><br>
@@ -95,22 +98,22 @@ include('session_check.php');
                         <div class="panel panel-default" style="background-color:white">
                             <div class="panel-heading" style="background-color:ghostwhite">
                                 <h3 class="panel-title">
-                                    Telephone:
+                                    Member price:
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <?php echo $rows['telephone']?>
+                                <?php echo $rows['memberPrice']?>
                             </div>
                         </div>
 
                         <div class="panel panel-default" style="background-color:white">
                             <div class="panel-heading" style="background-color:ghostwhite">
                                 <h3 class="panel-title">
-                                    Email:
+                                    Location:
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <?php echo $rows['email'] ?>
+                                <?php echo $rows['location'] ?>
                             </div>
                         </div>
 

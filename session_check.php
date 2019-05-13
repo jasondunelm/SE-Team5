@@ -13,6 +13,7 @@ if($role== null){
     <script type="text/javascript">
         document.getElementById('divId').style.display = 'none';
         document.getElementById('logout').style.display = 'none';
+        document.getElementById('account_update').style.display = 'none';
     </script>
     <?php
 }

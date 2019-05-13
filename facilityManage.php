@@ -66,7 +66,7 @@ $table= $statement->fetchAll(PDO::FETCH_NUM);
     <h3>Facility list</h3>
     <p></p>
     <div class="table_div">
-        <table class="table table-striped table_f_manage">
+        <table class="table table-striped table-striped table-hover table_f_manage">
             <thred>
                 <tr>
                     <th scope="col" >#</th>

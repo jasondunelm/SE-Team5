@@ -39,60 +39,113 @@ $pdo = new PDO($db_host.";".$db_name, $db_user, $db_pass);
 $sql="select * from Facility where id= ".$facilityId. ";";
 $statement = $pdo->query($sql);
 $table_pre= $statement->fetchAll(PDO::FETCH_NUM);
+//facility_edit_container
 
 ?>
-<div class="facility_edit_container">
+<div class="container" >
+    <h2>Edit facility information</h2>
     <div class="facility_edit_div">
-        <h2>Edit facility information here:</h2>
-        <p></p>
 
         <form class="facility_infor_edit" method="POST"  enctype="multipart/form-data" >
-            <div class="form-group">
-                <label >Facility name</label>
-                <input type="text" class="form-control" name="facilityName" value="<?php echo $table_pre[0][1]; ?>">
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Facility name</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="facilityName" value="<?php echo $table_pre[0][1]; ?>">
+                </div>
+                <div class="col-md-2"></div>
             </div>
-            <div class="form-group">
-                <label >Capacity</label>
-                <input type="text" class="form-control" name="capacity" value="<?php echo $table_pre[0][2]; ?>" onkeyup="value=value.replace(/[^\d]/g,'')">
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Capacity</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="capacity" value="<?php echo $table_pre[0][2]; ?>" onkeyup="value=value.replace(/[^\d]/g,'')">
+                </div>
+                <div class="col-md-2"></div>
             </div>
-            <div class="form-group">
-                <label >Unit price</label>
-                <input type="text" class="form-control" name="unitPrice"" value="<?php echo $table_pre[0][3]; ?>" onkeyup= "clearNoNum(this)"/>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Unit price</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="unitPrice"" value="<?php echo $table_pre[0][3]; ?>" onkeyup= "clearNoNum(this)"/>
+                 </div>
+                <div class="col-md-2"></div>
             </div>
-            <div class="form-group">
-                <label >Location</label>
-                <input type="text" class="form-control" name="location" value="<?php echo $table_pre[0][4]; ?>">
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Location</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="location" value="<?php echo $table_pre[0][4]; ?>">
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Member Price</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="memberPrice" value="<?php echo $table_pre[0][5]; ?>" onkeyup= "clearNoNum(this)" >
+                </div>
+                <div class="col-md-2"></div>
             </div>
 
-            <div class="form-group">
-                <label >Member Price</label>
-                <input type="text" class="form-control" name="memberPrice" value="<?php echo $table_pre[0][5]; ?>" onkeyup= "clearNoNum(this)" >
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Color</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="text" class="form-control" name="color" value="<?php echo $table_pre[0][8]; ?>">
+                </div>
+                <div class="col-md-2"></div>
             </div>
 
-            <div class="form-group">
-                <label >Color</label>
-                <input type="text" class="form-control" name="color" value="<?php echo $table_pre[0][8]; ?>">
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Introduction</label>
+                </div>
+                <div class="col-md-6">
+                    <textarea class="form-control" name="introduction" rows="3"><?php echo $table_pre[0][6]; ?></textarea>
+                </div>
+                <div class="col-md-2"></div>
             </div>
 
-            <div class="form-group">
-                <label >Introduction</label>
-                <textarea class="form-control" name="introduction" rows="3"><?php echo $table_pre[0][6]; ?></textarea>
+            <div class="row" style="padding: 10px">
+                <div class="col-md-2"></div>
+                <div class="col-md-2">
+                    <label >Picture</label>
+                </div>
+                <div class="col-md-6">
+                    <input type="file" name="image"  />
+                </div>
+                <div class="col-md-2"></div>
             </div>
 
-            <div class="form-group">
-                <label >Picture</label>
-                <input type="file" name="image"  />
+            <div class="row" style="padding: 10px">
+                <div class="col-md-4"></div>
+                    <div class="col-md-6">
+                    <p><img src="<?php echo "images/".$table_pre[0][7]; ?>" alt="picture of current facility" class="img-thumbnail"></p>
+                        <button type="submit" class="btn btn-primary edit_btn_group" name="upload" >Submit</button>
+                        <a href="facilityManage.php" class="btn btn-primary">Cancel</a>
+                </div>
+
             </div>
-
-            <p><img src="<?php echo "images/".$table_pre[0][7]; ?>" alt="picture of current facility" class="img-thumbnail"></p>
-
-
-            <button type="submit" class="btn btn-primary edit_btn_group" name="upload" >Submit</button>
-            <a href="facilityManage.php" class="btn btn-primary">Cancel</a>
 
         </form>
 
     </div>
+
+
 
 </div>
 

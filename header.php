@@ -52,7 +52,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="facilityManage.php">Facility Mgt.</a>
-                    <a class="dropdown-item" href="cater.php">User Mgt.</a>
+                    <a class="dropdown-item" href="editUserType.php">User Mgt.</a>
                     <a class="dropdown-item" href="https://www.accessable.co.uk">Booking Mgt.</a>
 
                 </div>
@@ -73,9 +73,10 @@
                 <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Accounts
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" id="login" href="login.php">Login</a>
                     <a class="dropdown-item" id="register" href="register.php">Sign up</a>
+                    <a class="dropdown-item" id="account_update" href="user_update.php">Update info</a>
                     <a class="dropdown-item" id="logout" href="index_admin.php?action=logout">Log out</a>
                 </div>
             </li>

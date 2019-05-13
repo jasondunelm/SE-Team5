@@ -1,34 +1,20 @@
-<?php
-session_start();
-//include "PDO.php";
-
-include "web_temp.php";
-/*
-$sql="SELECT * FROM users WHERE userName='aaa@durham.ac.uk'";
-$statement = $pdo->query($sql);
-$rows = $statement->fetch(PDO::FETCH_ASSOC);*/
-?>
 <!DOCTYPE html>
-
-<html lang="en">
-<header>
-    <meta charset="utf-8">
-    <title>facilityManage</title>
-
-    <?php
-    //include('meta_data.php');
-    ?>
-</header>
-<body>
 <?php
-//include('header.php');
-include('config_wyj.php');
+include "PDO.php";
+include "web_temp.php";
+
+$id=$_SESSION["id"];
+$id=1;
+$sql="SELECT * FROM Users WHERE id=$id";
+$statement = $pdo->query($sql);
+$rows = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
+
 
 
 <div class="container" style="padding-top:100px">
-    <form method="post" action="user_update_check.php">
-        <h2 style="color:black;">Modify Information</h2><br>
+    <form method="post" id="update" action="user_update_check.php">
+        <center><h1 style="color:black;">Modify Information</h1></center><br>
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-2">
@@ -39,6 +25,7 @@ include('config_wyj.php');
             </div>
             <div class="col-md-2"></div>
         </div>
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-2">
@@ -49,6 +36,7 @@ include('config_wyj.php');
             </div>
             <div class="col-md-2"></div>
         </div>
+
         <div class="row">
             <div class="col-md-2"></div>
             <div class="col-md-2">
@@ -59,6 +47,30 @@ include('config_wyj.php');
             </div>
             <div class="col-md-2"></div>
         </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <span class="input-group-text" id="basic-addon3">Password:</span>
+            </div>
+            <div class="col-md-6">
+                <input type="password" class="form-control"  name="password" value="111111"><br>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                <span class="input-group-text" id="basic-addon3">Confirm password:</span>
+            </div>
+            <div class="col-md-6">
+                <input type="password" class="form-control" name="confirmPassword" value="111111"><br>
+                <input type="hidden" name="userName" value="<?php echo $rows['userName']?>">
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+
         <div class="rows">
             <center>
                 <button type="submit" class="btn btn-primary btn-lg">UPDATE</button>
@@ -67,11 +79,6 @@ include('config_wyj.php');
     </form>
 </div>
 
-<?php
-//include('footer.php');
-?>
 </body>
 </html>
-
-
 
