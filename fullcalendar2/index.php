@@ -42,32 +42,30 @@ $userID = $userIDs[0];
 <head>
     <meta charset="utf-8">
     <title>Homepage</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="../text/css" href="style.css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="SE-5">
-    <meta name="description" content="A online application software for DUS">
+<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">-->
+<!--
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+-->
 
 
     <!-- <link rel="stylesheet" href="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css"> -->
+<!--
     <script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="http://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+-->
     
 <!--    <meta http-equiv="X-UA-Compatible" content="IE=edge">-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-
     <!-- Bootstrap Core CSS -->
-<!--    <link href="/fullcalendar/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 	
-	 
-<!--	<link href='/fullcalendar/css/fullcalendar.css' rel='stylesheet' />-->
+	<!-- FullCalendar -->
+	<link href='css/fullcalendar.css' rel='stylesheet' />
     
     <link href='fullcalendar/css/core.css' rel='stylesheet' />
     <link href='fullcalendar/css/daygrid.css' rel='stylesheet' />
@@ -82,45 +80,120 @@ $userID = $userIDs[0];
 
     <!-- Custom CSS -->
     <style>
+        
+        body {
+        padding-top: 120px;
+    
+    }
 	#calendar {
-		max-width: 800px;
+/*		max-width: 800px;*/
 	}
+/*
 	.col-centered{
+
 		float: none;
 		margin: 0 auto;
+
 	}
+*/
         
     .navbar{
     background-color: #742e68 !important;
 }
-.navbar .navbar-brand{
-    color: #fff;
 
-}
-.navbar .navbar-brand:hover{
-    color: #fff;
-}
-.navbar .navbar-nav li a {
-    color: #fff !important;
-}
 
-.navbar .nav-item .dropdown-menu .dropdown-item{
+
+.navbar.nav-item .dropdown-menu .dropdown-item{
     color: #000 !important;
 }
 
-.navbar .nav-item .dropdown-menu .dropdown-item:hover{
-    color: #fff !important;
-    background-color: black;
-    opacity: 0.5;
-}
+
+.team-durham-slogan{
+    float:left;
+    margin-top:1em;
+    
+    font-size:20px;
+    line-height:100%;
+    text-decoration:none;
+    text-transform:uppercase;
+    color:#fff;
+    text-transform:none;
+    font-size:14px;
+        }
+    .light{
+            color:#cf9ace;
+        }
+    .slogan{
+         text-transform:none;
+        font-size:20px;
+        }
+
         
-.btn-outline-success:hover{
+   .btn1-outline-success:hover{
     background-color: #742e68;
 }
-    .btn{
+    .btn-1{
     color: white;
     border-style: hidden;
+        
 }
+        .row-fluid{width:100%;*zoom:1;}
+        .row-fluid:before,.row-fluid:after{display:table;content:"";line-height:0}
+        .row-fluid:after{clear:both;}
+        .nav{margin-left:0;
+            list-style:none;
+            color: white;
+            margin-bottom: 0;
+            }
+        ul, {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    padding: 0;
+    margin: 0 0 10px 25px;
+}
+        .nav-pills{
+            border-bottom: 0;}
+    
+        .nav-pills>li>a {
+    color: #fff;
+    background-color: #321f20;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-radius: 0;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-right: 2px;
+    line-height: 14px;
+    display: block;
+}
+        li {
+    display: list-item;
+    text-align: -webkit-match-parent;
+            line-height: 20px;
+}
+        .span12{
+            width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+        }
+        
+       .btn-primary {
+    color: #fff;
+    background-color: purple;
+    border-color: purple;
+}
+        div.containter-fluid.no-border{
+                box-shadow: 0 0 0 #808080;
+    background-color: #f3fafe;
+        }
+    
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -135,89 +208,49 @@ $userID = $userIDs[0];
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-    <img src="../images/small_logo.png">&nbsp;&nbsp;
-    <a class="navbar-brand" href="https://www.teamdurham.com">DUS</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse">
-        <span class="navbar-toggler-icon bg-transparent"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="../index.php">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../events.php">Events</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="https://www.teamdurham.com/queenscampus/">Queen's Campus</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="../fullcalendar2/index.php">Booking</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Facilities
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="../facility.php?facilityName=Fitness Suite">Fitness Suite</a>
-                    <a class="dropdown-item" href="../sportsHall.php">Sports Hall</a>
-                    <a class="dropdown-item" href="../facility.php?facilityName=Artificial Pitches">Artificial Pitches</a>
-                    <a class="dropdown-item" href="../facility.php?facilityName=Rowing Tank">Rowing Tank</a>
-                    <a class="dropdown-item" href="../facility.php?facilityName=Ergo Gallery">Ergo Gallery</a>
-                    <a class="dropdown-item" href="../outdoorFacilities.php">Outdoor Facilities</a>
-                    <a class="dropdown-item" href="../facility.php?facilityName=Maiden Castle Physiotherapy">Maiden Castle Physiotherapy</a>
-                    <a class="dropdown-item" href="../facility.php?facilityName=Aerobics Room">Aerobics Room</a>
-
-                    <!--
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>-->
-                </div>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Other Information
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="openTime.php">Open time</a>
-                    <a class="dropdown-item" href="cater.php">Catering</a>
-                    <a class="dropdown-item" href="https://www.accessable.co.uk">Access Information</a>
-
-                </div>
-            </li>
-
-
-        </ul>
-        <form class="form-inline my-2 my-lg-0">
-            <div class="btn-group" role="group" aria-label="Basic example">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                <!--  class="btn btn-outline-success my-2 my-sm-0" -->
-            </div>
-        </form>
-
-        <ul class="navbar-nav mr-right">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Accounts
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="./login.php">Login</a>
-                    <a class="dropdown-item" href="./register.php">Sign up</a>
-                </div>
-            </li>
-        </ul>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+       <div id="header" class="row-fluid">
+  
+        <a href="" class="pull-left">
+        <img width="70" src="../images/teamdurham.png" alt="Durham University" class="durham-university-logo">
+        </a>
+        <a href="" class="pull-right">
+        <img width="150" src="../images/durham-university-logo-white.png" alt="Durham University" class="durham-university-logo">
+        </a>
+        <a class="team-durham-slogan">
+            <span class="light">Durham University Sport</span>
+            <br>
+            <br>
+            <span class="slogan">Booking System</span>
+        </a>
+      
+       </div>
+       
+       <div id="navigation" class="row-fluid">
+           <div class="span12">
+               <ul class="nav nav-pills">
+                
+                   <li>
+                        <a href="index.php">Home <span class="sr-only">(current)</span></a>
+                   </li>
+                   <li>
+                        <a href="events.php">Events</a>
+                   </li>
+                   <li>
+                        <a class="nav-link" href="https://www.teamdurham.com/queenscampus/">Queen's Campus</a>
+                   </li>
+               </ul>
+           </div>
+           
+       </div>
+      
+        <!-- /.container -->
     </div>
-</nav>
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h1>FullCalendar BS3 PHP MySQL</h1>
-                <p class="lead">Complete with pre-defined file paths that you won't have to change!</p>
                 <div id="calendar" class="col-centered">
                 </div>
             </div>
@@ -803,9 +836,30 @@ $userID = $userIDs[0];
         });
     </script>
     
- <?php
-include('../footer.php');
-?>
+<nav class="container-fluid no-border">
+ <div id="footer" class="row-fluid">
+    <div class="span12">
+        <ul class="nav nav-pills">
+            <li >
+                <a class="nav-link" href="https://www.dur.ac.uk/contactform2/?pageid=59579">Comments & Questions</a>
+            </li>
+            <li >
+                <a class="nav-link" href="https://www.dur.ac.uk/about/terms/">Disclaimer</a>
+            </li>
+            <li >
+                <a class="nav-link" href="https://www.dur.ac.uk/about/trading_name/">Trading Name</a>
+            </li>
+            <li >
+                <a class="nav-link" href="https://www.dur.ac.uk/about/cookies/">Cookies usage policy</a>
+            </li>
+            <li >
+                <a class="nav-link" href="https://www.dur.ac.uk/ig/dp/privacy/">Privacy Notices</a>
+            </li>
+        </ul>
+        
+    </div>   
+ </div>
+    </nav>
 </body>
 
 </html>
