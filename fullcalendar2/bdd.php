@@ -1,7 +1,7 @@
 <?php
 try
 {
-	$bdd = new PDO('mysql:host=localhost;dbname=calendar;charset=utf8', 'root', '');
+	$bdd = new PDO('mysql:host=127.0.0.1;dbname=calendar;charset=utf8', 'root', 'password');
 }
 catch(Exception $e)
 {

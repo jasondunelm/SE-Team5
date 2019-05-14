@@ -5,11 +5,8 @@ use PHPMailer\PHPMailer\Exception;
 
 // to connect with mySQL database via mysqli_connect
 try {
-    //$pdo = new PDO('mysql:host=localhost:3306/sakila;dbname=tcmsystem','root', '0617');
-    $link = new mysqli("3306", "root", "0617", "tcmsystem");
+    $link = new mysqli("db4free.net", "dus_root", "password", "se_team5");
 
-    //$link = new mysqli("127.0.0.1", "root", "mon97day", "test01");
-    //$link = new mysqli("127.0.0.1", "root", "password", "se_team5");
 } catch (mysqli_sql_exception $e) {
     echo $e->getMessage();
 }
@@ -113,11 +110,15 @@ if ($_POST['submit'] == "Register") {
         } else {
             $token = generateNewString();
 
-            $query = "INSERT INTO Users (userName, password, firstName, lastName, role, emailConfirmed, token)
+            if (strpos($email, 'dur')!==false) {
+
+                $query = "INSERT INTO Users (userName, password, firstName, lastName, role, emailConfirmed, token)
+ VALUES('" . mysqli_real_escape_string($link, $_POST['email']) . "','" . md5(md5($_POST['email']) . $_POST['password']) . "','" . ($_POST['firstName']) . "','" . ($_POST['lastName']) . "','member', '0', '$token')";
+            } else{
+                $query = "INSERT INTO Users (userName, password, firstName, lastName, role, emailConfirmed, token)
  VALUES('" . mysqli_real_escape_string($link, $_POST['email']) . "','" . md5(md5($_POST['email']) . $_POST['password']) . "','" . ($_POST['firstName']) . "','" . ($_POST['lastName']) . "','user', '0', '$token')";
-
-            mysqli_query($link, $query);
-
+            }
+                mysqli_query($link, $query);
             // Load Composer's autoloader
             require 'PHPMailer/vendor/autoload.php';
 
