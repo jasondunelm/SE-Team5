@@ -2,10 +2,11 @@
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+include('config_wyj.php');
 
 // to connect with mySQL database via mysqli_connect
 try {
-    $link = new mysqli("db4free.net", "dus_root", "password", "se_team5");
+    $link = new mysqli($mysql_db_host, $mysql_db_user, $mysql_db_pass, $mysql_db_name);
 
 } catch (mysqli_sql_exception $e) {
     echo $e->getMessage();
