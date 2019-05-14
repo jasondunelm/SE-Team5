@@ -109,22 +109,24 @@ $userID = $userIDs[0];
 
 
 .team-durham-slogan{
-    float:left;
-    margin-top:1em;
+   position: absolute;
+    top: 40%;
+    left: 45%;
     
-    font-size:20px;
-    line-height:100%;
-    text-decoration:none;
-    text-transform:uppercase;
+    transform: translate(-50%, -50%) 
+    float:left;
+
+    line-height:60%;
+
+
     color:#fff;
-    text-transform:none;
-    font-size:14px;
+
         }
     .light{
             color:#cf9ace;
         }
     .slogan{
-         text-transform:none;
+         
         font-size:20px;
         }
 
@@ -159,8 +161,10 @@ $userID = $userIDs[0];
             border-bottom: 0;}
     
         .nav-pills>li>a {
+            top: 6px;
+            vertical-align: middle;
     color: #fff;
-    background-color: #321f20;
+    background-color: #742e68;
     padding-top: 8px;
     padding-bottom: 10px;
     margin-top: 2px;
@@ -170,12 +174,7 @@ $userID = $userIDs[0];
     padding-left: 12px;
     margin-right: 2px;
     line-height: 14px;
-    display: block;
-}
-        li {
-    display: list-item;
-    text-align: -webkit-match-parent;
-            line-height: 20px;
+
 }
         .span12{
             width: 100%;
@@ -185,14 +184,11 @@ $userID = $userIDs[0];
         }
         
        .btn-primary {
+                      
     color: #fff;
     background-color: purple;
     border-color: purple;
 }
-        div.containter-fluid.no-border{
-                box-shadow: 0 0 0 #808080;
-    background-color: #f3fafe;
-        }
     
     </style>
 
@@ -212,10 +208,7 @@ $userID = $userIDs[0];
        <div id="header" class="row-fluid">
   
         <a href="" class="pull-left">
-        <img width="70" src="../images/teamdurham.png" alt="Durham University" class="durham-university-logo">
-        </a>
-        <a href="" class="pull-right">
-        <img width="150" src="../images/durham-university-logo-white.png" alt="Durham University" class="durham-university-logo">
+        <img width="50" src="../images/teamdurham.png" alt="Durham University" class="durham-university-logo">
         </a>
         <a class="team-durham-slogan">
             <span class="light">Durham University Sport</span>
@@ -223,9 +216,17 @@ $userID = $userIDs[0];
             <br>
             <span class="slogan">Booking System</span>
         </a>
+           <div class="span12">
+               <ul class="nav nav-pills">
+                   <li>
+                        <a href="index.php">Home <span class="sr-only">(current)</span></a>
+                   </li>
+               </ul>
+           </div>
       
        </div>
        
+<!--
        <div id="navigation" class="row-fluid">
            <div class="span12">
                <ul class="nav nav-pills">
@@ -243,6 +244,7 @@ $userID = $userIDs[0];
            </div>
            
        </div>
+-->
       
         <!-- /.container -->
     </div>
@@ -836,6 +838,7 @@ $userID = $userIDs[0];
         });
     </script>
     
+<!--
 <nav class="container-fluid no-border">
  <div id="footer" class="row-fluid">
     <div class="span12">
@@ -860,6 +863,7 @@ $userID = $userIDs[0];
     </div>   
  </div>
     </nav>
+-->
 </body>
 
 </html>
