@@ -1,8 +1,7 @@
 <?php
 session_start();
 $_SESSION['userName']="tzu-chiao.wang2@durham.ac.uk";
-$_SESSION['trainer']=0;
-$_SESSION['admin']=1;
+$_SESSION['userName']="dsfj@durham.ac.uk";
 require_once('bdd.php');
 
 $sql = "SELECT nbooking.ID, UserID, FacilityID, Name, StartTime, EndTime, block, Color FROM
@@ -37,13 +36,22 @@ foreach ($facilities as $row) {
 }
 
 $userName=$_SESSION['userName'];
-$sql = "SELECT `User ID` FROM user WHERE Username= '$userName'";
+$sql = "SELECT `User ID`, `Username`, `Role` FROM user WHERE Username= '$userName'";
 
 $req = $bdd->prepare($sql);
 $req->execute();
 
-$userIDs = $req->fetch();
-$userID = $userIDs[0];
+$loginUser = $req->fetch();
+$userID = $loginUser["User ID"];
+$userName = $loginUser["Username"]; 
+$userRole = $loginUser["Role"]; // This is where the admin and the trainer is declared.
+
+$sql = "SELECT `User ID`, `Username`, `Firstname`, `Lastname` FROM `user` WHERE 1";
+
+$req = $bdd->prepare($sql);
+$req->execute();
+
+$allusers = $req->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -60,8 +68,9 @@ $userID = $userIDs[0];
     <title>Bare - Start Bootstrap Template</title>
 
     <!-- Bootstrap Core CSS -->
+    
+	<!--link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"--> 
     <link href="css/bootstrap.min.css" rel="stylesheet">
-	
 	<!-- FullCalendar -->
 	<link href='css/fullcalendar.css' rel='stylesheet' />
     
@@ -167,9 +176,21 @@ $userID = $userIDs[0];
 					</div>
 				  </div>
                   <div class="form-group">
-					<label for="user" class="col-sm-2 control-label">UserID</label>
+					<label for="user" class="col-sm-2 control-label">User</label>
 					<div class="col-sm-10">
-					  <input type="text" name="user" class="form-control" id="userAdd" value="<?php echo $userID;?>" readonly>
+                        <?php 
+                        if($userRole!="admin"){
+                            echo '<input type="text" name="user" class="form-control" id="userAdd" value="'.$userID.'" readonly>';
+                        }
+                        else{
+                            echo '<select name="user" class="form-control" id="userAdd">';
+                            foreach($allusers as $eachuser){
+                                echo "<option value='".$eachuser["User ID"]."'>".$eachuser["User ID"]." ".$eachuser["Username"]." </option>";
+                            }
+                           echo '</select>';
+                        } 
+                        
+                        ?>
 					</div>
 				  </div>
                   <div class="form-group">
@@ -218,7 +239,7 @@ $userID = $userIDs[0];
         
         <!-- Modal -->
         <?php
-        if($_SESSION['admin']==1){
+        if($userRole=="admin"){
         echo '<div class="modal fade" id="ModalBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -274,7 +295,7 @@ $userID = $userIDs[0];
         ?>
         <!-- Modal -->
         <?php 
-        if($_SESSION['admin']==1){ echo '
+        if($userRole=="admin"){ echo '
         <div class="modal fade" id="ModalDeleteBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -311,7 +332,7 @@ $userID = $userIDs[0];
         ?>
         <!-- Modal -->
         <?php
-        if($_SESSION['admin']==1||$_SESSION['trainer']==1){ echo'
+        if($userRole=="admin"||$userRole=="trainer"){ echo'
 		<div class="modal fade" id="ModalTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabelTrainer">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -693,7 +714,7 @@ $userID = $userIDs[0];
                     }
                 },
                 header: {
-                    left: 'prev,next today <?php if($_SESSION['admin']==1)echo "addBlock deleteBlock"; if($_SESSION['admin']==1||$_SESSION['trainer']==1)echo " trainer";?>',
+                    left: 'prev,next today <?php if($userRole=="admin")echo "addBlock deleteBlock"; if($userRole=="admin"||$userRole=="trainer")echo " trainer";?>',
                     center: 'title',
                     right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
                 },
@@ -732,7 +753,7 @@ $userID = $userIDs[0];
                     });*/
                 },
                 
-                <?php if($_SESSION['admin']==1)echo "
+                <?php if($userRole=="admin")echo "
                 eventClick: function(info) {
                     $('#h1RmvID').text(info.event.id);
                     $('#ModalRmv').modal('show');
