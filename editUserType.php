@@ -39,7 +39,20 @@ $statement = $pdo->query($sql);
         location.href='editUserType.php';
     }
 
+    $(document).ajaxStart(function(){
+        $("#wait").css("display", "block");
+        $("#content").css("display", "none");
+
+    });
+    $(document).ajaxComplete(function(){
+        $("#wait").css("display", "none");
+        $("#content").css("display", "block");
+    });
+
 </script>
+
+<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
+    <img src='images/loading.gif' width="64" height="64" /><br>Loading..</div>
 
 <div id="content" style="margin-top:10px;margin-left: 10%; margin-right: 10%; WORD-BREAK: break-all; WORD-WRAP: break-word">
 
