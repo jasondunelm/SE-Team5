@@ -1,8 +1,8 @@
 <?php
 session_start();
 $_SESSION['userName']="tzu-chiao.wang2@durham.ac.uk";
-$_SESSION['trainer']=1;
-$_SESSION['admin']=0;
+$_SESSION['trainer']=0;
+$_SESSION['admin']=1;
 require_once('bdd.php');
 
 $sql = "SELECT nbooking.ID, UserID, FacilityID, Name, StartTime, EndTime, block, Color FROM

@@ -124,7 +124,9 @@ elseif (isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['
 }
 
 
-header('Location: '.$_SERVER['HTTP_REFERER']);
+//header("Location:index.php");
+echo "<script> location.href=\"index.php\";</script>";
+
 	
 ?>
 
