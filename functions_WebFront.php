@@ -2,7 +2,7 @@
 session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
+error_reporting(0);
 // to connect with mySQL database via mysqli_connect
 try {
     $link = new mysqli("db4free.net", "dus_root", "password", "se_team5");
