@@ -11,8 +11,22 @@ include('web_temp.php');
     <?php
    // include('meta_data.php');
     ?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+
 <script>
+
     $(document).ready(function(){
+
+        $(document).ajaxStart(function(){
+            $("#wait").css("display", "block");
+            $("#table_div").css("display", "none");
+
+        });
+        $(document).ajaxComplete(function(){
+            $("#wait").css("display", "none");
+            $("#table_div").css("display", "block");
+        });
+
 
         // Delete
         $('.delete').click(function(){
@@ -21,6 +35,7 @@ include('web_temp.php');
             var splitid = id.split("_");
             // Delete id
             var deleteid = splitid[1];
+
 
 
             // AJAX Request
@@ -36,6 +51,8 @@ include('web_temp.php');
                         $(el).closest('tr').fadeOut(800,function(){
                             $(this).remove();
                         });
+
+
                     }else{
                         alert('Invalid ID.');
                     }
@@ -62,17 +79,21 @@ $statement = $pdo->query($sql);
 $table= $statement->fetchAll(PDO::FETCH_NUM);
 
 ?>
-<div class="facility_manage_div">
+
+<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
+    <img src='images/loading.gif' width="64" height="64" /><br>Loading..</div>
+
+<div class="facility_manage_div" id="table_div">
     <h3>Facility list</h3>
     <p></p>
-    <div class="table_div">
+    <div class="table_div" >
         <table class="table table-striped table-striped table-hover table_f_manage">
             <thred>
                 <tr>
-                    <th scope="col" >#</th>
-                    <th scope="col">Facility name</th>
-                    <th scope="col">Edition
-                    <th scope="col">Deletion</th>
+                    <th scope="col-md-2" >#</th>
+                    <th scope="col-md-8">Facility name</th>
+                    <th scope="col-md-1">Edition
+                    <th scope="col-md-1">Deletion</th>
                 </tr>
             </thred>
             <tbody>
@@ -94,6 +115,7 @@ $table= $statement->fetchAll(PDO::FETCH_NUM);
     <p></p>
     <button class="btn btn-primary facility_edit_btn"><a href="facilityAdd.php">Add new facility</a></button>
 </div>
+
 <?php
 //include('footer.php');
 ?>

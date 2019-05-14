@@ -6,7 +6,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 require 'PHPMailer/vendor/autoload.php';
 
 if (isset($_POST['email'])) {
-    $conn = new mysqli("127.0.0.1", "root", "password", "se_team5");
+    //$conn = new mysqli("127.0.0.1", "root", "password", "se_team5");
+    $conn = new mysqli("127.0.0.1", "root", "mon97day", "test01");
+
 
     $email = $conn->real_escape_string($_POST['email']);
 
