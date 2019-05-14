@@ -3,7 +3,7 @@ include("functions_WebFront.php");
 
 	if (isset($_GET['email']) && isset($_GET['token'])) {
         //$conn = new mysqli("127.0.0.1", "root", "password", "se_team5");
-        $conn = new mysqli("127.0.0.1", "root", "mon97day", "test01");
+        $con = new mysqli("db4free.net", "dus_root", "password", "se_team5");
 
 
         $email = $conn->real_escape_string($_GET['email']);
