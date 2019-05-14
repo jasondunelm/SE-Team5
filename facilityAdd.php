@@ -20,20 +20,53 @@ include('web_temp.php');
             obj.value= parseFloat(obj.value);
         }
     }
+    function checkform(){
+        if(document.add_Form.facilityName.value==""){
+            alert("facilityName can not be blank!");
+            return false;
+        }
+        if(document.add_Form.capacity.value==""){
+            alert("capacity can not be blank!");
+            return false;
+        }
+        if(document.add_Form.unitPrice.value==""){
+            alert("unitPrice can not be blank!");
+            return false;
+        }
+        if(document.add_Form.location.value==""){
+            alert("location can not be blank!");
+            return false;
+        }
+        if(document.add_Form.memberPrice.value==""){
+            alert("memberPrice can not be blank!");
+            return false;
+        }
+        if(document.add_Form.color.value==""){
+            alert("color can not be blank!");
+            return false;
+        }
+        if(document.add_Form.introduction.value==""){
+            alert("introduction can not be blank!");
+            return false;
+        }
+        if(document.add_Form.image.value==""){
+            alert("image can not be blank!");
+            return false;
+        }
+        return true;
+
+
+    }
+
 </script>
 </head>
 <body>
-<?php
-/*include('header.php');
-include('session_check.php');
-include('footer.php');*/
-?>
 
 <div class="facility_edit_container" >
     <h2>Add facility information</h2>
     <div class="facility_edit_div">
 
-        <form class="facility_infor_edit" method="POST"  enctype="multipart/form-data" >
+        <form class="facility_infor_edit" method="POST" name="add_Form" enctype="multipart/form-data" onsubmit=" return checkform()">
             <div class="row" style="padding: 10px">
                 <div class="col-md-2"></div>
                 <div class="col-md-2">
@@ -60,7 +93,7 @@ include('footer.php');*/
                     <label >Unit price</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="unitPrice"" onkeyup= "clearNoNum(this)"/>
+                    <input type="text" class="form-control" name="unitPrice" onkeyup= "clearNoNum(this)"/>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -152,6 +185,7 @@ catch(PDOException $e)
 if(isset($_POST['upload']))
 
 {
+
     $facilityName = $_POST['facilityName'];
     $capacity = $_POST['capacity'];
     $unitPrice =$_POST['unitPrice'];

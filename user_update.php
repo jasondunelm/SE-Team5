@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <?php
+session_start();
 include "PDO.php";
 include "web_temp.php";
 
 $id=$_SESSION["id"];
-$id=1;
 $sql="SELECT * FROM Users WHERE id=$id";
 $statement = $pdo->query($sql);
 $rows = $statement->fetch(PDO::FETCH_ASSOC);
