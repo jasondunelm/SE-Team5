@@ -110,11 +110,15 @@ if ($_POST['submit'] == "Register") {
         } else {
             $token = generateNewString();
 
-            $query = "INSERT INTO Users (userName, password, firstName, lastName, role, emailConfirmed, token)
+            if (strpos($email, 'dur')!==false) {
+
+                $query = "INSERT INTO Users (userName, password, firstName, lastName, role, emailConfirmed, token)
+ VALUES('" . mysqli_real_escape_string($link, $_POST['email']) . "','" . md5(md5($_POST['email']) . $_POST['password']) . "','" . ($_POST['firstName']) . "','" . ($_POST['lastName']) . "','member', '0', '$token')";
+            } else{
+                $query = "INSERT INTO Users (userName, password, firstName, lastName, role, emailConfirmed, token)
  VALUES('" . mysqli_real_escape_string($link, $_POST['email']) . "','" . md5(md5($_POST['email']) . $_POST['password']) . "','" . ($_POST['firstName']) . "','" . ($_POST['lastName']) . "','user', '0', '$token')";
-
-            mysqli_query($link, $query);
-
+            }
+                mysqli_query($link, $query);
             // Load Composer's autoloader
             require 'PHPMailer/vendor/autoload.php';
 
