@@ -37,10 +37,8 @@ include('web_temp.php');
             alert("location can not be blank!");
             return false;
         }
-        if(document.add_Form.memberPrice.value==""){
-            alert("memberPrice can not be blank!");
-            return false;
-        }
+
+
         if(document.add_Form.color.value==""){
             alert("color can not be blank!");
             return false;
@@ -107,16 +105,7 @@ include('web_temp.php');
                 </div>
                 <div class="col-md-2"></div>
             </div>
-            <div class="row" style="padding: 10px">
-                <div class="col-md-2"></div>
-                <div class="col-md-2">
-                    <label >Member Price</label>
-                </div>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" name="memberPrice"  onkeyup= "clearNoNum(this)" >
-                </div>
-                <div class="col-md-2"></div>
-            </div>
+
 
             <div class="row" style="padding: 10px">
                 <div class="col-md-2"></div>
@@ -190,13 +179,13 @@ if(isset($_POST['upload']))
     $capacity = $_POST['capacity'];
     $unitPrice =$_POST['unitPrice'];
     $location=$_POST['location'];
-    $memberPrice=$_POST['memberPrice'];
+    //$memberPrice=$_POST['memberPrice'];
     $color=$_POST['color'];
     $facilityIntro=$_POST['introduction'];
     $image = $_FILES['image']['name'];
 
 
-    if($facilityName ==null|| $capacity==null || $unitPrice==null || $location==null ||$memberPrice==null
+    if($facilityName ==null|| $capacity==null || $unitPrice==null || $location==null
         || $color==null || $facilityIntro==null){
         echo "<script> alert(\"Please fill in all the blanks!\"); </script>";
     }
@@ -233,8 +222,8 @@ if(isset($_POST['upload']))
 
             echo "test here";
 
-            $sth=$con->prepare("insert into Facility (id,facilityName,capacity,unitPrice,location,memberPrice,facilityIntro,facilityPic,color)
-values (null,'$facilityName','$capacity','$unitPrice','$location','$memberPrice','$facilityIntro','$image','$color') ");
+            $sth=$con->prepare("insert into Facility (id,facilityName,capacity,unitPrice,location,facilityIntro,facilityPic,color)
+values (null,'$facilityName','$capacity','$unitPrice','$location','$facilityIntro','$image','$color') ");
 
            $sth->execute();
 

@@ -60,8 +60,6 @@
 
 
         </ul>
-
-
         <form class="form-inline my-2 my-lg-0" action="search_result.php" method="post">
             <div class="btn-group" role="group" aria-label="Basic example">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -71,11 +69,11 @@
         </form>
 
         <ul class="navbar-nav mr-right">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="Facilities" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                     Accounts
                 </a>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right " aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" id="login" href="login.php">Login</a>
                     <a class="dropdown-item" id="register" href="register.php">Sign up</a>
                     <a class="dropdown-item" id="account_update" href="user_update.php">Update info</a>

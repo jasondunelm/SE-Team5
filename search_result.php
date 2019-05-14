@@ -20,7 +20,7 @@ $statement = $pdo->query($sql);
             <th>facility name</th>
             <th>location</th>
             <th>unit price</th>
-            <th>telephone</th>
+            <th>member price</th>
         </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@ $statement = $pdo->query($sql);
                 <td><a href="facility.php?facilityName=<?php echo $rows['facilityName'] ?>"><?php echo $rows['facilityName'] ?></a></td>
                 <td><?php echo $rows['location']?></td>
                 <td><?php echo $rows['unitPrice'] ?></td>
-                <td><?php echo $rows['telephone'] ?></td>
+                <td><?php echo $rows['memberPrice'] ?></td>
             </tr>
         <?php
         }

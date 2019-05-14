@@ -102,7 +102,7 @@ include('session_check.php');
                                 </h3>
                             </div>
                             <div class="panel-body">
-                                <?php echo $rows['memberPrice']?>
+                                £<?php echo $rows['memberPrice']?>
                             </div>
                         </div>
 

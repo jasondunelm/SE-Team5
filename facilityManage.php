@@ -72,11 +72,19 @@ include('web_temp.php');
 //include('session_check.php');
 include('config_wyj.php');
 
-$pdo = new PDO($db_host.";".$db_name, $db_user, $db_pass);
+$pdo = new PDO($db_host.";".$db_name,$db_user, $db_pass);
 
-$sql="select * from facility";
+$sql="select * from Facility";
 $statement = $pdo->query($sql);
 $table= $statement->fetchAll(PDO::FETCH_NUM);
+
+$facilityName= $_POST['facilityName'];
+if($_POST['facilityName']!=null){
+
+    $sql="SELECT * FROM Facility WHERE facilityName LIKE '%$facilityName%'";
+    $statement = $pdo->query($sql);
+    $table= $statement->fetchAll(PDO::FETCH_NUM);
+}
 
 ?>
 
@@ -86,6 +94,13 @@ $table= $statement->fetchAll(PDO::FETCH_NUM);
 <div class="facility_manage_div" id="table_div">
     <h3>Facility list</h3>
     <p></p>
+    <form  action="facilityManage.php" method="post">
+        <center>
+            Search facility name: &nbsp; &nbsp;
+            <input type="text" name="facilityName" placeholder="facility name"> &nbsp; &nbsp;
+            <button type="submit">Search</button><br>
+        </center>
+    </form>
     <div class="table_div" >
         <table class="table table-striped table-striped table-hover table_f_manage">
             <thred>

@@ -73,7 +73,7 @@ $table_pre= $statement->fetchAll(PDO::FETCH_NUM);
                     <label >Unit price</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="unitPrice"" value="<?php echo $table_pre[0][3]; ?>" onkeyup= "clearNoNum(this)"/>
+                    <input type="text" class="form-control" name="unitPrice" value="<?php echo $table_pre[0][3]; ?>" onkeyup="clearNoNum(this)"/>
                  </div>
                 <div class="col-md-2"></div>
             </div>
@@ -87,16 +87,7 @@ $table_pre= $statement->fetchAll(PDO::FETCH_NUM);
                 </div>
                 <div class="col-md-2"></div>
             </div>
-            <div class="row" style="padding: 10px">
-                <div class="col-md-2"></div>
-                <div class="col-md-2">
-                    <label >Member Price</label>
-                </div>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" name="memberPrice" value="<?php echo $table_pre[0][5]; ?>" onkeyup= "clearNoNum(this)" >
-                </div>
-                <div class="col-md-2"></div>
-            </div>
+
 
             <div class="row" style="padding: 10px">
                 <div class="col-md-2"></div>
@@ -160,19 +151,19 @@ if(isset($_POST['upload']))
     $capacity = $_POST['capacity'];
     $unitPrice =$_POST['unitPrice'];
     $location=$_POST['location'];
-    $memberPrice=$_POST['memberPrice'];
     $color=$_POST['color'];
     $facilityIntro=$_POST['introduction'];
     $image = $_FILES['image']['name'];
 
 
-    if($facilityName ==null|| $capacity==null || $unitPrice==null || $location==null ||$memberPrice==null
+    if($facilityName ==null|| $capacity==null || $unitPrice==null || $location==null
         || $color==null || $facilityIntro==null){
         echo "<script> alert(\"Please fill in all the blanks!\"); </script>";
     }
 
     else if($image == null){
-        $sql = "update Facility set facilityName= '" . $facilityName . "',capacity= ".$capacity.",unitPrice=".$unitPrice.",location='".$location."',memberPrice=".$memberPrice.", facilityIntro='".$facilityIntro."', color='".$color."' where Facility.id= ".$facilityId.";";
+        $sql = "update Facility set facilityName= '".$facilityName."',capacity= ".$capacity.",unitPrice=".$unitPrice.",location='".$location."', facilityIntro='".$facilityIntro."', color='".$color."' where Facility.id= ".$facilityId.";";
+        echo $sql;
         $statement = $pdo->query($sql);
         echo "<script> alert(\"update sucessfully!\"); </script>";
         echo "<script> location.href=\"facilityManage.php\";</script>";
@@ -208,13 +199,7 @@ if(isset($_POST['upload']))
 
             move_uploaded_file($_FILES['image'] ['tmp_name'], $path);
 
-            //$sth=$con->prepare("insert into pic(id,name,image)values(null,'',:image) ");
-            //$sth=$con->prepare("insert into Facility(id,facilityName,capacity,unitPrice,address,contact,telephone,email,facilityIntro,facilityPic) values (null,'','','','','','$telephone','$email','$facilityIntro','$image') ");
-            //$sth=$con->prepare("insert into Facility (id,facilityName,capacity,unitPrice,address,contact,telephone,email,facilityIntro,facilityPic) values (null,'$facilityName','$capacity','$unitPrice','$address','$contact','$telephone','$email','$facilityIntro','$image') ");
-
-            //$sth = $con->prepare("UPDATE Facility SET id=null,facilityName='$facilityName', capacity='$capacity',unitPrice='$unitPrice',address='$address',contact='$contact',telephone='$telephone',email='$email',facilityIntro='$facilityIntro',facilityPic='$image' WHERE facilityName='$name'");
-
-            $sql = "update Facility set facilityName= '" . $facilityName . "',capacity= ".$capacity.",unitPrice=".$unitPrice.",location='".$location."',memberPrice=".$memberPrice.", facilityIntro='".$facilityIntro."', facilityPic = '".$image."', color='".$color."' where Facility.id= ".$facilityId.";";
+            $sql = "update Facility set facilityName= '" . $facilityName . "',capacity= ".$capacity.",unitPrice=".$unitPrice.",location='".$location."', facilityIntro='".$facilityIntro."', facilityPic = '".$image."', color='".$color."' where Facility.id= ".$facilityId.";";
 
             //$sth->execute();
             $statement = $pdo->query($sql);
