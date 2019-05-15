@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <?php
+session_start();
 include ('PDO.php');
 include('header.php');
 include('session_check.php');

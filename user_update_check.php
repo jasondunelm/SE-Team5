@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "PDO.php";
 
 $firstName=$_POST['firstName'];

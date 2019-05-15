@@ -1,7 +1,7 @@
 <!-- the navigation bar of homepage -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <img src="images/small_logo.png">&nbsp;&nbsp;
-    <a class="navbar-brand" href="https://www.teamdurham.com">DUS</a>
+    <a href="https://www.teamdurham.com"><img src="images/small_logo.png"></a>&nbsp;&nbsp;
+<!--    <a class="navbar-brand" href="https://www.teamdurham.com">DUS</a>-->
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -41,7 +41,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="openTime.php">Open time</a>
                     <a class="dropdown-item" href="cater.php">Catering</a>
-                    <a class="dropdown-item" href="https://www.accessable.co.uk">Access Information</a>
+                    <a class="dropdown-item" href=" ">Access Information</a>
 
                 </div>
             </li>
@@ -53,7 +53,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="facilityManage.php">Facility Mgt.</a>
                     <a class="dropdown-item" href="editUserType.php">User Mgt.</a>
-                    <a class="dropdown-item" href="https://www.accessable.co.uk">Booking Mgt.</a>
+                    <a class="dropdown-item" href="fullcalendar2\index.php">Booking Mgt.</a>
 
                 </div>
             </li>

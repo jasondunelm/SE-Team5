@@ -1,5 +1,5 @@
-
 <?php
+session_start();
 include ('PDO.php');
 include('header.php');
 include('session_check.php');
@@ -114,7 +114,7 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
                     <br>
                     <?php
                     if($rows['facilityName']=="Squash courts"||$rows['facilityName']=="Aerobics room"||$rows['facilityName']=="Tennis"||$rows['facilityName']=="Athletics track"){
-                        echo "<a href=\"register.php\" class=\"btn btn-primary btn-lg\">BOOKING</a>";
+                        echo "<a href=\"fullcalendar2\index.php\" class=\"btn btn-primary btn-lg\">BOOKING</a>";
                     }
                     else{
                         echo "<h4>Online booking system of this facility will be available soon!</h4> ";

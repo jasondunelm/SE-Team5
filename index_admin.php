@@ -39,28 +39,28 @@ include('footer.php');
         <div class="carousel-item active">
             <img class="w-100" src="images/bg_1.png">
             <div class="carousel-caption text-success d-none d-sm-block">
-                <h1>Join us today</h1>
+<!--                <h1>Join us today</h1>-->
                 <p class="text-light">
-                    <a href="register.php" class="btn btn-primary btn-lg carousel_btn">Sign up</a>
+                    <a href="register.php" class="btn btn-primary btn-lg carousel_btn">Sign up today!</a>
                 </p>
             </div>
         </div>
         <div class="carousel-item">
             <img class="w-100" src="images/bg_2.png">
             <div class="carousel-caption text-success d-none d-sm-block">
-                <h1>Have a try</h1>
+<!--                <h1>Have a try</h1>-->
                 <p class="text-light">
                     <!-- <a href="fullcalendar2/book_index.php" class="btn btn-primary btn-lg carousel_btn">Book online</a> -->
-                    <button class="btn btn-primary btn-lg carousel_btn" value="<?php echo $_SESSION['role']; ?>" onclick="userCheck(this)">Book online</button>
+                    <button class="btn btn-primary btn-lg carousel_btn" value="<?php echo $_SESSION['role']; ?>" onclick="userCheck(this)">Book sports facility</button>
                 </p>
             </div>
         </div>
         <div class="carousel-item">
             <img class="w-100" src="images/bg_3.png">
             <div class="carousel-caption text-success d-none d-sm-block">
-                <h1>Maiden Castle</h1>
-                <p class="text-light">Access information, opening times
-                    <a href="cater.php" class="btn btn-primary btn-lg carousel_btn">Find more</a>
+<!--                <h1>Access information, opening times</h1>-->
+                <p class="text-light">
+                    <a href="cater.php" class="btn btn-primary btn-lg carousel_btn">Find more info</a>
                 </p>
             </div>
         </div>

@@ -1,10 +1,6 @@
 <?php
 session_start();
 include ('PDO.php');
-include('header.php');
-include('session_check.php');
-include('config_wyj.php');
-include('footer.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +9,7 @@ include('footer.php');
     <title>Facility Manage</title>
 
     <?php
-   // include('meta_data.php');
+    include('meta_data.php');
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
@@ -72,8 +68,8 @@ include('footer.php');
 <body>
 
 <?php
-//include('header.php');
-//include('session_check.php');
+include('header.php');
+include('session_check.php');
 include('config_wyj.php');
 
 $pdo = new PDO($db_host.";".$db_name,$db_user, $db_pass);
@@ -136,7 +132,7 @@ if($_POST['facilityName']!=null){
 </div>
 
 <?php
-//include('footer.php');
+include('footer.php');
 ?>
 </body>
 </html>
