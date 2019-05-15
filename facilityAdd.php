@@ -1,6 +1,10 @@
 <?php
 session_start();
-include('web_temp.php');
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <?php
 session_start();
-include "PDO.php";
-include "web_temp.php";
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 
 $id=$_SESSION["id"];
 $sql="SELECT * FROM Users WHERE id=$id";

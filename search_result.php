@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <?php
-include "web_temp.php";
-include "PDO.php";
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 $facilityName=$_POST ['facilityName'];
 
 $sql="SELECT * FROM Facility WHERE facilityName LIKE '%$facilityName%' OR location LIKE '%$facilityName%'";
@@ -48,11 +51,6 @@ $statement = $pdo->query($sql);
     </table>
 
 </div>
-
-
-
-
-
 </body>
 </html>
 

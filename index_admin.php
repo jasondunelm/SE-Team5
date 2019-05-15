@@ -1,5 +1,10 @@
 <?php
 session_start();
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +27,6 @@ session_start();
 
 </head>
 <body>
-<?php include('header.php'); ?>
 
 <!-- carousel part -->
 <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
@@ -167,13 +171,6 @@ session_start();
     </div>
 
 </div>
-
-<?php
-include('session_check.php');
-include('footer.php');
-?>
-
-
 </body>
 </html>
 

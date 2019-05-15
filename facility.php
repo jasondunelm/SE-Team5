@@ -1,6 +1,10 @@
 
 <?php
-include "PDO.php";
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 
 if($facilityName=$_GET ['facilityName']){
 }
@@ -23,8 +27,8 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
 </header>
 <body>
 <?php
-include('header.php');
-include('session_check.php');
+//include('header.php');
+//include('session_check.php');
 ?>
 <div id="content" style="margin-left: 10%; margin-right: 10%; WORD-BREAK: normal; WORD-WRAP: break-word">
             <center><h1 style="color:black;"><?php echo $rows['facilityName']?></h1></center><br>

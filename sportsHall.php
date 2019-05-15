@@ -1,6 +1,9 @@
 <?php
-include "web_temp.php";
-include "PDO.php";
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 
 $sql="SELECT * FROM Facility WHERE location='Sports Hall'";
 $statement= $pdo->query($sql);

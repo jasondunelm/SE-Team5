@@ -1,5 +1,10 @@
 <?php
 session_start();
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -25,10 +30,10 @@ session_start();
 <body>
 
 <?php
-include('header.php');
-include('session_check.php');
-include('config_wyj.php');
-include('footer.php');
+//include('header.php');
+//include('session_check.php');
+//include('config_wyj.php');
+//include('footer.php');
 
 $name = $_GET['id'];
 
