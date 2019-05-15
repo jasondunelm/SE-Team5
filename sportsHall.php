@@ -5,7 +5,15 @@ include "PDO.php";
 $sql="SELECT * FROM Facility WHERE location='Sports Hall'";
 $statement= $pdo->query($sql);
 ?>
+<head>
+    <meta charset="utf-8">
+    <title>Sports Hall</title>
 
+    <?php
+    include('meta_data.php');
+    ?>
+
+</head>
 <div id="container" style="margin-left: 10%; margin-right: 10%; padding-top: 5%;">
     <div class="row">
     <?php

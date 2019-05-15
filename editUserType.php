@@ -7,10 +7,19 @@ else{
     $userName="@";
 }
 
-$sql="SELECT * FROM users WHERE userName LIKE '%$userName%'";
+$sql="SELECT * FROM Users WHERE userName LIKE '%$userName%'";
 $statement = $pdo->query($sql);
 ?>
 
+<head>
+    <meta charset="utf-8">
+    <title>User Type Update</title>
+
+    <?php
+    include('meta_data.php');
+    ?>
+
+</head>
 <script>
     var id;
     function getId(obj){

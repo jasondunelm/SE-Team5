@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Cater</title>
+    <title>Open Time</title>
 
     <?php
     include('meta_data.php');

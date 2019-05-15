@@ -11,7 +11,15 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 
 
+<head>
+    <meta charset="utf-8">
+    <title>User Info Update</title>
 
+    <?php
+    include('meta_data.php');
+    ?>
+
+</head>
 <div class="container" style="padding-top:100px">
     <form method="post" id="update" action="user_update_check.php">
         <center><h1 style="color:black;">Modify Information</h1></center><br>

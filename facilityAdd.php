@@ -6,7 +6,7 @@ include('web_temp.php');
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Homepage</title>
+    <title>Add New Facility</title>
     <?php
     include('meta_data.php');
     ?>

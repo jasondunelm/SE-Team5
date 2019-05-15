@@ -9,7 +9,15 @@ $statement = $pdo->query($sql);
 
 ?>
 
+<head>
+    <meta charset="utf-8">
+    <title>Search Result</title>
 
+    <?php
+    include('meta_data.php');
+    ?>
+
+</head>
 <div id="content" style="margin-left: 10%; margin-right: 10%; WORD-BREAK: break-all; WORD-WRAP: break-word">
 
     <center><h1 style="color:black;">Search facility result</h1></center><br>

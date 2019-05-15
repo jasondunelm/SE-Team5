@@ -1,10 +1,7 @@
 
 <?php
 include "PDO.php";
-//include "web_temp.php";
-//include('config_wyj.php');
 
-//$pdo = new PDO($db_host.";".$db_name, $db_user, $db_pass);
 if($facilityName=$_GET ['facilityName']){
 }
 else{
