@@ -9,7 +9,7 @@ include('footer.php');
 if($facilityName=$_GET ['facilityName']){
 }
 else{
-    echo "<script> location.href=\"index.php \"</script>";
+    echo "<script> location.href=\"index_admin.php \"</script>";
 }
 
 $sql="SELECT * FROM Facility WHERE facilityName='$facilityName'";

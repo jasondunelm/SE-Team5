@@ -198,3 +198,13 @@ body {
 .col_cater_time{
     line-height: 200%;
 }
+#account_update{
+    display: none;
+}
+#logout{
+    display: none;
+}
+#divId{
+    display:none;
+}
+

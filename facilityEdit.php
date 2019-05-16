@@ -194,12 +194,15 @@ $table_pre= $statement->fetchAll(PDO::FETCH_ASSOC);
 if(isset($_POST['upload']))
 
 {
-    $facilityName = $_POST['facilityName'];
-    $capacity = $_POST['capacity'];
-    $unitPrice =$_POST['unitPrice'];
-    $location=$_POST['location'];
-    $color=$_POST['color'];
-    $facilityIntro=$_POST['introduction'];
+
+    // sanitize the input data
+    $facilityName = filter_input(INPUT_POST, 'facilityName', FILTER_SANITIZE_STRING);
+    $capacity = filter_input(INPUT_POST, 'capacity', FILTER_SANITIZE_STRING);
+    $unitPrice = filter_input(INPUT_POST, 'unitPrice', FILTER_SANITIZE_STRING);
+    $location = filter_input(INPUT_POST, 'location', FILTER_SANITIZE_STRING);
+    $color = filter_input(INPUT_POST, 'color', FILTER_SANITIZE_STRING);
+    $facilityIntro = filter_input(INPUT_POST, 'introduction', FILTER_SANITIZE_STRING);
+
     $image = $_FILES['image']['name'];
 
 
@@ -210,7 +213,7 @@ if(isset($_POST['upload']))
 
     else if($image == null){
         $sql = "update Facility set facilityName= '".$facilityName."',capacity= ".$capacity.",unitPrice=".$unitPrice.",location='".$location."', facilityIntro='".$facilityIntro."', color='".$color."' where Facility.id= ".$facilityId.";";
-        echo $sql;
+
         $statement = $pdo->query($sql);
         echo "<script> alert(\"update sucessfully!\"); </script>";
         echo "<script> location.href=\"facilityManage.php\";</script>";

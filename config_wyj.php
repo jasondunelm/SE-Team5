@@ -17,9 +17,11 @@
 // to access MySQL: localhost
 
 $mysql_db_host = "127.0.0.1";
-$mysql_db_name = "se_team5";
+//$mysql_db_name = "se_team5";
+$mysql_db_name = "test01";
 $mysql_db_user = "root";
-$mysql_db_pass = "password";
+//$mysql_db_pass = "password";
+$mysql_db_pass = "mon97day";
 
 $db_host = 'mysql:host=127.0.0.1';
 $db_name = 'dbname=test01';

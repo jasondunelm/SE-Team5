@@ -192,13 +192,14 @@ if(isset($_POST['upload']))
 
 {
 
-    $facilityName = $_POST['facilityName'];
-    $capacity = $_POST['capacity'];
-    $unitPrice =$_POST['unitPrice'];
-    $location=$_POST['location'];
-    //$memberPrice=$_POST['memberPrice'];
-    $color=$_POST['color'];
-    $facilityIntro=$_POST['introduction'];
+    // sanitize the input data
+    $facilityName = filter_input(INPUT_POST, 'facilityName', FILTER_SANITIZE_STRING);
+    $capacity = filter_input(INPUT_POST, 'capacity', FILTER_SANITIZE_STRING);
+    $unitPrice = filter_input(INPUT_POST, 'unitPrice', FILTER_SANITIZE_STRING);
+    $location = filter_input(INPUT_POST, 'location', FILTER_SANITIZE_STRING);
+    $color = filter_input(INPUT_POST, 'color', FILTER_SANITIZE_STRING);
+    $facilityIntro = filter_input(INPUT_POST, 'introduction', FILTER_SANITIZE_STRING);
+
     $image = $_FILES['image']['name'];
 
 
@@ -237,7 +238,7 @@ if(isset($_POST['upload']))
 
             move_uploaded_file($_FILES['image'] ['tmp_name'], $path);
 
-            echo "test here";
+
 
             $sth=$con->prepare("insert into Facility (id,facilityName,capacity,unitPrice,location,facilityIntro,facilityPic,color)
 values (null,'$facilityName','$capacity','$unitPrice','$location','$facilityIntro','$image','$color') ");
