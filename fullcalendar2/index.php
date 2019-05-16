@@ -212,15 +212,15 @@ $allusers = $req->fetchAll();
         <img width="50" src="../images/teamdurham.png" alt="Durham University" class="durham-university-logo">
         </a>
         <a class="team-durham-slogan">
-            <span class="light">Durham University Sport</span>
+            <span class="light">Durham University</span>
             <br>
             <br>
-            <span class="slogan">Booking System</span>
+            <span class="slogan">Sports Facility Calendar</span>
         </a>
            <div class="span12">
                <ul class="nav nav-pills">
                    <li>
-                        <a href="index.php">Home <span class="sr-only">(current)</span></a>
+                        <a href="../index_admin.php">Home <span class="sr-only">(current)</span></a>
                    </li>
                </ul>
            </div>
