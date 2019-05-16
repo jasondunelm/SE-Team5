@@ -1,13 +1,13 @@
 <?php
 session_start();
-$_SESSION['userName']="tzu-chiao.wang2@durham.ac.uk";
-$_SESSION['userName']="dsfj@durham.ac.uk";
+$_SESSION['userName']="tuohao11@gmail.com";
+$_SESSION['userName']="tuo.hao@durham.ac.uk";
 require_once('bdd.php');
 
-$sql = "SELECT nbooking.ID, UserID, FacilityID, Name, StartTime, EndTime, block, Color FROM
+$sql = "SELECT nbooking.ID, UserID, FacilityID, facilityName AS Name, StartTime, EndTime, block, Color FROM
         (SELECT * FROM booking) AS nbooking
         LEFT JOIN
-        (SELECT ID, Name, Color FROM facility) AS nfacility 
+        (SELECT ID, facilityName, Color FROM facility) AS nfacility 
         on nbooking.FacilityID=nfacility.ID ";
 
 $req = $bdd->prepare($sql);
@@ -22,7 +22,7 @@ foreach ($bookings as $row) {
         $blocks[] = array($row["ID"], $row["Name"], $row["StartTime"], $row["EndTime"]);
 }
 
-$sql = "SELECT ID, Name, Color, Capacity, UnitPrice FROM facility WHERE ID<>0";
+$sql = "SELECT ID, facilityName AS Name, Color, Capacity, UnitPrice FROM facility WHERE ID<>0";
 
 $req = $bdd->prepare($sql);
 $req->execute();
@@ -36,17 +36,17 @@ foreach ($facilities as $row) {
 }
 
 $userName=$_SESSION['userName'];
-$sql = "SELECT `User ID`, `Username`, `Role` FROM user WHERE Username= '$userName'";
+$sql = "SELECT `ID`, `Username`, `Role` FROM users WHERE Username= '$userName'";
 
 $req = $bdd->prepare($sql);
 $req->execute();
 
 $loginUser = $req->fetch();
-$userID = $loginUser["User ID"];
+$userID = $loginUser["ID"];
 $userName = $loginUser["Username"]; 
 $userRole = $loginUser["Role"]; // This is where the admin and the trainer is declared.
 
-$sql = "SELECT `User ID`, `Username`, `Firstname`, `Lastname` FROM `user` WHERE 1";
+$sql = "SELECT `ID`, `Username`, `Firstname`, `Lastname` FROM `users` WHERE 1";
 
 $req = $bdd->prepare($sql);
 $req->execute();
@@ -185,7 +185,7 @@ $allusers = $req->fetchAll();
                         else{
                             echo '<select name="user" class="form-control" id="userAdd">';
                             foreach($allusers as $eachuser){
-                                echo "<option value='".$eachuser["User ID"]."'>".$eachuser["User ID"]." ".$eachuser["Username"]." </option>";
+                                echo "<option value='".$eachuser["ID"]."'>".$eachuser["ID"]." ".$eachuser["Username"]." </option>";
                             }
                            echo '</select>';
                         } 
