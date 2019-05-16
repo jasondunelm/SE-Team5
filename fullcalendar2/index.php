@@ -98,6 +98,99 @@ $allusers = $req->fetchAll();
 		float: none;
 		margin: 0 auto;
 	}
+        
+        .navbar{
+    background-color: #742e68 !important;
+}
+
+
+
+.navbar.nav-item .dropdown-menu .dropdown-item{
+    color: #000 !important;
+}
+
+
+.team-durham-slogan{
+   position: absolute;
+    top: 40%;
+    left: 45%;
+    
+    transform: translate(-50%, -50%) 
+    float:left;
+
+    line-height:60%;
+
+
+    color:#fff;
+
+        }
+    .light{
+            color:#cf9ace;
+        }
+    .slogan{
+         
+        font-size:20px;
+        }
+
+        
+   .btn1-outline-success:hover{
+    background-color: #742e68;
+}
+    .btn-1{
+    color: white;
+    border-style: hidden;
+        
+}
+        .row-fluid{width:100%;*zoom:1;}
+        .row-fluid:before,.row-fluid:after{display:table;content:"";line-height:0}
+        .row-fluid:after{clear:both;}
+        .nav{margin-left:0;
+            list-style:none;
+            color: white;
+            margin-bottom: 0;
+            }
+        ul, {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    padding-inline-start: 40px;
+    padding: 0;
+    margin: 0 0 10px 25px;
+}
+        .nav-pills{
+            border-bottom: 0;}
+    
+        .nav-pills>li>a {
+            top: 6px;
+            vertical-align: middle;
+    color: #fff;
+    background-color: #742e68;
+    padding-top: 8px;
+    padding-bottom: 10px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    border-radius: 0;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-right: 2px;
+    line-height: 14px;
+
+}
+        .span12{
+            width: 100%;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+        }
+        
+       .btn-primary {
+                      
+    color: #fff;
+    background-color: purple;
+    border-color: purple;
+}
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -113,27 +206,26 @@ $allusers = $req->fetchAll();
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">Free Calendar</a>
-            </div>
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">Menu</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
+       <div id="header" class="row-fluid">
+  
+        <a href="" class="pull-left">
+        <img width="50" src="../images/teamdurham.png" alt="Durham University" class="durham-university-logo">
+        </a>
+        <a class="team-durham-slogan">
+            <span class="light">Durham University</span>
+            <br>
+            <br>
+            <span class="slogan">Sports Facility Calendar</span>
+        </a>
+           <div class="span12">
+               <ul class="nav nav-pills">
+                   <li>
+                        <a href="../index_admin.php">Home <span class="sr-only">(current)</span></a>
+                   </li>
+               </ul>
+           </div>
+      
+       </div>
         <!-- /.container -->
     </nav>
     
