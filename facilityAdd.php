@@ -1,5 +1,7 @@
 <?php
 session_start();
+if($_SESSION['id']==null)
+    die();
 include ('PDO.php');
 include('header.php');
 include('session_check.php');
@@ -26,35 +28,40 @@ include('footer.php');
     }
     function checkform(){
         if(document.add_Form.facilityName.value==""){
-            alert("facilityName can not be blank!");
+            alert("FacilityName can not be blank!");
             return false;
         }
         if(document.add_Form.capacity.value==""){
-            alert("capacity can not be blank!");
+            alert("Capacity can not be blank!");
             return false;
         }
         if(document.add_Form.unitPrice.value==""){
-            alert("unitPrice can not be blank!");
+            alert("UnitPrice can not be blank!");
             return false;
         }
         if(document.add_Form.location.value==""){
-            alert("location can not be blank!");
+            alert("Location can not be blank!");
             return false;
         }
 
 
         if(document.add_Form.color.value==""){
-            alert("color can not be blank!");
+            alert("Color can not be blank!");
             return false;
         }
         if(document.add_Form.introduction.value==""){
-            alert("introduction can not be blank!");
+            alert("Introduction can not be blank!");
             return false;
         }
         if(document.add_Form.image.value==""){
-            alert("image can not be blank!");
+            alert("Image can not be blank!");
             return false;
         }
+
+        $('#facility_add').hide();
+        $('#wait').show();
+
+
         return true;
 
 
@@ -64,11 +71,15 @@ include('footer.php');
 </head>
 <body>
 
-<div class="facility_edit_container" >
+<div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;">
+    <img src='images/loading.gif' width="64" height="64" /><br>Loading..</div>
+
+<div class="facility_edit_container" id="facility_add">
     <h2>Add facility information</h2>
     <div class="facility_edit_div">
 
-        <form class="facility_infor_edit" method="POST" name="add_Form" enctype="multipart/form-data" onsubmit=" return checkform()">
+        <form class="facility_infor_edit" method="POST" name="add_Form" enctype="multipart/form-data" onsubmit="return checkform()">
+
             <div class="row" style="padding: 10px">
                 <div class="col-md-2"></div>
                 <div class="col-md-2">
@@ -147,7 +158,8 @@ include('footer.php');
             <div class="row" style="padding: 10px">
               <div class="col-md-4"></div>
                 <div class="col-md-offset-6">
-                    <button type="submit" class="btn btn-primary edit_btn_group" name="upload" >Submit</button>
+                    <!-- <button type="submit" class="btn btn-primary edit_btn_group" name="upload" >Submit</button> -->
+                    <input type="submit" class="btn btn-primary edit_btn_group" name="upload" value="Submit">
                     <a href="facilityManage.php" class="btn btn-primary">Cancel</a>
                 </div>
 
@@ -166,7 +178,8 @@ include('footer.php');
 include('config_wyj.php');
 
 try{
-    $con = new PDO($db_host.";".$db_name, $db_user, $db_pass);
+    $con = $pdo;
+    //$con = new PDO($db_host.";".$db_name, $db_user, $db_pass);
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "connected";
 }

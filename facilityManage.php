@@ -1,6 +1,9 @@
 <?php
 session_start();
+if($_SESSION['id']==null)
+    die();
 include ('PDO.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,13 +69,15 @@ include ('PDO.php');
 </script>
 </head>
 <body>
+<div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;">
+    <img src='images/loading.gif' width="64" height="64" /><br>Loading..</div>
 
 <?php
 include('header.php');
 include('session_check.php');
 include('config_wyj.php');
 
-$pdo = new PDO($db_host.";".$db_name,$db_user, $db_pass);
+//$pdo = new PDO($db_host.";".$db_name,$db_user, $db_pass);
 
 $sql="select * from Facility";
 $statement = $pdo->query($sql);
@@ -88,8 +93,7 @@ if($_POST['facilityName']!=null){
 
 ?>
 
-<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
-    <img src='images/loading.gif' width="64" height="64" /><br>Loading..</div>
+
 
 <div class="facility_manage_div" id="table_div">
     <h3>Facility list</h3>
@@ -105,10 +109,10 @@ if($_POST['facilityName']!=null){
         <table class="table table-striped table-striped table-hover table_f_manage">
             <thred>
                 <tr>
-                    <th scope="col-md-2" >#</th>
-                    <th scope="col-md-8">Facility name</th>
-                    <th scope="col-md-1">Edition
-                    <th scope="col-md-1">Deletion</th>
+                    <th  >#</th>
+                    <th >Facility name</th>
+                    <th >Edition
+                    <th >Deletion</th>
                 </tr>
             </thred>
             <tbody>

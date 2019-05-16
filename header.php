@@ -40,8 +40,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="openTime.php">Open time</a>
-                    <a class="dropdown-item" href="cater.php">Catering</a>
-                    <a class="dropdown-item" href=" ">Access Information</a>
+                    <a class="dropdown-item" href="cater.php">Cafe and Catering</a>
 
                 </div>
             </li>
@@ -53,19 +52,19 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="facilityManage.php">Facility Mgt.</a>
                     <a class="dropdown-item" href="editUserType.php">User Mgt.</a>
-                    <a class="dropdown-item" href="fullcalendar2\index.php">Booking Mgt.</a>
+                    <a class="dropdown-item" href="fullcalendar2/index.php">Booking Mgt.</a>
 
                 </div>
             </li>
 
 
         </ul>
+
+
         <form class="form-inline my-2 my-lg-0" action="search_result.php" method="post">
-            <div class="btn-group" role="group" aria-label="Basic example">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                <!--  class="btn btn-outline-success my-2 my-sm-0" -->
-            </div>
+                <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+
         </form>
 
         <ul class="navbar-nav mr-right">
