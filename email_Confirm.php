@@ -1,19 +1,19 @@
 <?php
-include("functions_WebFront.php");
+include('config_wyj.php');
+include ('functions_WebFront.php');
 
 if (!isset($_GET['email']) || !isset($_GET['token'])) {
     redirectToRegisterPage();
 } else {
-    //$con = new mysqli("127.0.0.1", "root", "password", "se_team5");
-    $con = new mysqli("db4free.net", "dus_root", "password", "se_team5");
+    $link = new mysqli($mysql_db_host, $mysql_db_user, $mysql_db_pass, $mysql_db_name);
 
-    $email = $con->real_escape_string($_GET['email']);
-    $token = $con->real_escape_string($_GET['token']);
+    $email = $link->real_escape_string($_GET['email']);
+    $token = $link->real_escape_string($_GET['token']);
 
-    $sql = $con->query("SELECT id FROM Users WHERE userName='$email' AND token='$token' AND emailConfirmed=0");
+    $sql = $link->query("SELECT id FROM Users WHERE userName='$email' AND token='$token' AND emailConfirmed=0");
 
     if ($sql->num_rows > 0) {
-        $con->query("UPDATE Users SET emailConfirmed=1, token='' WHERE userName='$email'");
+        $link->query("UPDATE Users SET emailConfirmed=1, token='' WHERE userName='$email'");
         $message = 'Your email has been verified! You can log in now!';
     } else
         redirectToRegisterPage();

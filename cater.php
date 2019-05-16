@@ -20,19 +20,18 @@ include('session_check.php');
 ?>
 
 
-<div class="facilities">
+<div class="cater_container">
     <h2>Catering</h2>
     <p>
         Maiden Castle Café serves a delicious range of hot dishes, including a chef's theatre station with internationally inspired dishes. Freshly made baguettes, salads and paninis are also available.
     </p>
 
     <h4>Opening Times</h4>
-    <div class="container">
-        <div class="row">
-            <div class="col col-6 col_cater_time">
+    <div class="row">
+
+            <div class="col-md-6 col_cater_time">
 
                 <p>
-                <br /><br />
 
                 08:00am to 20:30 - Monday & Tuesday<br />
 
@@ -47,13 +46,15 @@ include('session_check.php');
                 08.30am to 15:00 - Sunday
                 </p>
             </div>
-            <div class="col col-6">
+            <div class="col-md-6">
                 <img class="img-thumbnail"
-                     src="images/cater.jpg"
-                     alt="catering picture of Maiden castle ">
+                 src="images/cater.jpg"
+                 alt="catering picture of Maiden castle ">
+
             </div>
-        </div>
+
     </div>
+    <br />
     <h4>Location</h4>
     <p>Maiden Castle Café is located within the Graham Sports Centre, Stockton Road, Durham and on the <a href="https://www.dur.ac.uk/map/">University</a> map.</p>
 

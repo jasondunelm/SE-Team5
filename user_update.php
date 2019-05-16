@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <?php
 session_start();
-include "PDO.php";
-include "web_temp.php";
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 
 $id=$_SESSION["id"];
 $sql="SELECT * FROM Users WHERE id=$id";
@@ -11,7 +14,15 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
 ?>
 
 
+<head>
+    <meta charset="utf-8">
+    <title>User Info Update</title>
 
+    <?php
+    include('meta_data.php');
+    ?>
+
+</head>
 <div class="container" style="padding-top:100px">
     <form method="post" id="update" action="user_update_check.php">
         <center><h1 style="color:black;">Modify Information</h1></center><br>

@@ -1,23 +1,22 @@
 <?php
-include("functions_WebFront.php");
+include('config_wyj.php');
+include ('functions_WebFront.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 // Load Composer's autoloader
 require 'PHPMailer/vendor/autoload.php';
 
 if (isset($_POST['email'])) {
-    //$conn = new mysqli("127.0.0.1", "root", "password", "se_team5");
-    $con = new mysqli("db4free.net", "dus_root", "password", "se_team5");
+    $link = new mysqli($mysql_db_host, $mysql_db_user, $mysql_db_pass, $mysql_db_name);
 
+    $email = $link->real_escape_string($_POST['email']);
 
-    $email = $conn->real_escape_string($_POST['email']);
-
-    $sql = $conn->query("SELECT id FROM Users WHERE userName='$email'");
+    $sql = $link->query("SELECT id FROM Users WHERE userName='$email'");
     if ($sql->num_rows > 0) {
 
         $token = generateNewString();
 
-        $conn->query("UPDATE Users SET token='$token', 
+        $link->query("UPDATE Users SET token='$token', 
                       tokenExpire=DATE_ADD(NOW(), INTERVAL 5 MINUTE)
                       WHERE userName='$email'
             ");

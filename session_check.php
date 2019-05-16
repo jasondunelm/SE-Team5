@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL^E_NOTICE);
 if($_GET['action'] == "logout"){
     unset($_SESSION['role']);
     session_destroy();

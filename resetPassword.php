@@ -1,15 +1,14 @@
 <?php
-include("functions_WebFront.php");
+include('config_wyj.php');
+include ('functions_WebFront.php');
 
 	if (isset($_GET['email']) && isset($_GET['token'])) {
-        //$conn = new mysqli("127.0.0.1", "root", "password", "se_team5");
-        $con = new mysqli("db4free.net", "dus_root", "password", "se_team5");
+        $link = new mysqli($mysql_db_host, $mysql_db_user, $mysql_db_pass, $mysql_db_name);
 
+        $email = $link->real_escape_string($_GET['email']);
+        $token = $link->real_escape_string($_GET['token']);
 
-        $email = $conn->real_escape_string($_GET['email']);
-        $token = $conn->real_escape_string($_GET['token']);
-
-        $sql = $conn->query("SELECT id FROM Users WHERE
+        $sql = $link->query("SELECT id FROM Users WHERE
 			userName='$email' AND token='$token' AND token<>'' AND tokenExpire > NOW()
 		");
 
@@ -36,7 +35,7 @@ include("functions_WebFront.php");
                 } else {
                     $newPassword = $password;
                     $newPasswordEncrypted = md5(md5($email).$newPassword);
-                    $conn->query("UPDATE Users SET token='', password = '$newPasswordEncrypted' 
+                    $link->query("UPDATE Users SET token='', password = '$newPasswordEncrypted' 
                       WHERE userName='$email'");
                     $message = "Your new password been updated successfully!<br><a href=login.php>Click Here To Log In</a>";
                 }
@@ -52,7 +51,7 @@ include("functions_WebFront.php");
 	<meta name="viewport"
 		  content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Register</title>
+	<title>Reset Password</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
 </head>
 <body>
