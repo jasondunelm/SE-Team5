@@ -2,10 +2,10 @@
 -- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- 主機： 127.0.0.1:3306
--- 產生時間： 2019 年 05 月 14 日 21:10
--- 伺服器版本： 8.0.16
--- PHP 版本： 7.2.17-0ubuntu0.18.04.1
+-- 主機： 127.0.0.1
+-- 產生時間： 2019 年 05 月 16 日 03:11
+-- 伺服器版本： 10.1.38-MariaDB
+-- PHP 版本： 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,10 +25,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `Booking`
+-- 資料表結構 `booking`
 --
 
-CREATE TABLE `Booking` (
+CREATE TABLE `booking` (
   `ID` int(11) NOT NULL,
   `UserID` int(11) NOT NULL,
   `FacilityID` int(11) NOT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE `Booking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 傾印資料表的資料 `Booking`
+-- 傾印資料表的資料 `booking`
 --
 
-INSERT INTO `Booking` (`ID`, `UserID`, `FacilityID`, `StartTime`, `EndTime`, `BookCost`, `NumPeople`, `block`) VALUES
+INSERT INTO `booking` (`ID`, `UserID`, `FacilityID`, `StartTime`, `EndTime`, `BookCost`, `NumPeople`, `block`) VALUES
 (6, 1, 2, '2019-05-24 00:00:00', '2019-05-30 00:00:00', 0, 0, 1),
 (39, 1, 1, '2019-05-29 10:00:00', '2019-05-29 19:00:00', 54, 1, 0),
 (45, 1, 1, '2019-05-07 09:00:00', '2019-05-07 13:00:00', 24, 1, 0),
@@ -108,7 +108,6 @@ INSERT INTO `Booking` (`ID`, `UserID`, `FacilityID`, `StartTime`, `EndTime`, `Bo
 (238, 1, 4, '2019-06-26 00:00:00', '2019-06-27 00:00:00', 0, 1, 1),
 (239, 1, 1, '2019-06-14 10:00:00', '2019-06-14 12:00:00', 0, 1, 1),
 (240, 1, 1, '2019-06-21 10:00:00', '2019-06-21 12:00:00', 0, 1, 1),
-(242, 1, 0, '2019-04-10 00:00:00', '2019-04-25 00:00:00', 0, 1, 1),
 (245, 1, 3, '2019-06-01 13:00:00', '2019-06-01 17:00:00', 0, 1, 1),
 (246, 1, 3, '2019-06-08 13:00:00', '2019-06-08 17:00:00', 0, 1, 1),
 (247, 1, 3, '2019-06-15 13:00:00', '2019-06-15 17:00:00', 0, 1, 1),
@@ -118,38 +117,38 @@ INSERT INTO `Booking` (`ID`, `UserID`, `FacilityID`, `StartTime`, `EndTime`, `Bo
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `Facility`
+-- 資料表結構 `facility`
 --
 
-CREATE TABLE `Facility` (
+CREATE TABLE `facility` (
   `id` int(11) NOT NULL,
-  `facilityName` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `capacity` varchar(7) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `facilityName` varchar(50) NOT NULL,
+  `capacity` int(11) NOT NULL DEFAULT '1',
   `unitPrice` double NOT NULL,
-  `location` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `memberPrice` double DEFAULT NULL,
-  `facilityIntro` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `facilityPic` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
-  `color` varchar(7) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL
+  `location` varchar(255) DEFAULT NULL,
+  `facilityIntro` varchar(255) DEFAULT NULL,
+  `facilityPic` varchar(255) DEFAULT NULL,
+  `color` varchar(7) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 傾印資料表的資料 `Facility`
+-- 傾印資料表的資料 `facility`
 --
 
-INSERT INTO `Facility` (`id`, `facilityName`, `capacity`, `unitPrice`, `location`, `memberPrice`, `facilityIntro`, `facilityPic`, `color`) VALUES
-(1, 'Squash courts', '#FF0000', 1, '6', NULL, NULL, NULL, NULL),
-(2, 'Aerobics room', '#FF8C00', 1, '20', NULL, NULL, NULL, NULL),
-(3, 'Tennis', '#FFD700', 1, '10', NULL, NULL, NULL, NULL),
-(4, 'Athletics track', '#008000', 20, '2', NULL, NULL, NULL, NULL);
+INSERT INTO `facility` (`id`, `facilityName`, `capacity`, `unitPrice`, `location`, `facilityIntro`, `facilityPic`, `color`) VALUES
+(0, 'All', 0, 0, NULL, NULL, NULL, '#000'),
+(1, 'Squash courts', 1, 6, '', NULL, NULL, '#FF0000'),
+(2, 'Aerobics room', 1, 20, '', NULL, NULL, '#FF8C00'),
+(3, 'Tennis', 1, 10, '', NULL, NULL, '#FFD700'),
+(4, 'Athletics track', 20, 2, '', NULL, NULL, '#008000');
 
 -- --------------------------------------------------------
 
 --
--- 資料表結構 `Users`
+-- 資料表結構 `users`
 --
 
-CREATE TABLE `Users` (
+CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `userName` varchar(50) DEFAULT NULL,
   `firstName` varchar(50) DEFAULT NULL,
@@ -159,13 +158,13 @@ CREATE TABLE `Users` (
   `token` varchar(10) DEFAULT NULL,
   `tokenExpire` datetime(6) DEFAULT NULL,
   `emailConfirmed` tinyint(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 傾印資料表的資料 `Users`
+-- 傾印資料表的資料 `users`
 --
 
-INSERT INTO `Users` (`id`, `userName`, `firstName`, `lastName`, `password`, `role`, `token`, `tokenExpire`, `emailConfirmed`) VALUES
+INSERT INTO `users` (`id`, `userName`, `firstName`, `lastName`, `password`, `role`, `token`, `tokenExpire`, `emailConfirmed`) VALUES
 (1, 'tuohao11@gmail.com', 'TUO', 'HAU', '716cff3009c40262f83b0161f2d8cca4', 'user', '', NULL, 1),
 (2, 'tuo.hao@durham.ac.uk', 'TUO', 'HAO', '2cd88e6117872a7ea7be4d04e1f11401', 'admin', '', NULL, 1);
 
@@ -174,23 +173,23 @@ INSERT INTO `Users` (`id`, `userName`, `firstName`, `lastName`, `password`, `rol
 --
 
 --
--- 資料表索引 `Booking`
+-- 資料表索引 `booking`
 --
-ALTER TABLE `Booking`
+ALTER TABLE `booking`
   ADD PRIMARY KEY (`ID`),
   ADD KEY `UserID` (`UserID`),
   ADD KEY `FacilityID` (`FacilityID`);
 
 --
--- 資料表索引 `Facility`
+-- 資料表索引 `facility`
 --
-ALTER TABLE `Facility`
+ALTER TABLE `facility`
   ADD PRIMARY KEY (`id`);
 
 --
--- 資料表索引 `Users`
+-- 資料表索引 `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -198,21 +197,21 @@ ALTER TABLE `Users`
 --
 
 --
--- 使用資料表自動增長(AUTO_INCREMENT) `Booking`
+-- 使用資料表自動增長(AUTO_INCREMENT) `booking`
 --
-ALTER TABLE `Booking`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=250;
+ALTER TABLE `booking`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=255;
 
 --
--- 使用資料表自動增長(AUTO_INCREMENT) `Facility`
+-- 使用資料表自動增長(AUTO_INCREMENT) `facility`
 --
-ALTER TABLE `Facility`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `facility`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- 使用資料表自動增長(AUTO_INCREMENT) `Users`
+-- 使用資料表自動增長(AUTO_INCREMENT) `users`
 --
-ALTER TABLE `Users`
+ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
