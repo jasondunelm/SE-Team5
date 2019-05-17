@@ -43,7 +43,12 @@ try {
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Booking Confirmation';
-    $mail->Body    = "<h3>You have booked in Durham system.<br> You should attend on ".$_POST["startDate"]." at $facilityName and pay in advance.<br>The booking cost ".$_POST["totalmoney"]." pounds.</h3>";
+    $bodytext= "<h3>You have booked sucessfully in DUS booking system.<br> You should attend on ".$_POST["startDate"];
+    if($facilityID!="4"){
+        $bodytext.=" at ".$_POST["startTime"];
+    }
+    $bodytext.= " at $facilityName and pay on site.<br>The booking cost ".$_POST["totalmoney"]." pounds.</h3>";
+    $mail->Body    = $bodytext;
     if($mail->send())
         $msg =  "You have booked successfully! Please verify your email!";
     else
