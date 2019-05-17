@@ -245,9 +245,13 @@ values (null,'$facilityName','$capacity','$unitPrice','$location','$facilityIntr
 
            $sth->execute();
 
-            echo "<script> alert(\"update sucessfully!\"); </script>";
-            //header("Location:facilityManage.php");
-            echo "<script> location.href=\"facilityManage.php\";</script>";
+            if($sth>0){
+                echo "<script> alert(\"Add new facility successfully!\"); </script>";
+                //header("Location:facilityManage.php");
+                echo "<script> location.href=\"facilityManage.php\";</script>";
+            }
+            else
+                echo "<script> alert(\"Fail to add new facility!\"); </script>";
 
 
         }

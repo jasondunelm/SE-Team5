@@ -253,9 +253,14 @@ if(isset($_POST['upload']))
 
             //$sth->execute();
             $statement = $pdo->query($sql);
-            echo "<script> alert(\"update sucessfully!\"); </script>";
-            //header("Location:facilityManage.php");
-            echo "<script> location.href=\"facilityManage.php\";</script>";
+            if($statement){
+                echo "<script> alert(\"Update facility information successfully!\"); </script>";
+                //header("Location:facilityManage.php");
+                echo "<script> location.href=\"facilityManage.php\";</script>";
+
+            }
+            else
+                echo "<script> alert(\"Fail to update facility information!\"); </script>";
 
         }
     }

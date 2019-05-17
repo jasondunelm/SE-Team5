@@ -228,9 +228,14 @@ values (null,'$className','$capacity','$unitPrice','$location','$introduction','
 
             $sth->execute();
 
-            echo "<script> alert(\"update sucessfully!\"); </script>";
-            //header("Location:facilityManage.php");
-            echo "<script> location.href=\"classManage.php\";</script>";
+            if($sth>0){
+                echo "<script> alert(\"Add new class successfully!\"); </script>";
+                //header("Location:facilityManage.php");
+                echo "<script> location.href=\"classManage.php\";</script>";
+            }
+            else
+                echo "<script> alert(\"Fail to add new class!\"); </script>";
+
 
 
         }

@@ -198,8 +198,14 @@ if(isset($_POST['upload']))
         $sql = "update Training set className= '".$className."',capacity= ".$capacity.",price=".$unitPrice.",location='".$location."', introduction='".$introduction."' where Training.id= ".$id.";";
 
         $statement = $pdo->query($sql);
-        echo "<script> alert(\"update sucessfully!\"); </script>";
-        echo "<script> location.href=\"classManage.php\";</script>";
+        if($statement){
+            echo "<script> alert(\"Update class information successfully!\"); </script>";
+            //header("Location:facilityManage.php");
+            echo "<script> location.href=\"classManage.php\";</script>";
+
+        }
+        else
+            echo "<script> alert(\"Fail to update class information!\"); </script>";
     }
 
     else {
@@ -236,10 +242,15 @@ if(isset($_POST['upload']))
 
             //$sth->execute();
             $statement = $pdo->query($sql);
-            echo "<script> alert(\"update sucessfully!\"); </script>";
-            //header("Location:facilityManage.php");
-            echo "<script> location.href=\"classManage.php\";</script>";
 
+            if($statement){
+                echo "<script> alert(\"Update class information successfully!\"); </script>";
+                //header("Location:facilityManage.php");
+                echo "<script> location.href=\"classManage.php\";</script>";
+
+            }
+            else
+                echo "<script> alert(\"Fail to update class information!\"); </script>";
         }
     }
 
