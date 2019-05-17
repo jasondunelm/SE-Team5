@@ -187,7 +187,7 @@ if(isset($_POST['upload']))
 
 
     if($className ==null|| $capacity==null || $unitPrice==null || $location==null
-        || $introduction==null){
+        || $introduction==null || $image==null){
         echo "<script> alert(\"Please fill in all the blanks!\"); </script>";
     }
 
@@ -196,7 +196,7 @@ if(isset($_POST['upload']))
 
         $folder = "images/";
 
-        $image = $_FILES['image']['name'];
+       // $image = $_FILES['image']['name'];
 
         $path = $folder . $image;
 
@@ -215,7 +215,7 @@ if(isset($_POST['upload']))
 
         if (!in_array($ext, $allowed)) {
 
-            echo "Sorry, only JPG, JPEG, PNG & GIF  files are allowed.";
+            echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
 
         } else {
 

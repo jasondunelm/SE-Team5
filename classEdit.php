@@ -28,31 +28,28 @@ include('footer.php');
             }
         }
         function checkform(){
-            if(document.add_Form.className.value==""){
+            if(document.edit_Form.className.value==""){
                 alert("FacilityName can not be blank!");
                 return false;
             }
-            if(document.add_Form.capacity.value==""){
+            if(document.edit_Form.capacity.value==""){
                 alert("Capacity can not be blank!");
                 return false;
             }
-            if(document.add_Form.unitPrice.value==""){
+            if(document.edit_Form.unitPrice.value==""){
                 alert("UnitPrice can not be blank!");
                 return false;
             }
-            if(document.add_Form.location.value==""){
+            if(document.edit_Form.location.value==""){
                 alert("Location can not be blank!");
                 return false;
             }
 
-            if(document.add_Form.introduction.value==""){
+            if(document.edit_Form.introduction.value==""){
                 alert("Introduction can not be blank!");
                 return false;
             }
-            if(document.add_Form.image.value==""){
-                alert("Image can not be blank!");
-                return false;
-            }
+
 
             $('#facility_add').hide();
             $('#wait').show();
@@ -229,7 +226,7 @@ if(isset($_POST['upload']))
 
         if (!in_array($ext, $allowed)) {
 
-            echo "Sorry, only JPG, JPEG, PNG & GIF  files are allowed.";
+            echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
 
         } else {
 

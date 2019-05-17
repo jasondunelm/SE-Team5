@@ -243,7 +243,7 @@ if(isset($_POST['upload']))
 
         if (!in_array($ext, $allowed)) {
 
-            echo "Sorry, only JPG, JPEG, PNG & GIF  files are allowed.";
+            echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
 
         } else {
 
