@@ -122,11 +122,10 @@ elseif (isset($_POST['startTime']) && isset($_POST['endTime']) && isset($_POST['
 	 die ('Error execute');
 	}
 }
-
-
-//header("Location:index.php");
-echo "<script> location.href=\"index.php\";</script>";
-
+include "register.php";
+echo "<script> location.href=\"index.php\";
+    \n alert('".$_POST["msg"]."');</script>";
+//header('Location: '.$_SERVER['HTTP_REFERER']);
 	
 ?>
 

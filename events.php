@@ -1,5 +1,10 @@
 <?php
 session_start();
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,11 +18,6 @@ session_start();
 
 </head>
 <body>
-
-<?php
-include('header.php');
-include('session_check.php');
-?>
 <div class="facilities">
     <h2>Events</h2>
     <div class="container">
@@ -49,10 +49,5 @@ include('session_check.php');
         </div>
     </div>
 </div>
-
-<?php
-
-include('footer.php');
-?>
 </body>
 </html>

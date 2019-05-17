@@ -1,15 +1,18 @@
 <?php
 session_start();
-include('web_temp.php');
+if($_SESSION['id']==null)
+    die();
+include ('PDO.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>facilityManage</title>
+    <title>Facility Manage</title>
 
     <?php
-   // include('meta_data.php');
+    include('meta_data.php');
     ?>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 
@@ -66,34 +69,50 @@ include('web_temp.php');
 </script>
 </head>
 <body>
+<div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;">
+    <img src='images/loading.gif' width="64" height="64" /><br>Loading..</div>
 
 <?php
-//include('header.php');
-//include('session_check.php');
+include('header.php');
+include('session_check.php');
 include('config_wyj.php');
 
-$pdo = new PDO($db_host.";".$db_name, $db_user, $db_pass);
+//$pdo = new PDO($db_host.";".$db_name,$db_user, $db_pass);
 
-$sql="select * from facility";
+$sql="select * from Facility";
 $statement = $pdo->query($sql);
 $table= $statement->fetchAll(PDO::FETCH_NUM);
 
+$facilityName= $_POST['facilityName'];
+if($_POST['facilityName']!=null){
+
+    $sql="SELECT * FROM Facility WHERE facilityName LIKE '%$facilityName%'";
+    $statement = $pdo->query($sql);
+    $table= $statement->fetchAll(PDO::FETCH_NUM);
+}
+
 ?>
 
-<div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
-    <img src='images/loading.gif' width="64" height="64" /><br>Loading..</div>
+
 
 <div class="facility_manage_div" id="table_div">
     <h3>Facility list</h3>
     <p></p>
+    <form  action="facilityManage.php" method="post">
+        <center>
+            Search facility name: &nbsp; &nbsp;
+            <input type="text" name="facilityName" placeholder="facility name"> &nbsp; &nbsp;
+            <button type="submit">Search</button><br>
+        </center>
+    </form>
     <div class="table_div" >
         <table class="table table-striped table-striped table-hover table_f_manage">
             <thred>
                 <tr>
-                    <th scope="col-md-2" >#</th>
-                    <th scope="col-md-8">Facility name</th>
-                    <th scope="col-md-1">Edition
-                    <th scope="col-md-1">Deletion</th>
+                    <th  >#</th>
+                    <th >Facility name</th>
+                    <th >Edition
+                    <th >Deletion</th>
                 </tr>
             </thred>
             <tbody>
@@ -117,7 +136,7 @@ $table= $statement->fetchAll(PDO::FETCH_NUM);
 </div>
 
 <?php
-//include('footer.php');
+include('footer.php');
 ?>
 </body>
 </html>

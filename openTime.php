@@ -1,11 +1,16 @@
 <?php
 session_start();
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Cater</title>
+    <title>Open Time</title>
 
     <?php
     include('meta_data.php');
@@ -13,13 +18,6 @@ session_start();
 
 </head>
 <body>
-
-<?php
-include('header.php');
-include('session_check.php');
-?>
-
-
 <div class="facilities">
     <h2>Opening Times</h2>
 
@@ -37,15 +35,6 @@ include('session_check.php');
         For bank holiday opening hours please contact reception on 0191 334 2178.
     </p>
 </div>
-
-
-
-
-
-<?php
-include('session_check.php');
-include('footer.php');
-?>
 </body>
 </html>
 

@@ -21,14 +21,7 @@
     background-color: black;
     opacity: 0.5;
 }
-/*.carousel slide{*/
-    /*background-color: #742e68;*/
-/*}*/
 
-/*.carousel img{*/
-    /*width: 100%;*/
-    /*height: 400px;*/
-/*}*/
 h1{
     color: white;
 }
@@ -36,9 +29,6 @@ h1{
     text-align: left;
 }
 
-.col_cater_time{
-    line-height: 200%;
-}
 
 .btn{
     color: white;
@@ -65,13 +55,6 @@ h1{
     width: 100%;
 }
 
-/*.heroImage{*/
-    /*height:auto;*/
-    /*border-radius:0;*/
-    /*background-size: cover;*/
-/*}*/
-
-
 .logo_text{
     margin: 10px;
     font-family: "Apple LiGothic";
@@ -90,9 +73,15 @@ h1{
     width:100%;
     text-align: left;
 }
+.contact_container{
+    margin: 20px;
+    padding-left:20px;
+    padding-right:20px;
+
+}
 .facilities{
-    margin: 10px;
-    padding-left: 80px;
+    margin: 20px;
+    padding-left:20px;
 }
 .no-gutters {
     margin-right: 0;
@@ -125,29 +114,6 @@ h1{
     margin: 40px;
     padding-left: 40px;
 }
-/*.btn-primary:hover{
-    background-color: #742e68;
-}*/
-
-.breadcrumb li a{
-    color: black;
-}
-
-
-@media only screen and (max-width: 700px) {
-    .responsive {
-        width: 49.99999%;
-        margin: 6px 0;
-    }
-}
-
-@media only screen and (max-width: 500px) {
-    .responsive {
-        width: 100%;
-    }
-}
-
-
 
 
 .facility_edit_btn a{
@@ -187,6 +153,7 @@ body {
 }
 .table_div{
     text-align: center;
+    margin: 20px;
 }
 .facility_edit_div{
     margin:20px;
@@ -220,3 +187,24 @@ body {
     width:40%;
     margin-left: 100px;
 }
+
+.cater_container{
+    margin: 5%;
+    padding-left: 20px;
+    padding-right: 20px;
+
+}
+
+.col_cater_time{
+    line-height: 200%;
+}
+#account_update{
+    display: none;
+}
+#logout{
+    display: none;
+}
+#divId{
+    display:none;
+}
+

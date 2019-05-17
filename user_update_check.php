@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "PDO.php";
 
 $firstName=$_POST['firstName'];
@@ -8,7 +9,7 @@ $confirmPassword=$_POST['confirmPassword'];
 $userName=$_POST['userName'];
 
 if($password==$confirmPassword&&$password=="111111"){
-    $sql="UPDATE users SET firstName='$firstName', lastName='$lastName' WHERE userName='$userName';";
+    $sql="UPDATE Users SET firstName='$firstName', lastName='$lastName' WHERE userName='$userName';";
     $pdo->exec($sql);
     echo "<script>
 alert(\"Update first name and last name successfully!\")

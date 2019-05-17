@@ -1,14 +1,15 @@
-
 <?php
-include "PDO.php";
-//include "web_temp.php";
-//include('config_wyj.php');
+session_start();
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 
-//$pdo = new PDO($db_host.";".$db_name, $db_user, $db_pass);
 if($facilityName=$_GET ['facilityName']){
 }
 else{
-    echo "<script> location.href=\"index.php \"</script>";
+    echo "<script> location.href=\"index_admin.php \"</script>";
 }
 
 $sql="SELECT * FROM Facility WHERE facilityName='$facilityName'";
@@ -26,8 +27,8 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
 </header>
 <body>
 <?php
-include('header.php');
-include('session_check.php');
+//include('header.php');
+//include('session_check.php');
 ?>
 <div id="content" style="margin-left: 10%; margin-right: 10%; WORD-BREAK: normal; WORD-WRAP: break-word">
             <center><h1 style="color:black;"><?php echo $rows['facilityName']?></h1></center><br>
@@ -68,17 +69,6 @@ include('session_check.php');
                         <div class="panel panel-default" style="background-color:white">
                             <div class="panel-heading" style="background-color:ghostwhite">
                                 <h3 class="panel-title">
-                                    Introduction:
-                                </h3>
-                            </div>
-                            <div class="panel-body" >
-                                <?php echo $rows['facilityIntro']?>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default" style="background-color:white">
-                            <div class="panel-heading" style="background-color:ghostwhite">
-                                <h3 class="panel-title">
                                     Capacity
                                 </h3>
                             </div>
@@ -90,22 +80,11 @@ include('session_check.php');
                         <div class="panel panel-default" style="background-color:white">
                             <div class="panel-heading" style="background-color:ghostwhite">
                                 <h3 class="panel-title">
-                                    UnitPrice
+                                    Introduction:
                                 </h3>
                             </div>
-                            <div class="panel-body">
-                                £<?php echo $rows['unitPrice']?>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default" style="background-color:white">
-                            <div class="panel-heading" style="background-color:ghostwhite">
-                                <h3 class="panel-title">
-                                    Member price:
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <?php echo $rows['memberPrice']?>
+                            <div class="panel-body" >
+                                <?php echo $rows['facilityIntro']?>
                             </div>
                         </div>
 
@@ -113,7 +92,7 @@ include('session_check.php');
                     <br>
                     <?php
                     if($rows['facilityName']=="Squash courts"||$rows['facilityName']=="Aerobics room"||$rows['facilityName']=="Tennis"||$rows['facilityName']=="Athletics track"){
-                        echo "<a href=\"register.php\" class=\"btn btn-primary btn-lg\">BOOKING</a>";
+                        echo "<a href=\"fullcalendar2\index.php\" class=\"btn btn-primary btn-lg\">BOOKING</a>";
                     }
                     else{
                         echo "<h4>Online booking system of this facility will be available soon!</h4> ";

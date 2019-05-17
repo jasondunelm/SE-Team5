@@ -1,12 +1,18 @@
 <?php
 session_start();
-include('web_temp.php');
+if($_SESSION['id']==null)
+    die();
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Homepage</title>
+    <title>Add New Facility</title>
     <?php
     include('meta_data.php');
     ?>
@@ -22,37 +28,40 @@ include('web_temp.php');
     }
     function checkform(){
         if(document.add_Form.facilityName.value==""){
-            alert("facilityName can not be blank!");
+            alert("FacilityName can not be blank!");
             return false;
         }
         if(document.add_Form.capacity.value==""){
-            alert("capacity can not be blank!");
+            alert("Capacity can not be blank!");
             return false;
         }
         if(document.add_Form.unitPrice.value==""){
-            alert("unitPrice can not be blank!");
+            alert("UnitPrice can not be blank!");
             return false;
         }
         if(document.add_Form.location.value==""){
-            alert("location can not be blank!");
+            alert("Location can not be blank!");
             return false;
         }
-        if(document.add_Form.memberPrice.value==""){
-            alert("memberPrice can not be blank!");
-            return false;
-        }
+
+
         if(document.add_Form.color.value==""){
-            alert("color can not be blank!");
+            alert("Color can not be blank!");
             return false;
         }
         if(document.add_Form.introduction.value==""){
-            alert("introduction can not be blank!");
+            alert("Introduction can not be blank!");
             return false;
         }
         if(document.add_Form.image.value==""){
-            alert("image can not be blank!");
+            alert("Image can not be blank!");
             return false;
         }
+
+        $('#facility_add').hide();
+        $('#wait').show();
+
+
         return true;
 
 
@@ -62,11 +71,15 @@ include('web_temp.php');
 </head>
 <body>
 
-<div class="facility_edit_container" >
+<div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;">
+    <img src='images/loading.gif' width="64" height="64" /><br>Loading..</div>
+
+<div class="facility_edit_container" id="facility_add">
     <h2>Add facility information</h2>
     <div class="facility_edit_div">
 
-        <form class="facility_infor_edit" method="POST" name="add_Form" enctype="multipart/form-data" onsubmit=" return checkform()">
+        <form class="facility_infor_edit" method="POST" name="add_Form" enctype="multipart/form-data" onsubmit="return checkform()">
+
             <div class="row" style="padding: 10px">
                 <div class="col-md-2"></div>
                 <div class="col-md-2">
@@ -107,16 +120,7 @@ include('web_temp.php');
                 </div>
                 <div class="col-md-2"></div>
             </div>
-            <div class="row" style="padding: 10px">
-                <div class="col-md-2"></div>
-                <div class="col-md-2">
-                    <label >Member Price</label>
-                </div>
-                <div class="col-md-6">
-                    <input type="text" class="form-control" name="memberPrice"  onkeyup= "clearNoNum(this)" >
-                </div>
-                <div class="col-md-2"></div>
-            </div>
+
 
             <div class="row" style="padding: 10px">
                 <div class="col-md-2"></div>
@@ -154,7 +158,8 @@ include('web_temp.php');
             <div class="row" style="padding: 10px">
               <div class="col-md-4"></div>
                 <div class="col-md-offset-6">
-                    <button type="submit" class="btn btn-primary edit_btn_group" name="upload" >Submit</button>
+                    <!-- <button type="submit" class="btn btn-primary edit_btn_group" name="upload" >Submit</button> -->
+                    <input type="submit" class="btn btn-primary edit_btn_group" name="upload" value="Submit">
                     <a href="facilityManage.php" class="btn btn-primary">Cancel</a>
                 </div>
 
@@ -173,7 +178,8 @@ include('web_temp.php');
 include('config_wyj.php');
 
 try{
-    $con = new PDO($db_host.";".$db_name, $db_user, $db_pass);
+    $con = $pdo;
+    //$con = new PDO($db_host.";".$db_name, $db_user, $db_pass);
     $con->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //echo "connected";
 }
@@ -186,17 +192,18 @@ if(isset($_POST['upload']))
 
 {
 
-    $facilityName = $_POST['facilityName'];
-    $capacity = $_POST['capacity'];
-    $unitPrice =$_POST['unitPrice'];
-    $location=$_POST['location'];
-    $memberPrice=$_POST['memberPrice'];
-    $color=$_POST['color'];
-    $facilityIntro=$_POST['introduction'];
+    // sanitize the input data
+    $facilityName = filter_input(INPUT_POST, 'facilityName', FILTER_SANITIZE_STRING);
+    $capacity = filter_input(INPUT_POST, 'capacity', FILTER_SANITIZE_STRING);
+    $unitPrice = filter_input(INPUT_POST, 'unitPrice', FILTER_SANITIZE_STRING);
+    $location = filter_input(INPUT_POST, 'location', FILTER_SANITIZE_STRING);
+    $color = filter_input(INPUT_POST, 'color', FILTER_SANITIZE_STRING);
+    $facilityIntro = filter_input(INPUT_POST, 'introduction', FILTER_SANITIZE_STRING);
+
     $image = $_FILES['image']['name'];
 
 
-    if($facilityName ==null|| $capacity==null || $unitPrice==null || $location==null ||$memberPrice==null
+    if($facilityName ==null|| $capacity==null || $unitPrice==null || $location==null
         || $color==null || $facilityIntro==null){
         echo "<script> alert(\"Please fill in all the blanks!\"); </script>";
     }
@@ -231,10 +238,10 @@ if(isset($_POST['upload']))
 
             move_uploaded_file($_FILES['image'] ['tmp_name'], $path);
 
-            echo "test here";
 
-            $sth=$con->prepare("insert into Facility (id,facilityName,capacity,unitPrice,location,memberPrice,facilityIntro,facilityPic,color)
-values (null,'$facilityName','$capacity','$unitPrice','$location','$memberPrice','$facilityIntro','$image','$color') ");
+
+            $sth=$con->prepare("insert into Facility (id,facilityName,capacity,unitPrice,location,facilityIntro,facilityPic,color)
+values (null,'$facilityName','$capacity','$unitPrice','$location','$facilityIntro','$image','$color') ");
 
            $sth->execute();
 

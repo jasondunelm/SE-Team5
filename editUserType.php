@@ -1,16 +1,31 @@
 <?php
-include "PDO.php";
-include "web_temp.php";
-error_reporting(E_ALL^E_NOTICE);
+session_start();
+include ('PDO.php');
+include('header.php');
+include('session_check.php');
+include('config_wyj.php');
+include('footer.php');
+
 if($userName = $_POST['userName']){}
 else{
     $userName="@";
 }
 
-$sql="SELECT * FROM users WHERE userName LIKE '%$userName%'";
+$sql="SELECT * FROM Users WHERE userName LIKE '%$userName%'";
 $statement = $pdo->query($sql);
 ?>
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>User Type Update</title>
 
+    <?php
+    include('meta_data.php');
+    ?>
+
+</head>
+<body>
 <script>
     var id;
     function getId(obj){
@@ -119,3 +134,5 @@ $statement = $pdo->query($sql);
     </table>
 
 </div>
+</body>
+</html>
