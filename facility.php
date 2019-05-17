@@ -69,17 +69,6 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
                         <div class="panel panel-default" style="background-color:white">
                             <div class="panel-heading" style="background-color:ghostwhite">
                                 <h3 class="panel-title">
-                                    Introduction:
-                                </h3>
-                            </div>
-                            <div class="panel-body" >
-                                <?php echo $rows['facilityIntro']?>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default" style="background-color:white">
-                            <div class="panel-heading" style="background-color:ghostwhite">
-                                <h3 class="panel-title">
                                     Capacity
                                 </h3>
                             </div>
@@ -91,22 +80,11 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
                         <div class="panel panel-default" style="background-color:white">
                             <div class="panel-heading" style="background-color:ghostwhite">
                                 <h3 class="panel-title">
-                                    UnitPrice
+                                    Introduction:
                                 </h3>
                             </div>
-                            <div class="panel-body">
-                                £<?php echo $rows['unitPrice']?>
-                            </div>
-                        </div>
-
-                        <div class="panel panel-default" style="background-color:white">
-                            <div class="panel-heading" style="background-color:ghostwhite">
-                                <h3 class="panel-title">
-                                    Member price:
-                                </h3>
-                            </div>
-                            <div class="panel-body">
-                                <?php echo $rows['memberPrice']?>
+                            <div class="panel-body" >
+                                <?php echo $rows['facilityIntro']?>
                             </div>
                         </div>
 

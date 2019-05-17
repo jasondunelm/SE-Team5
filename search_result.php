@@ -6,9 +6,20 @@ include('header.php');
 include('session_check.php');
 include('config_wyj.php');
 include('footer.php');
-$facilityName=$_POST ['facilityName'];
+//
+//if($facilityName=$_POST ['facilityName']){
+//}
+//else{
+//    $facilityName="";
+//}
+if($_POST['facilityName']!=null){
+    $facilityName = filter_input(INPUT_POST, 'facilityName', FILTER_SANITIZE_STRING);
+}
+else
+    $facilityName="";
 
 $sql="SELECT * FROM Facility WHERE facilityName LIKE '%$facilityName%' OR location LIKE '%$facilityName%'";
+
 $statement = $pdo->query($sql);
 
 ?>
@@ -29,23 +40,25 @@ $statement = $pdo->query($sql);
     <table class="table table-striped table-hover">
         <thead>
         <tr>
-            <th>facility name</th>
-            <th>location</th>
-            <th>unit price</th>
-            <th>member price</th>
+            <th>NO.</th>
+            <th>Facility name</th>
+            <th>Location</th>
+            <th>Unit price</th>
         </tr>
         </thead>
         <tbody>
         <?php
+        $number=1;
         while($rows = $statement->fetch(PDO::FETCH_ASSOC)){
             ?>
             <tr>
+                <td><?php echo "#$number"?></td>
                 <td><a href="facility.php?facilityName=<?php echo $rows['facilityName'] ?>"><?php echo $rows['facilityName'] ?></a></td>
                 <td><?php echo $rows['location']?></td>
                 <td><?php echo $rows['unitPrice'] ?></td>
-                <td><?php echo $rows['memberPrice'] ?></td>
             </tr>
         <?php
+            $number++;
         }
         ?>
         </tbody>
