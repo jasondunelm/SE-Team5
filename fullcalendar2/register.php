@@ -5,7 +5,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 $msg = "";
-$email=$_SESSION['userName'];
 require 'phpmailer/vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require 'phpmailer/vendor/phpmailer/phpmailer/src/Exception.php';
 require 'phpmailer/vendor/phpmailer/phpmailer/src/SMTP.php';
@@ -18,6 +17,14 @@ $req->execute();
 
 $facility = $req->fetch();
 $facilityName = $facility["facilityName"];
+
+$userID=$_POST['user'];
+$sql = "SELECT `Username` FROM users WHERE ID= '$userID'";
+
+$req = $bdd->prepare($sql);
+$req->execute();
+$emails = $req->fetch();
+$email = $emails["Username"];
 
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
