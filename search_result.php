@@ -20,7 +20,11 @@ else
 
 $sql="SELECT * FROM Facility WHERE facilityName LIKE '%$facilityName%' OR location LIKE '%$facilityName%'";
 
+$sql2="SELECT * FROM Training WHERE className LIKE '%$facilityName%' OR location LIKE '%$facilityName%'";
+
+
 $statement = $pdo->query($sql);
+$statement2 = $pdo->query($sql2);
 
 ?>
 
@@ -33,22 +37,34 @@ $statement = $pdo->query($sql);
     ?>
 
 </head>
-<div id="content" style="margin-left: 10%; margin-right: 10%; WORD-BREAK: break-all; WORD-WRAP: break-word">
+<div id="content" style="margin-left: 10%; margin-right: 10%; ">
 
     <center><h1 style="color:black;">Search facility result</h1></center><br>
 
-    <table class="table table-striped table-hover">
+    <table class="table table-striped table-hover" style="WORD-BREAK: break-all; WORD-WRAP: break-word">
         <thead>
         <tr>
             <th>NO.</th>
-            <th>Facility name</th>
+            <th>Name</th>
             <th>Location</th>
             <th>Unit price</th>
         </tr>
         </thead>
-        <tbody>
         <?php
         $number=1;
+        while($rows = $statement2->fetch(PDO::FETCH_ASSOC)){
+        ?>
+        <tr>
+            <td><?php echo "#$number"?></td>
+            <td><a href="classInfor.php?className=<?php echo $rows['className'] ?>"><?php echo $rows['className'] ?>(class)</a></td>
+            <td><?php echo $rows['location']?></td>
+            <td><?php echo $rows['price']?></td>
+        </tr>
+        <?php
+        $number++;
+        }
+        ?>
+        <?
         while($rows = $statement->fetch(PDO::FETCH_ASSOC)){
             ?>
             <tr>

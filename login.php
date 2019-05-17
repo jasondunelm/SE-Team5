@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+error_reporting(E_ALL^E_NOTICE);
+
 include("functions_WebFront.php");
 
 ?>
@@ -30,7 +33,8 @@ include("functions_WebFront.php");
                 <input class="form-control" name="loginPassword" type="password" placeholder="Password..."
                        value="<?php echo addslashes($_POST['loginPassword']); ?>"><br>
                 <input class="btn btn-primary" type="submit" name="submit" value="Log In">
-                <a href="index_admin.php" class="btn btn-primary">Cancel</a>
+                <a href="register.php" class="btn btn-primary">Register</a>
+                <a href="index_admin.php" class="btn btn-primary">Home</a>
                 <br><br>
                 <input class="btn btn-secondary" type="submit" name="submit" value="Forgotten Password?">
             </form>

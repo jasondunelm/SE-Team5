@@ -95,7 +95,7 @@ if($_POST['facilityName']!=null){
 
 
 
-<div class="facility_manage_div" id="table_div">
+<div class="facility_manage_div" id="table_div" >
     <h3>Facility list</h3>
     <p></p>
     <form  action="facilityManage.php" method="post">
@@ -106,10 +106,9 @@ if($_POST['facilityName']!=null){
         </center>
     </form>
     <div class="table_div" >
-        <table class="table table-striped table-striped table-hover table_f_manage">
+        <table class="table table-striped table-hover table_f_manage">
             <thred>
                 <tr>
-                    <th  >#</th>
                     <th >Facility name</th>
                     <th >Edition
                     <th >Deletion</th>
@@ -120,7 +119,6 @@ if($_POST['facilityName']!=null){
             for ($i=0;$i<count($table);$i++) {
                 ?>
                 <tr>
-                    <th scope="row"><?php echo $i+1; ?></th>
                     <td ><?php echo $table[$i][1]; ?></td>
                     <td ><button class="btn btn-primary facility_edit_btn"><a href="facilityEdit.php? id=<?php echo $table[$i][0] ?>">Edit</a></button></td>
                     <td ><button class="btn btn-primary delete" id='del_<?php echo $table[$i][0] ?>'>Delete</button></td>
@@ -132,7 +130,7 @@ if($_POST['facilityName']!=null){
         </table>
     </div>
     <p></p>
-    <button class="btn btn-primary facility_edit_btn"><a href="facilityAdd.php">Add new facility</a></button>
+    <button class="btn btn-primary facility_edit_btn" id="add_facility_link"><a href="facilityAdd.php">Add new facility</a></button>
 </div>
 
 <?php

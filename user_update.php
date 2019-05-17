@@ -23,7 +23,7 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
     ?>
 
 </head>
-<div class="container" style="padding-top:100px">
+<div class="container" style="padding-top:100px;padding-bottom: 20px;">
     <form method="post" id="update" action="user_update_check.php">
         <center><h1 style="color:black;">Modify Information</h1></center><br>
 

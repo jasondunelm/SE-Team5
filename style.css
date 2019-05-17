@@ -75,8 +75,8 @@ h1{
 }
 .contact_container{
     margin: 20px;
-    padding-left:20px;
-    padding-right:20px;
+    padding-left:5%;
+    padding-right:5%;
 
 }
 .facilities{
@@ -208,3 +208,16 @@ body {
     display:none;
 }
 
+/*Small devices (landscape phones, 576px and up)*/
+@media (max-width: 576px) {
+    #add_facility_link{
+        display: none;
+    }
+}
+
+/* Medium devices (tablets, 768px and up)*/
+@media (max-width: 768px) {
+    #add_facility_link{
+        display:none;
+    }
+}

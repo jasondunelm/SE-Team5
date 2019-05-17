@@ -69,9 +69,10 @@ $statement = $pdo->query($sql);
 <div id="wait" style="display:none;width:69px;height:89px;border:1px solid black;position:absolute;top:50%;left:50%;padding:2px;">
     <img src='images/loading.gif' width="64" height="64" /><br>Loading..</div>
 
-<div id="content" style="margin-top:10px;margin-left: 10%; margin-right: 10%; WORD-BREAK: break-all; WORD-WRAP: break-word">
+<div id="content" style="margin-top:10px;margin-left: 10%; margin-right: 10%; WORD-BREAK: break-all; ">
+    <div class="table_div">
 
-    <center><h1 style="color:black;">Edit User Type</h1></center><br>
+    <center><h2 style="color:black;">Edit User Type</h2></center><br>
 
     <form  role="form" action="editUserType.php" method="post">
         <center>
@@ -80,10 +81,10 @@ $statement = $pdo->query($sql);
         <button type="submit">Search</button><br>
         </center>
     </form>
-
     <table class="table table-striped table-hover" style="margin-top: 5%; margin-bottom: 5%;">
         <thead>
         <tr>
+            <th>No.</th>
             <th>user name</th>
             <th>first name</th>
             <th>last name</th>
@@ -92,9 +93,11 @@ $statement = $pdo->query($sql);
         </thead>
         <tbody>
         <?php
+        $number=1;
         while($rows = $statement->fetch(PDO::FETCH_ASSOC)){
             ?>
             <tr>
+                <td><?php echo $number; $number++;?></td>
                 <td><?php echo $rows['userName'] ?></td>
                 <td><?php echo $rows['firstName'] ?></td>
                 <td><?php echo $rows['lastName'] ?></td>
@@ -112,7 +115,7 @@ $statement = $pdo->query($sql);
                                     <div class="modal-body">
                                         <select multiple class="form-control" id="role">
                                             <option selected value="user">User</option>
-                                            <option value="membership">Membership</option>
+                                            <option value="member">Member</option>
                                             <option value="trainer">Trainer</option>
                                             <option value="admin">Admin</option>
                                         </select>
@@ -132,6 +135,7 @@ $statement = $pdo->query($sql);
         ?>
         </tbody>
     </table>
+    </div>
 
 </div>
 </body>

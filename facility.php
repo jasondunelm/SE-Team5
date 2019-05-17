@@ -24,13 +24,19 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
     <?php
     include('meta_data.php');
     ?>
+    <script>
+        checkRole = function(){
+            alert("Only registered user could book online, you have not registered yet.");
+            location.href="login.php";
+        }
+    </script>
 </header>
 <body>
 <?php
 //include('header.php');
 //include('session_check.php');
 ?>
-<div id="content" style="margin-left: 10%; margin-right: 10%; WORD-BREAK: normal; WORD-WRAP: break-word">
+<div id="content" style="margin-left: 10%; margin-right: 10%; margin-bottom: 5%; WORD-BREAK: normal; WORD-WRAP: break-word">
             <center><h1 style="color:black;"><?php echo $rows['facilityName']?></h1></center><br>
             <div class="row">
 
@@ -92,7 +98,13 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
                     <br>
                     <?php
                     if($rows['facilityName']=="Squash courts"||$rows['facilityName']=="Aerobics room"||$rows['facilityName']=="Tennis"||$rows['facilityName']=="Athletics track"){
-                        echo "<a href=\"fullcalendar2\index.php\" class=\"btn btn-primary btn-lg\">BOOKING</a>";
+                        if($_SESSION['role']){
+                            echo "<a href=\"fullcalendar2\index.php\" class=\"btn btn-primary btn-lg\">BOOKING</a>";
+
+                        }
+                        else{
+                            echo "<button class=\"btn btn-primary btn-lg\" onclick='checkRole()'>BOOKING</button>";
+                        }
                     }
                     else{
                         echo "<h4>Online booking system of this facility will be available soon!</h4> ";
