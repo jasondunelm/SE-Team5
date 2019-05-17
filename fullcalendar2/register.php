@@ -5,10 +5,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 $msg = "";
-$email=$_SESSION['userName'];
-require 'phpmailer/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require 'phpmailer/vendor/phpmailer/phpmailer/src/Exception.php';
-require 'phpmailer/vendor/phpmailer/phpmailer/src/SMTP.php';
+require '../PHPMailer/vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require '../PHPMailer/vendor/phpmailer/phpmailer/src/Exception.php';
+require '../PHPMailer/vendor/phpmailer/phpmailer/src/SMTP.php';
 
 $facilityID = $_POST['facility'];
 $sql = "SELECT facilityName FROM facility WHERE ID= $facilityID";
@@ -18,6 +17,14 @@ $req->execute();
 
 $facility = $req->fetch();
 $facilityName = $facility["facilityName"];
+
+$userID=$_POST['user'];
+$sql = "SELECT `Username` FROM users WHERE ID= '$userID'";
+
+$req = $bdd->prepare($sql);
+$req->execute();
+$emails = $req->fetch();
+$email = $emails["Username"];
 
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 try {
@@ -36,9 +43,14 @@ try {
     //Content
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'Booking Confirmation';
-    $mail->Body    = "<h3>You have booked in Durham system.<br> You should attend on ".$_POST["startDate"]." at $facilityName and pay in advance.<br>The booking cost ".$_POST["totalmoney"]." pounds.</h3>";
+    $bodytext= "<h3>You have booked sucessfully in DUS booking system.<br> You should attend on ".$_POST["startDate"];
+    if($facilityID!="4"){
+        $bodytext.=" at ".$_POST["startTime"];
+    }
+    $bodytext.= " at $facilityName and pay on site.<br>The booking cost ".$_POST["totalmoney"]." pounds.</h3>";
+    $mail->Body    = $bodytext;
     if($mail->send())
-        $msg =  "You have been registered! Please verify your email!";
+        $msg =  "You have booked successfully! Please verify your email!";
     else
         $msg =  "Error!Please try again!";
 } catch (Exception $e) {
