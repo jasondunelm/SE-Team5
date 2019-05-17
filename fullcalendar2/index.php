@@ -2,6 +2,7 @@
 session_start();
 $_SESSION['userName']="tuohao11@gmail.com";
 $_SESSION['userName']="tuo.hao@durham.ac.uk";
+$_SESSION['userName']="joey41517@gmail.com";
 require_once('bdd.php');
 
 $sql = "SELECT nbooking.ID, UserID, FacilityID, facilityName AS Name, StartTime, EndTime, block, Color FROM
@@ -65,8 +66,9 @@ $allusers = $req->fetchAll();
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Bare - Start Bootstrap Template</title>
-
+    <title>Booking / Calendar</title>
+    
+    
     <!-- Bootstrap Core CSS -->
     
 	<!--link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"--> 
@@ -83,7 +85,7 @@ $allusers = $req->fetchAll();
     <script src='fullcalendar/js/daygrid.js'></script>
     <script src='fullcalendar/js/timegrid.js'></script>
     <script src='fullcalendar/js/list.js'></script>
-
+    <link href="css/style.css" rel="stylesheet">
 
     <!-- Custom CSS -->
     <style>
@@ -98,99 +100,6 @@ $allusers = $req->fetchAll();
 		float: none;
 		margin: 0 auto;
 	}
-        
-        .navbar{
-    background-color: #742e68 !important;
-}
-
-
-
-.navbar.nav-item .dropdown-menu .dropdown-item{
-    color: #000 !important;
-}
-
-
-.team-durham-slogan{
-   position: absolute;
-    top: 40%;
-    left: 45%;
-    
-    transform: translate(-50%, -50%) 
-    float:left;
-
-    line-height:60%;
-
-
-    color:#fff;
-
-        }
-    .light{
-            color:#cf9ace;
-        }
-    .slogan{
-         
-        font-size:20px;
-        }
-
-        
-   .btn1-outline-success:hover{
-    background-color: #742e68;
-}
-    .btn-1{
-    color: white;
-    border-style: hidden;
-        
-}
-        .row-fluid{width:100%;*zoom:1;}
-        .row-fluid:before,.row-fluid:after{display:table;content:"";line-height:0}
-        .row-fluid:after{clear:both;}
-        .nav{margin-left:0;
-            list-style:none;
-            color: white;
-            margin-bottom: 0;
-            }
-        ul, {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    padding: 0;
-    margin: 0 0 10px 25px;
-}
-        .nav-pills{
-            border-bottom: 0;}
-    
-        .nav-pills>li>a {
-            top: 6px;
-            vertical-align: middle;
-    color: #fff;
-    background-color: #742e68;
-    padding-top: 8px;
-    padding-bottom: 10px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border-radius: 0;
-    padding-right: 12px;
-    padding-left: 12px;
-    margin-right: 2px;
-    line-height: 14px;
-
-}
-        .span12{
-            width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-        }
-        
-       .btn-primary {
-                      
-    color: #fff;
-    background-color: purple;
-    border-color: purple;
-}
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -206,7 +115,7 @@ $allusers = $req->fetchAll();
 
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-       <div id="header" class="row-fluid">
+        <div id="header" class="row-fluid">
   
         <a href="" class="pull-left">
         <img width="50" src="../images/teamdurham.png" alt="Durham University" class="durham-university-logo">
@@ -234,8 +143,8 @@ $allusers = $req->fetchAll();
 
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h1>FullCalendar BS3 PHP MySQL</h1>
-                <p class="lead">Complete with pre-defined file paths that you won't have to change!</p>
+                <h1>Calendar of all facilities</h1>
+                <p class="lead">logged-in user: <?php echo $userRole;?></p>
                 <div id="calendar" class="col-centered">
                 </div>
             </div>
