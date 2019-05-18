@@ -204,7 +204,7 @@ if(isset($_POST['upload']))
 
 
     if($facilityName ==null|| $capacity==null || $unitPrice==null || $location==null
-        || $color==null || $facilityIntro==null){
+        || $color==null || $facilityIntro==null ||$image==null){
         echo "<script> alert(\"Please fill in all the blanks!\"); </script>";
     }
 
@@ -213,7 +213,7 @@ if(isset($_POST['upload']))
 
         $folder = "images/";
 
-        $image = $_FILES['image']['name'];
+       // $image = $_FILES['image']['name'];
 
         $path = $folder . $image;
 
@@ -232,7 +232,7 @@ if(isset($_POST['upload']))
 
         if (!in_array($ext, $allowed)) {
 
-            echo "Sorry, only JPG, JPEG, PNG & GIF  files are allowed.";
+            echo "Sorry, only JPG, JPEG, PNG  files are allowed.";
 
         } else {
 
@@ -245,9 +245,13 @@ values (null,'$facilityName','$capacity','$unitPrice','$location','$facilityIntr
 
            $sth->execute();
 
-            echo "<script> alert(\"update sucessfully!\"); </script>";
-            //header("Location:facilityManage.php");
-            echo "<script> location.href=\"facilityManage.php\";</script>";
+            if($sth>0){
+                echo "<script> alert(\"Add new facility successfully!\"); </script>";
+                //header("Location:facilityManage.php");
+                echo "<script> location.href=\"facilityManage.php\";</script>";
+            }
+            else
+                echo "<script> alert(\"Fail to add new facility!\"); </script>";
 
 
         }

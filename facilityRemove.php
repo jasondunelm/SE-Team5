@@ -5,7 +5,7 @@ $id = $_POST['id'];
 if($id) {
 
     // Check record exists
-    $pdo = new PDO($db_host . ";" . $db_name, $db_user, $db_pass);
+    //$pdo = new PDO($db_host . ";" . $db_name, $db_user, $db_pass);
 
     $sql = "select * from Facility where id= " . $id . ";";
 

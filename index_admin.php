@@ -57,7 +57,7 @@ include('config_wyj.php');
             </div>
         </div>
         <div class="carousel-item">
-            <img class="w-100" src="images/bg_3.png">
+            <img class="w-100" src="images/muscle%20man.png">
             <div class="carousel-caption text-success d-none d-sm-block">
                 <p class="text-light">
                     <a href="cater.php" class="btn btn-primary btn-lg carousel_btn">Find more info</a>
@@ -82,12 +82,16 @@ include('config_wyj.php');
 
 
 <div class="pic_group">
-    <div class="facilities">
-        <h2>Facilities</h2>
 
-    </div>
 
     <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+                <h2>Facilities</h2>
+            </div>
+
+        </div>
+
         <div class="row">
             <div class="col-md-3">
                 <a href="facility.php?facilityName=Fitness Suite" class="pic_link">
@@ -109,14 +113,14 @@ include('config_wyj.php');
             </div>
             <div class="col-md-3">
                 <a href="facility.php?facilityName=Rowing Tank" class="pic_link">
-                    <img src="images/rowingTank02.jpg" alt="..." class="img-thumbnail">
+                    <img src="images/Rowing%20Tank.jpg" alt="..." class="img-thumbnail">
                     <h5>Rowing Tank</h5>
                 </a>
             </div>
 
             <div class="col-md-3">
                 <a href="facility.php?facilityName=Ergo Gallery" class="pic_link">
-                    <img src="images/ergoGallery.jpg" alt="..." class="img-thumbnail">
+                    <img src="images/Ergo%20Gallery.jpg" alt="..." class="img-thumbnail">
                     <h5>Ergo Gallery</h5>
                 </a>
             </div>
@@ -171,7 +175,7 @@ include('config_wyj.php');
     </div>
 
 </div>
-<?php include('footer.php'); ?>r
+<?php include('footer.php'); ?>
 </body>
 </html>
 

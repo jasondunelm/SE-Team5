@@ -1,13 +1,14 @@
 <?php
 session_start();
 $_SESSION['userName']="tuohao11@gmail.com";
-$_SESSION['userName']="tuo.hao@durham.ac.uk";
+//$_SESSION['userName']="tuo.hao@durham.ac.uk";
+//$_SESSION['userName']="tzu-chiao.wang2@durham.ac.uk";
 require_once('bdd.php');
 
 $sql = "SELECT nbooking.ID, UserID, FacilityID, facilityName AS Name, StartTime, EndTime, block, Color FROM
         (SELECT * FROM booking) AS nbooking
         LEFT JOIN
-        (SELECT ID, facilityName, Color FROM facility) AS nfacility 
+        (SELECT ID, facilityName, Color FROM facility) AS nfacility  
         on nbooking.FacilityID=nfacility.ID ";
 
 $req = $bdd->prepare($sql);
@@ -24,6 +25,7 @@ foreach ($bookings as $row) {
 
 $sql = "SELECT ID, facilityName AS Name, Color, Capacity, UnitPrice FROM facility WHERE ID<>0";
 
+
 $req = $bdd->prepare($sql);
 $req->execute();
 
@@ -36,6 +38,7 @@ foreach ($facilities as $row) {
 }
 
 $userName=$_SESSION['userName'];
+
 $sql = "SELECT `ID`, `Username`, `Role` FROM users WHERE Username= '$userName'";
 
 $req = $bdd->prepare($sql);
@@ -55,22 +58,18 @@ $allusers = $req->fetchAll();
 ?>
 
 <!DOCTYPE html>
-<html>
-
+<html >
 <head>
-
     <meta charset="utf-8">
+    <title>Homepage</title>
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
-    <title>Bare - Start Bootstrap Template</title>
-
     <!-- Bootstrap Core CSS -->
-    
-	<!--link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"--> 
     <link href="css/bootstrap.min.css" rel="stylesheet">
+	
 	<!-- FullCalendar -->
 	<link href='css/fullcalendar.css' rel='stylesheet' />
     
@@ -87,19 +86,24 @@ $allusers = $req->fetchAll();
 
     <!-- Custom CSS -->
     <style>
-    body {
-        padding-top: 70px;
-        /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+        
+        body {
+        padding-top: 120px;
+    
     }
 	#calendar {
-		max-width: 800px;
+/*		max-width: 800px;*/
 	}
+/*
 	.col-centered{
+
 		float: none;
 		margin: 0 auto;
+
 	}
+*/
         
-        .navbar{
+    .navbar{
     background-color: #742e68 !important;
 }
 
@@ -191,6 +195,7 @@ $allusers = $req->fetchAll();
     background-color: purple;
     border-color: purple;
 }
+    
     </style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -205,7 +210,7 @@ $allusers = $req->fetchAll();
 <body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar navbar-inverse navbar-fixed-top">
        <div id="header" class="row-fluid">
   
         <a href="" class="pull-left">
@@ -215,7 +220,7 @@ $allusers = $req->fetchAll();
             <span class="light">Durham University</span>
             <br>
             <br>
-            <span class="slogan">Sports Facility Calendar</span>
+            <span class="slogan">Sports Facility</span>
         </a>
            <div class="span12">
                <ul class="nav nav-pills">
@@ -226,16 +231,17 @@ $allusers = $req->fetchAll();
            </div>
       
        </div>
+
+      
         <!-- /.container -->
-    </nav>
-    
+    </div>
     <!-- Page Content -->
     <div class="container">
 
         <div class="row">
             <div class="col-lg-12 text-center">
-                <h1>FullCalendar BS3 PHP MySQL</h1>
-                <p class="lead">Complete with pre-defined file paths that you won't have to change!</p>
+                <h1>Calendar of all facilities</h1>
+                <p class="lead">logged-in user: <?php echo $userRole;?></p>
                 <div id="calendar" class="col-centered">
                 </div>
             </div>
@@ -243,7 +249,7 @@ $allusers = $req->fetchAll();
         </div>
         <!-- /.row -->
 		
-        <!-- Modal -->
+		<!-- Modal -->
         <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAdd">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -254,10 +260,12 @@ $allusers = $req->fetchAll();
 				<h4 class="modal-title" id="myModalLabelAdd">Booking<span id="WeekendOrWeekday"></span></h4>
 			  </div>
 			  <div class="modal-body">
+				
+
 				  <div class="form-group">
 					<label for="facility" class="col-sm-2 control-label">Facility</label>
 					<div class="col-sm-10">
-					  <select name="facility" class="form-control" id="facilityAdd">
+					   <select name="facility" class="form-control" id="facilityAdd">
 						  <option value="">Choose</option>
                           <?php 
                           foreach($facilities as $facility): 
@@ -268,9 +276,10 @@ $allusers = $req->fetchAll();
 					</div>
 				  </div>
                   <div class="form-group">
-					<label for="user" class="col-sm-2 control-label">User</label>
+						<label for="user" class="col-sm-2 control-label">User</label>
 					<div class="col-sm-10">
-                        <?php 
+                  
+                     <?php 
                         if($userRole!="admin"){
                             echo '<input type="text" name="user" class="form-control" id="userAdd" value="'.$userID.'" readonly>';
                         }
@@ -294,16 +303,15 @@ $allusers = $req->fetchAll();
 				  <div class="form-group">
 					<label for="startTime" class="col-sm-2 control-label">Start time</label>
 					<div class="col-sm-10">
-					  <select name="startTime" class="form-control" id="startTimeAdd">
-                          
+				      <select name="startTime" class="form-control" id="startTimeAdd">
+                     
                       </select>
 					</div>
 				  </div>
 				  <div class="form-group">
 					<label for="endTime" class="col-sm-2 control-label">End time</label>
 					<div class="col-sm-10">
-					  <select name="endTime" class="form-control" id="endTimeAdd">
-                          
+                  <select name="endTime" class="form-control" id="endTimeAdd">
                       </select>
 					</div>
 				  </div>
@@ -316,21 +324,22 @@ $allusers = $req->fetchAll();
                   <div class="form-group">
                     <label for="totalmoney" class="col-sm-2 control-label">Total Price</label>
                     <div class="col-sm-10">
-                        <input type="text" name="totalmoney" class="form-control" id="totalmoneyAdd" readonly>
+                         <input type="text" name="totalmoney" class="form-control" id="totalmoneyAdd" readonly>
                     </div>
                 </div>
 			  </div>
+                
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary" id="btnAdd">Save changes</button>
 			  </div>
 			</form>
+                
 			</div>
 		  </div>
 		</div>
-        
         <!-- Modal -->
-        <?php
+                <?php
         if($userRole=="admin"){
         echo '<div class="modal fade" id="ModalBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
@@ -342,30 +351,32 @@ $allusers = $req->fetchAll();
 				<h4 class="modal-title" id="myModalLabelBlock">Add Block</h4>
 			  </div>
 			  <div class="modal-body">
+				
 				  <div class="form-group">
 					<label for="facility" class="col-sm-2 control-label">Facility</label>
 					<div class="col-sm-10">
 					  <select name="facility" class="form-control" id="facilityBlock">
 						  <option value="">Choose</option>';
-                          
+            
                           foreach($facilities as $facility): 
                             echo "<option style='color:".$facility['Color'].";' value=".$facility['ID'].">&#9724; ".$facility['Name']."</option>";
                           endforeach;
-                          echo '
+                         
+                                      echo '
                           <option style="color:#000;" value="0">All</option>
+                          
 						</select>
 					</div>
 				  </div>
                   <div class="form-group">
 					<label for="user" class="col-sm-2 control-label">UserID</label>
 					<div class="col-sm-10">
-					  <input type="text" name="user" class="form-control" id="userBlock" value="'; echo $userID; echo'" readonly>
-					</div>
-				  </div>
-                  <div class="form-group">
+                    <input type="text" name="user" class="form-control" id="userBlock" value="'; echo $userID; echo'" readonly>          </div>
+				      </div>
+                    <div class="form-group">
 					<label for="startDate" class="col-sm-2 control-label">Start Date</label>
 					<div class="col-sm-10">
-					  <input type="date" name="startDate" class="form-control" id="startDateBlock">
+					    <input type="date" name="startDate" class="form-control" id="startDateBlock">
 					</div>
 				  </div>
                   <div class="form-group">
@@ -374,7 +385,7 @@ $allusers = $req->fetchAll();
 					  <input type="date" name="endDate" class="form-control" id="endDateBlock">
 					</div>
 				  </div>
-			  </div>
+                   </div>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary" id="btnBlock">Save changes</button>
@@ -398,10 +409,11 @@ $allusers = $req->fetchAll();
 				<h4 class="modal-title" id="myModalLabelDeleteBlock">Remove Block</h4>
 			  </div>
 			  <div class="modal-body">
+              
 				  <div class="form-group">
 					<label for="deleteBlock" class="col-sm-2 control-label">Block</label>
 					<div class="col-sm-10">
-					  <select name="deleteBlock" class="form-control" id="facilityDeleteBlock">
+					    <select name="deleteBlock" class="form-control" id="facilityDeleteBlock">
 						  <option value="">Choose</option>';
                           
                           foreach($blocks as $block): 
@@ -419,26 +431,29 @@ $allusers = $req->fetchAll();
 			</form>
 			</div>
 		  </div>
-		</div>';
+       </div>';
         }
         ?>
         <!-- Modal -->
         <?php
         if($userRole=="admin"||$userRole=="trainer"){ echo'
 		<div class="modal fade" id="ModalTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabelTrainer">
+		
+		
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" id="formTrainer" method="POST" action="addEvent.php">
-			
+				<form class="form-horizontal" id="formTrainer" method="POST" action="addEvent.php">
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 				<h4 class="modal-title" id="myModalLabelTrainer">Add Block for training course</h4>
 			  </div>
+              
 			  <div class="modal-body">
+				
 				  <div class="form-group">
 					<label for="facility" class="col-sm-2 control-label">Facility</label>
 					<div class="col-sm-10">
-					  <select name="facility" class="form-control" id="facilityTrainer">
+                     <select name="facility" class="form-control" id="facilityTrainer">
 						  <option value="">Choose</option>';
                           
                           foreach($facilities as $facility): 
@@ -452,6 +467,7 @@ $allusers = $req->fetchAll();
 					<label for="user" class="col-sm-2 control-label">UserID</label>
 					<div class="col-sm-10">
 					  <input type="text" name="user" class="form-control" id="userTrainer" value="'; echo $userID; echo '" readonly>
+            
 					</div>
 				  </div>
                   <div class="form-group">
@@ -462,11 +478,15 @@ $allusers = $req->fetchAll();
 				  </div>
                   <div class="form-group">
 					<label for="endDate" class="col-sm-2 control-label">End Date</label>
+                    
 					<div class="col-sm-10">
-					  <input type="date" name="endDate" class="form-control" id="endDateTrainer">
+                        
+                     <input type="date" name="endDate" class="form-control" id="endDateTrainer">
+            
 					</div>
 				  </div>
-                  <div class="form-group">
+                  
+                   <div class="form-group">
 					<label for="whichDay" class="col-sm-2 control-label">Which day</label>
 					<div class="col-sm-10">
 					  <select name="whichDay" class="form-control" id="whichDayTrainer">
@@ -480,7 +500,7 @@ $allusers = $req->fetchAll();
                           <option value="6">Saturday</option>
                       </select>
 					</div>
-				  </div>
+				 </div>
                   <div class="form-group">
                     <label for="startTime" class="col-sm-2 control-label">Start time</label>
                     <div class="col-sm-10">
@@ -497,23 +517,25 @@ $allusers = $req->fetchAll();
                       </select>
                     </div>
                   </div>
+				
+				
 			  </div>
-                
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary" id="btnTrainer">Save changes</button>
 			  </div>
 			</form>
-                
+            
 			</div>
 		  </div>
+          
 		</div>';
         }?>
         <div class="modal fade" id="ModalRmv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
                 <h1 style="margin-left: 20px;">Do you want to remove the event?</h1>
-                <h4><span style="margin-left: 20px;">Event ID: </span><span id="h1RmvID"></span></h4>
+                   <h4><span style="margin-left: 20px;">Event ID: </span><span id="h1RmvID"></span></h4>
 			  <div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary" id="btnRmv">Confirm</button>
@@ -541,7 +563,7 @@ $allusers = $req->fetchAll();
         echo "var facilitiesPrice = ".$myJSON.";";
         ?>
 
-        $("#facilityAdd, #endTimeAdd, #startTimeAdd").change(function() {
+         $("#facilityAdd, #endTimeAdd, #startTimeAdd").change(function() {
             if($("#facilityAdd").val()=="4"){
                 //for track
                 $('#startTimeAdd').append( "<option id='startExtratimeAdd'>00:00</option>" );
@@ -579,7 +601,7 @@ $allusers = $req->fetchAll();
             }
                 
             
-            if($("#facilityAdd").val()!=""&&$("#facilityAdd").val()!="4"  && $("#startTimeAdd").val()!="" && $("#endTimeAdd").val()!=""){
+             if($("#facilityAdd").val()!=""&&$("#facilityAdd").val()!="4"  && $("#startTimeAdd").val()!="" && $("#endTimeAdd").val()!=""){
                 //for totalprice
                 var facilitychosen = Number($("#facilityAdd").val());
                 var startTimeAdd = $("#startTimeAdd").val();
@@ -589,8 +611,7 @@ $allusers = $req->fetchAll();
                 $("#totalmoneyAdd").val(   Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))     );
             }
         });
-        
-        $("#btnAdd").click(function(){
+         $("#btnAdd").click(function(){
             if($("#facilityAdd").val()!="4")
                 checkTimeAdd();
             else
@@ -637,7 +658,7 @@ $allusers = $req->fetchAll();
             });
         }
         
-        $("#btnBlock").click(function(){
+                $("#btnBlock").click(function(){
             checkTimeBlock();
         });
         function checkTimeBlock(){
@@ -738,13 +759,14 @@ $allusers = $req->fetchAll();
                 alert("start time cannot be identical to end time");
                 return false;
             }
+            
             var starttimeArray = starttime.split(":");
             var endtimeArray = endtime.split(":");
             if(parseInt(starttimeArray[0])>parseInt(endtimeArray[0])||(parseInt(starttimeArray[0])==parseInt(endtimeArray[0])&&parseInt(starttimeArray[1])>parseInt(endtimeArray[1]))){
                 alert("start time should be eariler than end time");
                 return false;
             }
-            checkDateTrainer();
+             checkDateTrainer();
         }
         function checkDateTrainer(){
             var day = $("#whichDayTrainer").val();
@@ -765,13 +787,14 @@ $allusers = $req->fetchAll();
             var starttime = $("select#startTimeTrainer").val();
             var endtime = $("select#endTimeTrainer").val();
             var chosenfacility = $("select#facilityTrainer").val();
+            
             $.ajax({
                 url: 'checkEventOverlap.php',
                 type: "POST",
                 data: {startDateStr,endDateStr, whichDay, starttime,endtime,chosenfacility},
                 success: function(rep) {
                     if(rep == 'OK'){
-                        $( "form#formTrainer" ).submit();
+                       $( "form#formTrainer" ).submit();
                     }else{
                         alert(rep);
                     }
@@ -779,13 +802,13 @@ $allusers = $req->fetchAll();
             });
         }
         
+        
         document.addEventListener('DOMContentLoaded', function() {
             var calendarEl = document.getElementById('calendar');
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
-                
                 plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
-                customButtons: {
+                 customButtons: {
                     addBlock: {
                       text: 'add block',
                       click: function() {
@@ -805,6 +828,7 @@ $allusers = $req->fetchAll();
                       }
                     }
                 },
+                
                 header: {
                     left: 'prev,next today <?php if($userRole=="admin")echo "addBlock deleteBlock"; if($userRole=="admin"||$userRole=="trainer")echo " trainer";?>',
                     center: 'title',
@@ -819,7 +843,7 @@ $allusers = $req->fetchAll();
                 selectHelper: true,
                 select: function(start, end) {
                     if(start.start.getDay()==0||start.start.getDay()==6){
-                        var startDayArray = start.startStr.split("T");
+                         var startDayArray = start.startStr.split("T");
                         $('#ModalAdd #startDateAdd').val(startDayArray[0]);
                         $('#WeekendOrWeekday').text(' on weekend');
                         $('#startTimeAdd').html('<option value="">Choose</option>\n<option>9:00</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>');
@@ -827,7 +851,7 @@ $allusers = $req->fetchAll();
                         $('#ModalAdd').modal('show');
                     }
                     else{
-                        var startDayArray = start.startStr.split("T");
+                         var startDayArray = start.startStr.split("T");
                         $('#ModalAdd #startDateAdd').val(startDayArray[0]);
                         $('#WeekendOrWeekday').text(' on Weekday');
                         $('#startTimeAdd').html('<option value="">Choose</option>\n<option>7:00</option>\n<option>8:00</option>\n<option>9:00</option>\n<option>10:00</option>\n<option>11:00</option>\n<option>12:00</option>\n<option>13:00</option>\n<option>14:00</option>\n<option>15:00</option>\n<option>16:00</option>\n<option>17:00</option>\n<option>18:00</option>\n<option>19:00</option>\n<option>20:00</option>\n<option>21:00</option>');
@@ -835,8 +859,9 @@ $allusers = $req->fetchAll();
                         $('#ModalAdd').modal('show');
                     }
                 },
-                slotDuration: '01:00',
+                 slotDuration: '01:00',
                 eventRender: function(event, element) {
+
                     /*element.bind('dblclick', function() {
                         //$('#ModalEdit #id').val(event.id);
                         //$('#ModalEdit #title').val(event.title);
@@ -845,13 +870,16 @@ $allusers = $req->fetchAll();
                     });*/
                 },
                 
-                <?php if($userRole=="admin")echo "
+                 <?php if($userRole=="admin")echo "
+                 
                 eventClick: function(info) {
                     $('#h1RmvID').text(info.event.id);
                     $('#ModalRmv').modal('show');
                 },";
                 ?>
-                
+
+
+
                 events: [
                     <?php foreach($bookings as $booking): 
 
@@ -886,6 +914,7 @@ $allusers = $req->fetchAll();
             $( "#btnRmv" ).click(function() {
                 remove($('#h1RmvID').text());
             });
+
             function remove(evtID){
                 var evt = calendar.getEventById(evtID);
                 evt.remove();
@@ -908,6 +937,7 @@ $allusers = $req->fetchAll();
             calendar.render();
         });
     </script>
+    
 </body>
 
 </html>

@@ -1,3 +1,6 @@
+<?php
+error_reporting(E_ALL^E_NOTICE);
+?>
 <!-- the navigation bar of homepage -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a href="https://www.teamdurham.com"><img src="images/small_logo.png"></a>&nbsp;&nbsp;
@@ -51,6 +54,7 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="facilityManage.php">Facility Mgt.</a>
+                    <a class="dropdown-item" href="classManage.php">Class Mgt.</a>
                     <a class="dropdown-item" href="editUserType.php">User Mgt.</a>
                     <a class="dropdown-item" href="fullcalendar2/index.php">Booking Mgt.</a>
 
@@ -62,7 +66,7 @@
 
 
         <form class="form-inline my-2 my-lg-0" action="search_result.php" method="post">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" name="facilityName">
                 <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
 
         </form>
