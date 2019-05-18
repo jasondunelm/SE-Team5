@@ -5,9 +5,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 $msg = "";
-require '../PHPMailer/vendor/phpmailer/phpmailer/src/PHPMailer.php';
-require '../PHPMailer/vendor/phpmailer/phpmailer/src/Exception.php';
-require '../PHPMailer/vendor/phpmailer/phpmailer/src/SMTP.php';
+require '../PHPMailer/vendor/autoload.php';
 
 $facilityID = $_POST['facility'];
 $sql = "SELECT facilityName FROM facility WHERE ID= $facilityID";
@@ -34,7 +32,15 @@ try {
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     $mail->Username = 'dus.team5';
     $mail->Password = 'Dunelm12#$'; 
-    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->SMTPSecure = 'tls'; 
+    $mail->SMTPOptions = array(
+                    'ssl' => array(
+                        'verify_peer' => false,
+                        'verify_peer_name' => false,
+                        'allow_self_signed' => true
+                    )
+                );
+    // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 587;                                    // TCP port to connect to
     //Recipients
     $mail->setFrom('teamdurham.sports@dur.ac.uk', 'Sport Team');

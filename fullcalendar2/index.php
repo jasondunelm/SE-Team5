@@ -1,8 +1,7 @@
 <?php
 session_start();
 $_SESSION['userName']="tuohao11@gmail.com";
-$_SESSION['userName']="tuo.hao@durham.ac.uk";
-$_SESSION['userName']="joey41517@gmail.com";
+//$_SESSION['userName']="tuo.hao@durham.ac.uk";
 //$_SESSION['userName']="tzu-chiao.wang2@durham.ac.uk";
 require_once('bdd.php');
 
@@ -221,7 +220,7 @@ $allusers = $req->fetchAll();
             <span class="light">Durham University</span>
             <br>
             <br>
-            <span class="slogan">Sports Facility Calendar</span>
+            <span class="slogan">Sports Facility</span>
         </a>
            <div class="span12">
                <ul class="nav nav-pills">
