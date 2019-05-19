@@ -38,7 +38,7 @@ else if (isset($_POST['deleteBlock'])){
         die ('Erreur execute');
 	}
     //header('Location: '.$_SERVER['HTTP_REFERER']);
-    echo "<script> location.href=\"index.php\";</script>";
+    echo "<script> location.href=\"index.php\";alert('remove block successfully');</script>";
 }
 //header('Location: '.$_SERVER['HTTP_REFERER']);
 
