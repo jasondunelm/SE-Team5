@@ -203,7 +203,8 @@ foreach ($allusers as $row) {
 </head>
 
 <body>
-
+    <div id="wait" style="display:none;width:69px;height:89px;position:absolute;top:50%;left:50%;padding:2px;">
+        <img src='../images/loading.gif' width="64" height="64" /><br>Loading..</div>
     <!-- Navigation -->
     <div class="navbar navbar-inverse navbar-fixed-top">
        <div id="header" class="row-fluid">
@@ -541,7 +542,6 @@ foreach ($allusers as $row) {
 		</div>';}
         ?>
     </div>
-    <!-- /.container -->
 
     <!-- jQuery Version 1.11.1 -->
     <script src="js/jquery.js"></script>
@@ -552,7 +552,14 @@ foreach ($allusers as $row) {
 	<!-- FullCalendar -->
 	<script src='js/moment.min.js'></script>
 	<script src='js/fullcalendar.min.js'></script>
-	
+	<script>
+        $(document).ready(function(){
+          $("form").on("submit", function(){
+            $("#wait").css("display", "block");
+            $(".container").css("display", "none");
+          });//submit
+        });
+    </script>
 	<script>
         <?php
         $myJSON = json_encode($facilitiesPrice);
