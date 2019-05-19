@@ -1,7 +1,7 @@
 <?php
 session_start();
 $_SESSION['userName']="tuohao11@gmail.com";
-//$_SESSION['userName']="tuo.hao@durham.ac.uk";
+$_SESSION['userName']="tuo.hao@durham.ac.uk";
 //$_SESSION['userName']="tzu-chiao.wang2@durham.ac.uk";
 require_once('bdd.php');
 
@@ -10,29 +10,22 @@ $sql = "SELECT nbooking.ID, UserID, FacilityID, facilityName AS Name, StartTime,
         LEFT JOIN
         (SELECT ID, facilityName, Color FROM facility) AS nfacility  
         on nbooking.FacilityID=nfacility.ID ";
-
 $req = $bdd->prepare($sql);
 $req->execute();
-
 $bookings = $req->fetchAll();
 
 $blocks = array(); 
-
 foreach ($bookings as $row) {
     if($row["block"]==1)
         $blocks[] = array($row["ID"], $row["Name"], $row["StartTime"], $row["EndTime"]);
 }
 
 $sql = "SELECT ID, facilityName AS Name, Color, Capacity, UnitPrice FROM facility WHERE ID<>0";
-
-
 $req = $bdd->prepare($sql);
 $req->execute();
-
 $facilities = $req->fetchAll();
 
 $facilitiesPrice = array(); 
-
 foreach ($facilities as $row) {
     $facilitiesPrice[] = array($row["ID"], $row["UnitPrice"]);
 }
@@ -40,7 +33,6 @@ foreach ($facilities as $row) {
 $userName=$_SESSION['userName'];
 
 $sql = "SELECT `ID`, `Username`, `Role` FROM users WHERE Username= '$userName'";
-
 $req = $bdd->prepare($sql);
 $req->execute();
 
@@ -49,12 +41,15 @@ $userID = $loginUser["ID"];
 $userName = $loginUser["Username"]; 
 $userRole = $loginUser["Role"]; // This is where the admin and the trainer is declared.
 
-$sql = "SELECT `ID`, `Username`, `Firstname`, `Lastname` FROM `users` WHERE 1";
-
+$sql = "SELECT `ID`, `Username`, `role`, `Firstname`, `Lastname` FROM `users` WHERE 1";
 $req = $bdd->prepare($sql);
 $req->execute();
-
 $allusers = $req->fetchAll();
+
+$allusersRole = array(); 
+foreach ($allusers as $row) {
+    $allusersRole[$row["ID"]]= $row["role"];
+}
 ?>
 
 <!DOCTYPE html>
@@ -260,8 +255,6 @@ $allusers = $req->fetchAll();
 				<h4 class="modal-title" id="myModalLabelAdd">Booking<span id="WeekendOrWeekday"></span></h4>
 			  </div>
 			  <div class="modal-body">
-				
-
 				  <div class="form-group">
 					<label for="facility" class="col-sm-2 control-label">Facility</label>
 					<div class="col-sm-10">
@@ -328,8 +321,8 @@ $allusers = $req->fetchAll();
                     </div>
                 </div>
 			  </div>
-                
 			  <div class="modal-footer">
+                  <input type="hidden" name="submittedAdd" value="submittedAdd">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary" id="btnAdd">Save changes</button>
 			  </div>
@@ -387,6 +380,7 @@ $allusers = $req->fetchAll();
 				  </div>
                    </div>
 			  <div class="modal-footer">
+                <input type="hidden" name="submittedBlock" value="submittedBlock">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary" id="btnBlock">Save changes</button>
 			  </div>
@@ -402,7 +396,7 @@ $allusers = $req->fetchAll();
         <div class="modal fade" id="ModalDeleteBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
-			<form class="form-horizontal" id="formDeleteBlock" method="POST" action="rmvEvent.php">
+			<form class="form-horizontal" id="formDeleteBlock" onsubmit="return checkDeleteBlock()" method="POST" action="rmvEvent.php">
 			
 			  <div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -438,7 +432,6 @@ $allusers = $req->fetchAll();
         <?php
         if($userRole=="admin"||$userRole=="trainer"){ echo'
 		<div class="modal fade" id="ModalTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabelTrainer">
-		
 		
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -521,6 +514,7 @@ $allusers = $req->fetchAll();
 				
 			  </div>
 			  <div class="modal-footer">
+                <input type="hidden" name="submittedTrainer" value="submittedTrainer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary" id="btnTrainer">Save changes</button>
 			  </div>
@@ -531,6 +525,8 @@ $allusers = $req->fetchAll();
           
 		</div>';
         }?>
+        <?php
+        if($userRole=="admin"){ echo '
         <div class="modal fade" id="ModalRmv" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 		  <div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -542,8 +538,8 @@ $allusers = $req->fetchAll();
 			  </div>
 			</div>
 		  </div>
-		</div>
-
+		</div>';}
+        ?>
     </div>
     <!-- /.container -->
 
@@ -561,9 +557,25 @@ $allusers = $req->fetchAll();
         <?php
         $myJSON = json_encode($facilitiesPrice);
         echo "var facilitiesPrice = ".$myJSON.";";
+        
+        if($userRole=="admin"){
+            $myJSON = json_encode($allusersRole);
+            echo "var allusersRole = ".$myJSON.";";
+        }
         ?>
 
-         $("#facilityAdd, #endTimeAdd, #startTimeAdd").change(function() {
+         $("#facilityAdd, #endTimeAdd, #startTimeAdd, #userAdd").change(function() {
+             var discount=1;
+             var userchosenID = $("#userAdd").val();
+             if(typeof(allusersRole)==='undefined'){
+                 <?php
+                 if($userRole=="membership"||$userRole=="trainer"||$userRole=="admin")
+                     echo 'discount=0.8;';
+                 ?>
+             }
+             else if(allusersRole[userchosenID]=="membership"||allusersRole[userchosenID]=="admin"||allusersRole[userchosenID]=="trainer"){
+                 discount=0.8;
+             }
             if($("#facilityAdd").val()=="4"){
                 //for track
                 $('#startTimeAdd').append( "<option id='startExtratimeAdd'>00:00</option>" );
@@ -576,7 +588,7 @@ $allusers = $req->fetchAll();
                 var facilitychosen = Number($("#facilityAdd").val());
                 $("#moneyAdd").text(facilitiesPrice[facilitychosen-1][1]);
                 //for totalprice
-                $("#totalmoneyAdd").val(facilitiesPrice[facilitychosen-1][1]);
+                $("#totalmoneyAdd").val(facilitiesPrice[facilitychosen-1][1]*discount);
             }
             else if($("#facilityAdd").val()!=""){
                 //for track
@@ -608,7 +620,7 @@ $allusers = $req->fetchAll();
                 var endTimeAdd = $("#endTimeAdd").val();
                 var startarray = startTimeAdd.split(":");
                 var endarray = endTimeAdd.split(":");
-                $("#totalmoneyAdd").val(   Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))     );
+                $("#totalmoneyAdd").val(   (Number(facilitiesPrice[facilitychosen-1][1])*(Number(endarray[0])-Number(startarray[0] ))*discount).toFixed(2)     );
             }
         });
          $("#btnAdd").click(function(){
@@ -640,6 +652,7 @@ $allusers = $req->fetchAll();
             beingblockedAdd();
         }
         function beingblockedAdd(){
+            var submittedAdd = "submittedAdd";
             var date = $("input#startDateAdd").val();
             var starttime = $("select#startTimeAdd").val();
             var endtime = $("select#endTimeAdd").val();
@@ -647,7 +660,7 @@ $allusers = $req->fetchAll();
             $.ajax({
                 url: 'checkEventOverlap.php',
                 type: "POST",
-                data: {date, starttime,endtime,chosenfacility},
+                data: {submittedAdd, date, starttime,endtime,chosenfacility},
                 success: function(rep) {
                     if(rep == 'OK'){
                         $( "form#formAdd" ).submit();
@@ -658,7 +671,7 @@ $allusers = $req->fetchAll();
             });
         }
         
-                $("#btnBlock").click(function(){
+        $("#btnBlock").click(function(){
             checkTimeBlock();
         });
         function checkTimeBlock(){
@@ -666,6 +679,12 @@ $allusers = $req->fetchAll();
                 alert("choose a facility");
                 return false;
             } 
+            var startdate = $("#startDateBlock").val();
+            var enddate = $("#endDateBlock").val();
+            if(startdate==""||enddate==""){
+                alert("the date should be input");
+                return false;
+            }
             var startdate = $("input#startDateBlock").val();
             var enddate = $("input#endDateBlock").val();
             var startdateArray = startdate.split("-");
@@ -678,13 +697,14 @@ $allusers = $req->fetchAll();
             beingblockedBlock();
         }
         function beingblockedBlock(){
+            var submittedBlock = "submittedBlock";
             var startdate = $("input#startDateBlock").val();
             var enddate = $("input#endDateBlock").val();
             var chosenfacility = $("select#facilityBlock").val();
             $.ajax({
                 url: 'checkEventOverlap.php',
                 type: "POST",
-                data: {startdate, enddate,chosenfacility},
+                data: {submittedBlock, startdate, enddate,chosenfacility},
                 success: function(rep) {
                     if(rep == 'OK'){
                         $( "form#formBlock" ).submit();
@@ -693,6 +713,14 @@ $allusers = $req->fetchAll();
                     }
                 }
             });
+        }
+        
+        function checkDeleteBlock(){
+            if($("#facilityDeleteBlock").val()!=""){
+                return true;
+            }
+            alert("A Block need to be chosen")
+            return false;
         }
         
         $("#whichDayTrainer").change(function() {
@@ -746,6 +774,12 @@ $allusers = $req->fetchAll();
                 alert("choose a facility");
                 return false;
             }
+            var startDate = $("#startDateTrainer").val();
+            var endDate = $("#endDateTrainer").val();
+            if(startDate==""||endDate==""){
+                alert("the date should be input");
+                return false;
+            }
             if($("#whichDayTrainer").val()==""){
                 alert("choose a day");
                 return false;
@@ -781,6 +815,7 @@ $allusers = $req->fetchAll();
             beingblockedTrainer(startDate,endDate);
         }
         function beingblockedTrainer(startDate,endDate){
+            var submittedTrainer = "submittedTrainer";
             var startDateStr = startDate.getFullYear() + "-" + ("0"+(startDate.getMonth()+1)).slice(-2) + "-" + ("0" + startDate.getDate()).slice(-2);
             var endDateStr = endDate.getFullYear() + "-" + ("0"+(endDate.getMonth()+1)).slice(-2) + "-" + ("0" + endDate.getDate()).slice(-2);
             var whichDay = $("select#whichDayTrainer").val();
@@ -791,7 +826,7 @@ $allusers = $req->fetchAll();
             $.ajax({
                 url: 'checkEventOverlap.php',
                 type: "POST",
-                data: {startDateStr,endDateStr, whichDay, starttime,endtime,chosenfacility},
+                data: {submittedTrainer, startDateStr,endDateStr, whichDay, starttime,endtime,chosenfacility},
                 success: function(rep) {
                     if(rep == 'OK'){
                        $( "form#formTrainer" ).submit();
