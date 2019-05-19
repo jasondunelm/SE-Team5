@@ -29,10 +29,18 @@ include('footer.php');
         }
 
         function checkform(){
+
+            var reg='^[s 0-9a-zA-Z_/]*$';
+
             if(document.edit_Form.facilityName.value==""){
                 alert("FacilityName can not be blank!");
                 return false;
             }
+            else if(!(document.edit_Form.facilityName.value.match(reg))){
+                alert("Letters, numbers，slash and blank space are allowed in facility name!");
+                return false;
+            }
+
             if(document.edit_Form.capacity.value==""){
                 alert("Capacity can not be blank!");
                 return false;
@@ -43,6 +51,9 @@ include('footer.php');
             }
             if(document.edit_Form.location.value==""){
                 alert("Location can not be blank!");
+                return false;
+            }else if(!(document.edit_Form.location.value.match(reg))){
+                alert("Letters, numbers，slash and blank space are allowed in location!");
                 return false;
             }
 

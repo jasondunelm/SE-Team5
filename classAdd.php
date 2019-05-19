@@ -26,11 +26,19 @@ include('footer.php');
                 obj.value= parseFloat(obj.value);
             }
         }
+
         function checkform(){
+
+            var reg='^[s 0-9a-zA-Z_]*$';
+
             if(document.add_Form.className.value==""){
                 alert("FacilityName can not be blank!");
                 return false;
+            }else if(!(document.add_Form.className.value.match(reg))){
+                alert("Letters, numbers, slash and blank space are allowed in class name!");
+                return false;
             }
+
             if(document.add_Form.capacity.value==""){
                 alert("Capacity can not be blank!");
                 return false;
@@ -38,9 +46,15 @@ include('footer.php');
             if(document.add_Form.unitPrice.value==""){
                 alert("UnitPrice can not be blank!");
                 return false;
+            }else if(!(document.add_Form.unitPrice.value.match(reg))){
+                alert("Letters, numbers,slash and blank space are allowed in price!");
+                return false;
             }
             if(document.add_Form.location.value==""){
                 alert("Location can not be blank!");
+                return false;
+            }else if(!(document.add_Form.location.value.match(reg))){
+                alert("Letters, numbers,slash and blank space are allowed in location!");
                 return false;
             }
 
@@ -101,7 +115,7 @@ include('footer.php');
                     <label >Unit price</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="unitPrice" onkeyup= "clearNoNum(this)"/>
+                    <input type="text" class="form-control" name="unitPrice" />
                 </div>
                 <div class="col-md-2"></div>
             </div>

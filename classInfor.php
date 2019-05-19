@@ -103,7 +103,7 @@ $rows = $statement->fetch(PDO::FETCH_ASSOC);
             </div>
             <br>
             <?php
-                echo "<h4>Online booking system of this facility will be available soon!</h4> ";
+                echo "<h4>Online booking system of this class will be available soon!</h4> ";
             ?>
         </div>
     </div>

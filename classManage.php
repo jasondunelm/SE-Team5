@@ -100,7 +100,7 @@ if($_POST['className']!=null){
     <p></p>
     <form  action="classManage.php" method="post">
         <center>
-            Search facility name: &nbsp; &nbsp;
+            Search class name: &nbsp; &nbsp;
             <input type="text" name="className" placeholder="class name"> &nbsp; &nbsp;
             <button type="submit">Search</button><br>
         </center>
