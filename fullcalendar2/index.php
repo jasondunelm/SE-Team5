@@ -1,8 +1,8 @@
 <?php
 session_start();
-$_SESSION['userName']="tuohao11@gmail.com";
-$_SESSION['userName']="tuo.hao@durham.ac.uk";
-//$_SESSION['userName']="tzu-chiao.wang2@durham.ac.uk";
+//$_SESSION['userName']="tuohao11@gmail.com";
+//$_SESSION['userName']="tuo.hao@durham.ac.uk";
+//$_SESSION['userName']="joey41517@gmail.com";
 require_once('bdd.php');
 
 $sql = "SELECT nbooking.ID, UserID, FacilityID, facilityName AS Name, StartTime, EndTime, block, Color FROM
@@ -30,16 +30,18 @@ foreach ($facilities as $row) {
     $facilitiesPrice[] = array($row["ID"], $row["UnitPrice"]);
 }
 
-$userName=$_SESSION['userName'];
+$userID=$_SESSION['id'];
+$userRole = $_SESSION['role'];
+$userName = $_SESSION['userName'];
 
-$sql = "SELECT `ID`, `Username`, `Role` FROM users WHERE Username= '$userName'";
+/*$sql = "SELECT `ID`, `Username`, `Role` FROM users WHERE id= '$loginUserID'";
 $req = $bdd->prepare($sql);
 $req->execute();
 
 $loginUser = $req->fetch();
 $userID = $loginUser["ID"];
 $userName = $loginUser["Username"]; 
-$userRole = $loginUser["Role"]; // This is where the admin and the trainer is declared.
+$userRole = $loginUser["Role"]; // This is where the admin and the trainer is declared.*/
 
 $sql = "SELECT `ID`, `Username`, `role`, `Firstname`, `Lastname` FROM `users` WHERE 1";
 $req = $bdd->prepare($sql);
@@ -81,117 +83,120 @@ foreach ($allusers as $row) {
 
     <!-- Custom CSS -->
     <style>
-        
-        body {
-        padding-top: 120px;
-    
+    body {
+        padding-top: 60px;
     }
-	#calendar {
-/*		max-width: 800px;*/
-	}
-/*
-	.col-centered{
-
-		float: none;
-		margin: 0 auto;
-
-	}
-*/
-        
-    .navbar{
-    background-color: #742e68 !important;
-}
-
-
-
-.navbar.nav-item .dropdown-menu .dropdown-item{
-    color: #000 !important;
-}
-
-
-.team-durham-slogan{
-   position: absolute;
-    top: 40%;
-    left: 45%;
     
-    transform: translate(-50%, -50%) 
-    float:left;
-
-    line-height:60%;
-
-
-    color:#fff;
-
-        }
-    .light{
-            color:#cf9ace;
-        }
-    .slogan{
-         
-        font-size:20px;
-        }
-
-        
-   .btn1-outline-success:hover{
-    background-color: #742e68;
-}
-    .btn-1{
-    color: white;
-    border-style: hidden;
-        
-}
-        .row-fluid{width:100%;*zoom:1;}
-        .row-fluid:before,.row-fluid:after{display:table;content:"";line-height:0}
-        .row-fluid:after{clear:both;}
-        .nav{margin-left:0;
-            list-style:none;
-            color: white;
-            margin-bottom: 0;
-            }
-        ul, {
-    display: block;
-    margin-block-start: 1em;
-    margin-block-end: 1em;
-    margin-inline-start: 0px;
-    margin-inline-end: 0px;
-    padding-inline-start: 40px;
-    padding: 0;
-    margin: 0 0 10px 25px;
-}
-        .nav-pills{
-            border-bottom: 0;}
+    #calendar {
+        /*		max-width: 800px;*/
+    }
     
-        .nav-pills>li>a {
-            top: 6px;
-            vertical-align: middle;
-    color: #fff;
-    background-color: #742e68;
-    padding-top: 8px;
-    padding-bottom: 10px;
-    margin-top: 2px;
-    margin-bottom: 2px;
-    border-radius: 0;
-    padding-right: 12px;
-    padding-left: 12px;
-    margin-right: 2px;
-    line-height: 14px;
-
-}
-        .span12{
-            width: 100%;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-        }
-        
-       .btn-primary {
-                      
-    color: #fff;
-    background-color: purple;
-    border-color: purple;
-}
+    .navbar {
+        background-color: #742e68 !important;
+    }
     
-    </style>
+    .navbar.nav-item .dropdown-menu .dropdown-item {
+        color: #000 !important;
+    }
+    
+    .team-durham-slogan {
+        position: absolute;
+        top: 40%;
+        left: 45%;
+        transform: translate(-50%, -50%) float: left;
+        line-height: 60%;
+        color: #fff;
+    }
+    
+    .light {
+        color: #cf9ace;
+    }
+    
+    .slogan {
+        font-size: 20px;
+    }
+    
+    .btn1-outline-success:hover {
+        background-color: #742e68;
+    }
+    
+    .btn-1 {
+        color: white;
+        border-style: hidden;
+    }
+    
+    .row-fluid {
+        width: 100%;
+        *zoom: 1;
+    }
+    
+    .row-fluid:before,
+    .row-fluid:after {
+        display: table;
+        content: "";
+        line-height: 0
+    }
+    
+    .row-fluid:after {
+        clear: both;
+    }
+    
+    .nav {
+        margin-left: 0;
+        list-style: none;
+        color: white;
+        margin-bottom: 0;
+    }
+    
+    ul,
+    {
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 40px;
+        padding: 0;
+        margin: 0 0 10px 25px;
+    }
+    
+    .nav-pills {
+        border-bottom: 0;
+    }
+    
+    .nav-pills>li>a {
+        top: 6px;
+        vertical-align: middle;
+        color: #fff;
+        background-color: #742e68;
+        padding-top: 8px;
+        padding-bottom: 10px;
+        margin-top: 2px;
+        margin-bottom: 2px;
+        border-radius: 0;
+        padding-right: 12px;
+        padding-left: 12px;
+        margin-right: 2px;
+        line-height: 14px;
+    }
+    
+    .span12 {
+        width: 100%;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    
+    .btn-primary {
+        color: #fff;
+        background-color: purple;
+        border-color: purple;
+    }
+    .fc-bgevent { background: #3788d8; }
+    .fc-nonbusiness {
+        background: #fff;
+    }
+</style>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -243,7 +248,20 @@ foreach ($allusers as $row) {
             </div>
 			
         </div>
-        <!-- /.row -->
+        <div class="row">
+            <h3>Colors of facilities</h3>
+            <?php 
+            foreach($facilities as $facility): 
+                if($facility['Color']!="N/A")
+                    echo "<p style='color:".$facility['Color'].";'>&#9724; ".$facility['Name']."</p>";
+            endforeach;
+            echo "<p style='color:#337ab7;'>&#9724; Other facility</p>";
+            echo "<p style='color:#000;'>&#9724; All blocked</p>";
+            ?>
+        </div>
+        <div class="space" style="height: 200px;">
+        
+            </div>
 		
 		<!-- Modal -->
         <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabelAdd">
@@ -263,7 +281,10 @@ foreach ($allusers as $row) {
 						  <option value="">Choose</option>
                           <?php 
                           foreach($facilities as $facility): 
-                            echo "<option style='color:".$facility['Color']."' value=".$facility['ID'].">&#9724; ".$facility['Name']."</option>";
+                            $facilityColor=$facility['Color'];
+                            if($facilityColor=="N/A")
+                                $facilityColor="#337ab7";
+                            echo "<option style='color:$facilityColor' value=".$facility['ID'].">&#9724; ".$facility['Name']."</option>";
                           endforeach;
                           ?>
 						</select>
@@ -332,7 +353,7 @@ foreach ($allusers as $row) {
 			</div>
 		  </div>
 		</div>
-        <!-- Modal -->
+        <!-- Add Block Modal -->
                 <?php
         if($userRole=="admin"){
         echo '<div class="modal fade" id="ModalBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -391,7 +412,7 @@ foreach ($allusers as $row) {
 		</div>';
         }
         ?>
-        <!-- Modal -->
+        <!-- Delete Block Modal -->
         <?php 
         if($userRole=="admin"){ echo '
         <div class="modal fade" id="ModalDeleteBlock" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -406,20 +427,18 @@ foreach ($allusers as $row) {
 			  <div class="modal-body">
               
 				  <div class="form-group">
-					<label for="deleteBlock" class="col-sm-2 control-label">Block</label>
-					<div class="col-sm-10">
-					    <select name="deleteBlock" class="form-control" id="facilityDeleteBlock">
-						  <option value="">Choose</option>';
-                          
+					<div class="col-sm-10">';
                           foreach($blocks as $block): 
-                            echo "<option value=".$block[0].">".$block[0]." ".$block[1]." ".$block[2]."~".$block[3]."</option>";
+                               echo "<input type='checkbox' name='checkbox[".$block[0]."]' value=".$block[0].">".
+                               "<label for='checkbox[".$block[0]."]'>".$block[0]." ".$block[1]." ".$block[2]."~".$block[3]."</label><br>";
+                            //echo "<option value=".$block[0].">".$block[0]." ".$block[1]." ".$block[2]."~".$block[3]."</option>";
                           endforeach;
                           echo '
-						</select>
 					</div>
 				  </div>
 			  </div>
 			  <div class="modal-footer">
+                <input type="hidden" name="submittedDeleteBlock" value="submittedDeleteBlock">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="submit" class="btn btn-primary" id="btnDeleteBlock">Save changes</button>
 			  </div>
@@ -429,7 +448,7 @@ foreach ($allusers as $row) {
        </div>';
         }
         ?>
-        <!-- Modal -->
+        <!-- Trainer Modal -->
         <?php
         if($userRole=="admin"||$userRole=="trainer"){ echo'
 		<div class="modal fade" id="ModalTrainer" tabindex="-1" role="dialog" aria-labelledby="myModalLabelTrainer">
