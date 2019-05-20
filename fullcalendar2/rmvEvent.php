@@ -21,10 +21,16 @@ if (isset($_POST['evtID'])){
 	}
 
 }
-else if (isset($_POST['deleteBlock'])){
-	$evtID = $_POST['deleteBlock'];
-    
-	$sql = "DELETE FROM `booking` WHERE ID=$evtID";
+else if (isset($_POST['submittedDeleteBlock'])){
+	
+    $sql = "DELETE FROM `booking` WHERE ID IN (";
+    foreach($_POST["checkbox"] as $value){
+        $sql.= $value.",";
+    }
+    $sql=substr($sql, 0, -1).");";
+    //echo $sql;
+    //die();
+	
 
 	
 	$query = $bdd->prepare( $sql );
