@@ -576,11 +576,11 @@ foreach ($allusers as $row) {
              var userchosenID = $("#userAdd").val();
              if(typeof(allusersRole)==='undefined'){
                  <?php
-                 if($userRole=="membership"||$userRole=="trainer"||$userRole=="admin")
+                 if($userRole=="member"||$userRole=="trainer"||$userRole=="admin")
                      echo 'discount=0.8;';
                  ?>
              }
-             else if(allusersRole[userchosenID]=="membership"||allusersRole[userchosenID]=="admin"||allusersRole[userchosenID]=="trainer"){
+             else if(allusersRole[userchosenID]=="member"||allusersRole[userchosenID]=="admin"||allusersRole[userchosenID]=="trainer"){
                  discount=0.8;
              }
             if($("#facilityAdd").val()=="4"){

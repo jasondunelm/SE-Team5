@@ -92,7 +92,7 @@ include('footer.php');
             <div class="row" style="padding: 10px">
                 <div class="col-md-2"></div>
                 <div class="col-md-2">
-                    <label >class name</label>
+                    <label >Class name</label>
                 </div>
                 <div class="col-md-6">
                     <input type="text" class="form-control" name="className" >

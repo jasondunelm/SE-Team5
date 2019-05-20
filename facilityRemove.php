@@ -18,9 +18,9 @@ if($id) {
     if (count($table) > 0) {
         // Delete record
         $sql = "DELETE FROM Facility WHERE id= " . $id . ";";
-        //$str = 'images/'.$image;
+        $str = 'images/'.$image;
 
-        //unlink($str);
+        unlink($str);
 
         $statement = $pdo->query($sql);
         echo 1;

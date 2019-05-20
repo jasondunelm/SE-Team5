@@ -12,15 +12,15 @@ if($id) {
     $statement = $pdo->query($sql);
     $table = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-    $image = $table[0]['facilityPic'];
+    $image = $table[0]['classImage'];
 
     if (count($table) > 0) {
         // Delete record
         $sql = "DELETE FROM Training WHERE id= " . $id . ";";
 
-        //$str = 'images/'.$image;
+        $str = 'images/'.$image;
 
-        //unlink($str);
+        unlink($str);
 
         $statement = $pdo->query($sql);
         echo 1;
