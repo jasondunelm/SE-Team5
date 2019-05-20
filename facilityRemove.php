@@ -11,12 +11,17 @@ if($id) {
 
 
     $statement = $pdo->query($sql);
-    $table = $statement->fetchAll(PDO::FETCH_NUM);
+    $table = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+    $image = $table[0]['facilityPic'];
 
     if (count($table) > 0) {
         // Delete record
         $sql = "DELETE FROM Facility WHERE id= " . $id . ";";
+        //$str = 'images/'.$image;
+
+        //unlink($str);
+
         $statement = $pdo->query($sql);
         echo 1;
         exit;
