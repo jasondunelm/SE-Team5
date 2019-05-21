@@ -4,7 +4,9 @@ session_start();
 //$_SESSION['userName']="tuo.hao@durham.ac.uk";
 //$_SESSION['userName']="joey41517@gmail.com";
 require_once('bdd.php');
-
+if(!isset($_SESSION['id'])){
+    die("The page is only available to logged-in users.")
+}
 $sql = "SELECT nbooking.ID, UserID, FacilityID, facilityName AS Name, StartTime, EndTime, block, Color FROM
         (SELECT * FROM booking) AS nbooking
         LEFT JOIN
