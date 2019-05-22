@@ -38,7 +38,6 @@ include("functions_WebFront.php");
                 <br><br>
                 <input class="btn btn-secondary" type="submit" name="submit" value="Forgotten Password?">
             </form>
-
         </div>
     </div>
 </div>
