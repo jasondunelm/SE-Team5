@@ -37,6 +37,7 @@ $statement2 = $pdo->query($sql2);
     ?>
 
 </head>
+<body>
 <div id="content" style="margin-left: 10%; margin-right: 10%; ">
 
     <center><h1 style="color:black;">Search facility result</h1></center><br>
@@ -50,6 +51,7 @@ $statement2 = $pdo->query($sql2);
             <th>Unit price</th>
         </tr>
         </thead>
+        <tbody>
         <?php
         $number=1;
         while($rows = $statement2->fetch(PDO::FETCH_ASSOC)){
@@ -64,7 +66,7 @@ $statement2 = $pdo->query($sql2);
         $number++;
         }
         ?>
-        <?
+        <?php
         while($rows = $statement->fetch(PDO::FETCH_ASSOC)){
             ?>
             <tr>
@@ -82,5 +84,5 @@ $statement2 = $pdo->query($sql2);
 
 </div>
 </body>
-</html>
+
 
