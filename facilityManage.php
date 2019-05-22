@@ -117,13 +117,15 @@ if($_POST['facilityName']!=null){
             <tbody>
             <?php
             for ($i=0;$i<count($table);$i++) {
+                if($table[$i][0]!=0){
                 ?>
-                <tr>
+              <tr>
                     <td ><?php echo $table[$i][1]; ?></td>
                     <td ><button class="btn btn-primary facility_edit_btn"><a href="facilityEdit.php? id=<?php echo $table[$i][0] ?>">Edit</a></button></td>
                     <td ><button class="btn btn-primary delete" id='del_<?php echo $table[$i][0] ?>'>Delete</button></td>
-                </tr>
+                </tr>  
                 <?php
+            }
             }
             ?>
             </tbody>
