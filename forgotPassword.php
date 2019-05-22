@@ -45,8 +45,8 @@ if (isset($_POST['email'])) {
 	            
 	            In order to reset your password, please click on the link below:<br>
 	            <a href='
-	            http://localhost:63342/SE-Team5/resetPassword.php?email=$email&token=$token
-	            '>http://localhost:63342/SE-Team5/resetPassword.php?email=$email&token=$token</a><br><br>
+	            http://localhost/SE-Team5/resetPassword.php?email=$email&token=$token
+	            '>http://localhost/SE-Team5/resetPassword.php?email=$email&token=$token</a><br><br>
 	            
 	            Best regards,<br>
 	            DUS Admin Team
