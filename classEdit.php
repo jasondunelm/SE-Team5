@@ -27,21 +27,40 @@ include('footer.php');
                 obj.value= parseFloat(obj.value);
             }
         }
+
+
+
         function checkform(){
+
+            var reg='^[s 0-9a-zA-Z_/]*$';
+
             if(document.edit_Form.className.value==""){
                 alert("FacilityName can not be blank!");
                 return false;
+            }else if(!(document.edit_Form.className.value.match(reg))){
+                alert("Letters, numbers，slash and blank space are allowed class name!");
+                return false;
             }
+
+
             if(document.edit_Form.capacity.value==""){
                 alert("Capacity can not be blank!");
                 return false;
             }
+
             if(document.edit_Form.unitPrice.value==""){
                 alert("UnitPrice can not be blank!");
                 return false;
+            }else if(!(document.edit_Form.unitPrice.value.match(reg))){
+                alert("Letters, numbers, slash and blank space are allowed in price!");
+                return false;
             }
+
             if(document.edit_Form.location.value==""){
                 alert("Location can not be blank!");
+                return false;
+            }else if(!(document.edit_Form.location.value.match(reg))){
+                alert("Letters, numbers, slash and blank space are allowed location!");
                 return false;
             }
 
@@ -116,7 +135,7 @@ $table_pre= $statement->fetchAll(PDO::FETCH_ASSOC);
                     <label >Price</label>
                 </div>
                 <div class="col-md-6">
-                    <input type="text" class="form-control" name="unitPrice" value="<?php echo $table_pre[0]['price']; ?>" onkeyup="clearNoNum(this)"/>
+                    <input type="text" class="form-control" name="unitPrice" value="<?php echo $table_pre[0]['price']; ?>"/>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -156,7 +175,7 @@ $table_pre= $statement->fetchAll(PDO::FETCH_ASSOC);
             <div class="row" style="padding: 10px">
                 <div class="col-md-4"></div>
                 <div class="col-md-6">
-                    <p><img src="<?php echo "images/".$table_pre[0]['classImage']; ?>" alt="picture of current facility" class="img-thumbnail"></p>
+                    <p><img src="<?php echo "images/".$table_pre[0]['classImage']; ?>" alt="picture of current class" class="img-thumbnail"></p>
                     <button type="submit" class="btn btn-primary edit_btn_group" name="upload" >Submit</button>
                     <a href="classManage.php" class="btn btn-primary">Cancel</a>
                 </div>
@@ -195,10 +214,11 @@ if(isset($_POST['upload']))
     }
 
     else if($image == null){
-        $sql = "update Training set className= '".$className."',capacity= ".$capacity.",price=".$unitPrice.",location='".$location."', introduction='".$introduction."' where Training.id= ".$id.";";
+        $sql = "update Training set className= '".$className."',capacity= ".$capacity.",price='".$unitPrice."',location='".$location."', introduction='".$introduction."' where Training.id= ".$id.";";
 
         $statement = $pdo->query($sql);
-        if($statement){
+
+         if($statement){
             echo "<script> alert(\"Update class information successfully!\"); </script>";
             //header("Location:facilityManage.php");
             echo "<script> location.href=\"classManage.php\";</script>";
@@ -238,7 +258,7 @@ if(isset($_POST['upload']))
 
             move_uploaded_file($_FILES['image'] ['tmp_name'], $path);
 
-            $sql = "update Training set className= '" . $className . "',capacity= ".$capacity.",price=".$unitPrice.",location='".$location."', introduction='".$introduction."', classImage = '".$image."' where Training.id= ".$id.";";
+            $sql = "update Training set className= '" . $className . "',capacity= ".$capacity.",price='".$unitPrice."',location='".$location."', introduction='".$introduction."', classImage = '".$image."' where Training.id= ".$id.";";
 
             //$sth->execute();
             $statement = $pdo->query($sql);

@@ -3,7 +3,7 @@ session_start();
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 include('config_wyj.php');
-
+error_reporting(E_ALL^E_NOTICE);
 // to connect with mySQL database via mysqli_connect
 try {
     $link = new mysqli($mysql_db_host, $mysql_db_user, $mysql_db_pass, $mysql_db_name);
@@ -145,7 +145,7 @@ if ($_POST['submit'] == "Register") {
                 $mail->Body = "
                     Please click on the link below:<br><br>
                     
-                    <a href='http://localhost:63342/SE-Team5/email_Confirm.php?email=$email&token=$token'>Click Here</a>
+                    <a href='http://localhost/SE-Team5/email_Confirm.php?email=$email&token=$token'>Click Here</a>
                 ";
                 $mail->send();
                 $message = "You have been registered! Please verify your email!";
@@ -169,15 +169,10 @@ if ($_POST['submit'] == "Log In") {
         // check if userType is admin or user
         $row = mysqli_fetch_assoc($result);
 
-        if ($row['role'] == 'admin') {
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['role'] = $row['role'];
-            header("Location:index_admin.php");
-        } else {
-            $_SESSION['id'] = $row['id'];
-            $_SESSION['role'] = $row['role'];
-            header("Location:index_admin.php");
-        }
+        $_SESSION['id'] = $row['id'];
+        $_SESSION['role'] = $row['role'];
+        $_SESSION['userName'] = $row['userName'];
+        header("Location:index_admin.php");
 
     } else {
         $error = "We could not find a user with that email and password. Please try again later.";
